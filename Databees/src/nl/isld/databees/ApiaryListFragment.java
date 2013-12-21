@@ -2,8 +2,7 @@ package nl.isld.databees;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.support.v4.app.ListFragment;
 import android.util.SparseBooleanArray;
 import android.view.ActionMode;
 import android.view.ActionMode.Callback;
@@ -13,63 +12,59 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
 
-public class ApiariesFragment extends Fragment
-	implements OnItemClickListener, OnItemLongClickListener, Callback {
+public class ApiaryListFragment extends ListFragment
+	implements OnItemLongClickListener, Callback {
 	
 	private static final int REQUEST_CODE_NEW_APIARY = 0x01;
 	
-	private ListView 					apiaries;
-	private ApiaryAdapter				apiariesAdapter;
-	
 	/*
-	 * Overridden method of class Fragment.
-	 * It creates the fragment view and returns it to the
-	 * activity that uses the fragment.
+	 * Overridden method of class ListFragment.
+	 * It just calls the parent method to create and
+	 * return the ListView for our fragment.
 	 * @see android.support.v4.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
 	 */
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-		Log.d("Debug", "[ApiariesFragment onCreateView]");
-		
-		Log.d("Debug", "Inflating view");
-		View view = inflater.inflate(R.layout.fragment_apiaries, container);
-		
-		Log.d("Debug", "Initializing attributes");
-		apiariesAdapter = new ApiaryAdapter(getActivity(), AppCommon.APIARY_LOCAL_STORE);
-		apiaries = (ListView) view.findViewById(R.id.apiaries_list);
-		apiaries.setAdapter(apiariesAdapter);
-		apiaries.setOnItemClickListener(this);
-		apiaries.setOnItemLongClickListener(this);
-		
-		Log.d("Debug", "Returning view");
-		return view;
+		return super.onCreateView(inflater, container, savedInstanceState);
 	}
 	
 	/*
-	 * Overridden method of class Fragment.
+	 * Overridden method of class ListFragment.
+	 * It sets the ListView adapter.
+	 * @see android.support.v4.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
+	 */
+	@Override
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+		setListAdapter(new ApiaryAdapter(getActivity(), AppCommon.APIARY_LOCAL_STORE));
+		getListView().setOnItemLongClickListener(this);
+	}
+	
+	/*
+	 * Overridden method of class ListFragment.
 	 * Called when an activity previously started has finished
 	 * with a result. In this case it just notifies the adapter
-	 * of potential change to the data. 
+	 * of potential change to the data, when the NewApiaryActivity
+	 * returns a result.
 	 * @see android.support.v4.app.Fragment#onActivityResult(int, int, android.content.Intent)
 	 */
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		apiariesAdapter.notifyDataSetChanged();
+		((ApiaryAdapter) getListAdapter()).notifyDataSetChanged();
 	}
 
 	/*
-	 * Overridden method of interface OnItemClickListener.
+	 * Overridden method of class ListFragment.
 	 * Called when a list item is clicked (tapped).
 	 * @see android.widget.AdapterView.OnItemClickListener#onItemClick(android.widget.AdapterView, android.view.View, int, long)
 	 */
 	@Override
-	public void onItemClick(AdapterView<?> parent, View clickedView,
+	public void onListItemClick(ListView parent, View clickedView,
 			int position, long id) {
 		
 		if ((parent.getAdapter().getCount() - 1) == position) {
@@ -135,10 +130,10 @@ public class ApiariesFragment extends Fragment
 	 */
 	@Override
 	public void onDestroyActionMode(ActionMode mode) {
-		for(int i = 0; i < (apiaries.getCount() - 1); ++i) {
-			apiaries.setItemChecked(i, false);
+		for(int i = 0; i < (getListView().getCount() - 1); ++i) {
+			getListView().setItemChecked(i, false);
 		}
-		apiaries.setChoiceMode(ListView.CHOICE_MODE_NONE);
+		getListView().setChoiceMode(ListView.CHOICE_MODE_NONE);
 	}
 
 	/*
@@ -149,7 +144,7 @@ public class ApiariesFragment extends Fragment
 	 */
 	@Override
 	public boolean onPrepareActionMode(ActionMode arg0, Menu arg1) {
-		apiaries.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+		getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		return false;
 	}
 	
@@ -162,16 +157,17 @@ public class ApiariesFragment extends Fragment
 	 */
 	private void performActionDelete() {
 		
-		if(apiaries.getCheckedItemCount() > 0) {
+		if(getListView().getCheckedItemCount() > 0) {
 			SparseBooleanArray checkedItems = 
-				apiaries.getCheckedItemPositions();
-			for(int i = 0; i < apiaries.getCount() - 1; ++i) {
+				getListView().getCheckedItemPositions();
+			for(int i = 0; i < getListView().getCount() - 1; ++i) {
 				if(checkedItems.get(i)) {
-					apiaries.setItemChecked(i, false);
-					apiariesAdapter.remove(apiariesAdapter.getItem(i));
+					getListView().setItemChecked(i, false);
+					((ApiaryAdapter) getListAdapter())
+						.remove((Apiary) getListAdapter().getItem(i));
 				}
 			}
-			apiariesAdapter.notifyDataSetChanged();
+			((ApiaryAdapter) getListAdapter()).notifyDataSetChanged();
 		}
 		else {
 			Toast.makeText(getActivity(),

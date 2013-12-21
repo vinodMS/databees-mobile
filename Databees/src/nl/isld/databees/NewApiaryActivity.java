@@ -66,10 +66,8 @@ public class NewApiaryActivity extends FragmentActivity
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if(checkRequired()) {
 			switch(item.getItemId()) {
-			case R.id.action_save:
-				AppCommon.APIARY_LOCAL_STORE.add(newApiary);
-				setResult(RESULT_SAVE, new Intent());
-				finish();
+			case R.id.action_save:	saveAndFinish();
+									return true;
 			}
 		}
 		return false;
@@ -143,7 +141,7 @@ public class NewApiaryActivity extends FragmentActivity
 					new Intent(this, NewHiveActivity.class)
 					.putExtra(INTENT_EXTRA_LAT_LNG, newApiary.getLocation());
 			startActivity(intent);
-			finish();
+			saveAndFinish();
 		}
 	}
 	
@@ -203,6 +201,17 @@ public class NewApiaryActivity extends FragmentActivity
 		}
 		
 		return true;
+	}
+	
+	/*
+	 * Saves the apiary to the store and finishes the activity.
+	 * Note that is should always be called after a call to
+	 * checkRequired() and only if the latter returns true.
+	 */
+	private void saveAndFinish() {
+		AppCommon.APIARY_LOCAL_STORE.add(newApiary);
+		setResult(RESULT_SAVE, new Intent());
+		finish();
 	}
 
 }

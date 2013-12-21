@@ -4,6 +4,7 @@
     <dimen name="activity_horizontal_margin">10dp</dimen>
     <dimen name="activity_vertical_margin">10dp</dimen>
     <dimen name="activity_margin">10dp</dimen>
+    <dimen name="horizontal_divider_margin">5dp</dimen>
     
     <dimen name="common_horizontal_padding">10dp</dimen>
     <dimen name="common_vertical_padding">10dp</dimen>

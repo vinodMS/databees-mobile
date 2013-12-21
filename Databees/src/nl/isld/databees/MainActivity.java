@@ -1,8 +1,6 @@
 package nl.isld.databees;
 
-import android.app.ActionBar;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
@@ -19,25 +17,32 @@ public class MainActivity extends SlidingFragmentActivity {
 	private UserExpandableAdapter	navDrawerUserMenuAdapter;
 	private ArrayAdapter<String> 	navDrawerMenuAdapter;
 	
-	
+	/*
+	 * Overridden method of class SlidingFragmentActivity.
+	 * Sets the content views for the main view and the
+	 * navigation drawer, lying behind the first, and it
+	 * initializes the activity by calling a series of
+	 * private initialization methods.
+	 * @see com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity#onCreate(android.os.Bundle)
+	 */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-    	Log.d("Debug", "[MainActivity onCreate]");
         super.onCreate(savedInstanceState);
-        
-        Log.d("Debug", "Setting content view");
+
         setContentView(R.layout.activity_main);
-        Log.d("Debug", "Setting navigation drawer content view");
         setBehindContentView(R.layout.navigation_drawer);
         
-        Log.d("Debug", "Initializing attributes");
-        initAttributes();
-        Log.d("Debug", "Initializing action bar");
         initActionBar();
-        Log.d("Debug", "Initializing drawer");
-        initDrawer();   
+        initAttributes();
+        initDrawer();
+        initFrame();
     }
     
+    /*
+     * Overridden method of class SlidingFragmentActivity.
+     * Called whenever an item in the option menu is clicked.
+     * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
     	switch(item.getItemId()) {
@@ -48,6 +53,20 @@ public class MainActivity extends SlidingFragmentActivity {
 		return super.onOptionsItemSelected(item);
     }
     
+    /*
+     * Internal private method that initializes the action bar of
+     * the current activity.
+     */
+    private void initActionBar() {
+    	getActionBar().setDisplayShowCustomEnabled(true);
+    	getActionBar().setDisplayHomeAsUpEnabled(true);
+    	getActionBar().setHomeButtonEnabled(true);
+    }
+    
+    /*
+     * Internal private method that initializes all the attributes
+     * declared in this activity.
+     */
     private void initAttributes() {
     	navDrawer = getSlidingMenu();
     	navDrawerUserMenu = (ExpandableListView) navDrawer.findViewById(R.id.user_menu);
@@ -62,23 +81,29 @@ public class MainActivity extends SlidingFragmentActivity {
     							AppCommon.NAV_MENU_ITEMS);
     }
     
-    private void initActionBar() {
-    	ActionBar actionBar = getActionBar();
-    	
-    	actionBar.setDisplayShowCustomEnabled(true);
-    	actionBar.setDisplayHomeAsUpEnabled(true);
-    	actionBar.setHomeButtonEnabled(true);
-    }
-    
+    /*
+     * Internal private method that initializes the navigation
+     * drawer for this activity.
+     */
     private void initDrawer() {
     	navDrawer.findViewById(R.id.nav_drawer_main_layout)
     		.getBackground()
     		.setAlpha(80);
     	navDrawer.setShadowDrawable(R.drawable.drawer_shadow);
-    	navDrawer.setShadowWidth(20);
+    	navDrawer.setShadowWidth(35);
     	navDrawer.setBehindOffset(120);
     	
     	navDrawerUserMenu.setAdapter(navDrawerUserMenuAdapter);
     	navDrawerMenu.setAdapter(navDrawerMenuAdapter);
+    }
+    
+    /*
+     * Internal private method that adds the initial fragment
+     * to the activity's layout for display.
+     */
+    private void initFrame() {
+    	getSupportFragmentManager().beginTransaction()
+    		.add(R.id.container, new ApiaryListFragment())
+    		.commit();
     }
 }

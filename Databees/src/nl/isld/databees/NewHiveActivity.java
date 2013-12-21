@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -21,6 +23,9 @@ public class NewHiveActivity extends FragmentActivity
 	public static final int			RESULT_SAVE	=	1;
 	
 	private Intent					intent;
+	private	NewHiveFrontFragment	front;
+	private NewHiveBackFragment		back;
+	private boolean					showingBack;
 	private Hive					newHive;
 	private EditText				hiveName;
 	private SupportMapFragment		mapFragment;
@@ -40,6 +45,9 @@ public class NewHiveActivity extends FragmentActivity
 		initAttributes();
 		initMap();
 		initListeners();
+		initFrame();
+		
+		Log.d("Debug", "Waiting for events in NewHiveActivity");
 	}
 	
 	/*
@@ -118,7 +126,9 @@ public class NewHiveActivity extends FragmentActivity
 	 * Sets the values of all attributes.
 	 */
 	private void initAttributes() {
-		intent = getIntent();
+		intent 	= getIntent();
+		front 	= new NewHiveFrontFragment();
+		back 	= new NewHiveBackFragment();
 		newHive = new Hive();
 		hiveName = (EditText) getActionBar().getCustomView().findViewById(R.id.edit_text);
 		mapFragment = ((SupportMapFragment) getSupportFragmentManager()
@@ -134,8 +144,11 @@ public class NewHiveActivity extends FragmentActivity
 		LatLng point = (LatLng) intent.getExtras()
 			.get(NewApiaryActivity.INTENT_EXTRA_LAT_LNG);
 		
+		map.getUiSettings().setZoomControlsEnabled(false);
+		map.getUiSettings().setAllGesturesEnabled(false);
 		map.addMarker(new MarkerOptions().position(point));
 		map.animateCamera(CameraUpdateFactory.newLatLngZoom(point, 16));
+		
 	}
 	
 	/*
@@ -143,6 +156,48 @@ public class NewHiveActivity extends FragmentActivity
 	 */
 	private void initListeners() {
 		hiveName.addTextChangedListener(this);
+	}
+	
+	/*
+	 * 
+	 */
+	private void initFrame() {
+		getSupportFragmentManager().beginTransaction()
+			.add(R.id.container, front)
+			.commit();
+		showingBack = false;
+	}
+	
+	/*
+	 * 
+	 */
+	private void swapFrame() {		
+	    if (showingBack) {
+	        getSupportFragmentManager().popBackStack();
+	        showingBack = false;
+	        return;
+	    }
+
+	    showingBack = true;
+
+	    // Create and commit a new fragment transaction that adds the fragment for the back of
+	    // the frame, uses custom animations, and is part of the fragment manager's back stack.
+	    getSupportFragmentManager()
+	            .beginTransaction()
+	            .setCustomAnimations(
+	                    R.anim.fade_in, R.anim.fade_out,
+	                    R.anim.fade_in, R.anim.fade_out)
+	            .replace(R.id.container, back)
+	            .addToBackStack(null)
+	            .commit();
+	}
+	
+	/*
+	 * It grabs clicks (taps) on the Edit Hive Details button
+	 * in the front fragment and flips to the back.
+	 */
+	public void onButtonEditHiveDetailsClicked(View view) {
+		swapFrame();
 	}
 
 }

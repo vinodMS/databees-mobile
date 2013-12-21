@@ -30,10 +30,24 @@
     <string name="hint_new_apiary_notes">Add Notes Here</string>
     <string name="hint_new_hive_name">New Hive Name</string>
     
+    <!-- Items -->
+    <string name="item_hive_details_frames">Number Of Frames</string>
+    <string name="item_descr_hive_details_frames">Specify the number of frames the hive consists of</string>
+    
+    <!-- Other -->
+    <string name="content_descr_weather_condition_graphical_indicator">Weather condition graphical indicator</string>
+    
     <!-- Toasts -->
     <string name="toast_nothing_to_delete">Nothing to delete</string>
     <string name="toast_prompt_apiary_name">Please enter a name for the apiary</string>
     <string name="toast_prompt_apiary_location">Long tap on the map to select the location of the apiary</string>
     <string name="toast_prompt_hive_name">Please enter a name for the hive</string>
+    
+    <!-- Placeholders -->
+    <string name="placeholder_item_title">Item Title</string>
+    <string name="placeholder_item_description">Item Description</string>
+    <string name="placeholder_weather_condition">Weather</string>
+    <string name="placeholder_weather_degrees">XX°C</string>
+    <string name="placeholder_apiary_info">Apiary details will be displayed in this context.</string>
 
 </resources>
