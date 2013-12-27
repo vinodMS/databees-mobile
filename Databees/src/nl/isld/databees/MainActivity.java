@@ -1,13 +1,18 @@
 package nl.isld.databees;
 
 import java.util.ArrayList;
+
+import nl.isld.databees.rss.RSSFeed;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Menu;
@@ -38,7 +43,10 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		if (android.os.Build.VERSION.SDK_INT > 9) {
+		    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+		    StrictMode.setThreadPolicy(policy);
+		}
 		mTitle = mDrawerTitle = getTitle();
 
 		// load slide menu items
@@ -64,8 +72,9 @@ public class MainActivity extends Activity {
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
 		// Diseases
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
+		//RSS Feed
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
 		
-
 		// Recycle the typed array
 		navMenuIcons.recycle();
 
@@ -172,7 +181,11 @@ public class MainActivity extends Activity {
 		case 4:
 			fragment = new DiseaseFragment();
 			break;
-
+		case 5:
+			fragment = new HomeFragment();
+			Intent i = new Intent(this, RSSFeed.class);
+			startActivity(i);			
+			break;
 		default:
 			break;
 		}
@@ -180,16 +193,17 @@ public class MainActivity extends Activity {
 		if (fragment != null) {
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
-					.replace(R.id.frame_container, fragment).commit();
+				.replace(R.id.frame_container, fragment).commit();
 
 			// update selected item and title, then close the drawer
 			mDrawerList.setItemChecked(position, true);
 			mDrawerList.setSelection(position);
 			setTitle(navMenuTitles[position]);
 			mDrawerLayout.closeDrawer(mDrawerList);
+			
 		} else {
 			// error in creating fragment
-			Log.e("MainActivity", "Error in creating fragment");
+			//Log.e("MainActivity", "Error in creating fragment");
 		}
 	}
 

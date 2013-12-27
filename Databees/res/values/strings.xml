@@ -11,6 +11,7 @@
         <item >Task</item>
         <item >Flora</item>
         <item >Disease</item>
+        <item >News</item>
     </string-array>
     
     <array name="nav_drawer_icons">
