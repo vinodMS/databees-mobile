@@ -104,6 +104,7 @@ public class MainActivity extends SlidingFragmentActivity {
     private void initFrame() {
     	getSupportFragmentManager().beginTransaction()
     		.add(R.id.container, new ApiaryListFragment())
+    		.addToBackStack(ApiaryListFragment.BACKSTACK_LABEL)
     		.commit();
     }
 }

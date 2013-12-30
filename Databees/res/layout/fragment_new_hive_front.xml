@@ -22,5 +22,33 @@
 	     android:layout_height="wrap_content"
 	     android:layout_gravity="center"
 	     android:text="@string/button_add_inspections" />
+
+	 <RelativeLayout
+	     android:layout_width="match_parent"
+	     android:layout_height="wrap_content" >
+	     
+	     <ImageView
+	         android:id="@+id/hive_image"
+	         android:layout_width="match_parent"
+	         android:layout_height="match_parent"
+	         android:layout_alignParentLeft="true"
+	         android:layout_alignParentTop="true"
+	         android:contentDescription="@string/content_descr_hive_picture_holder"
+	         android:src="@drawable/square_dashed_rounded"
+	         android:onClick="onHiveImageClicked" />
+
+	     <TextView
+	         android:id="@+id/hive_image_prompt"
+	         android:layout_width="wrap_content"
+	         android:layout_height="wrap_content"
+	         android:layout_marginLeft="@dimen/hive_picture_prompt_margin"
+	         android:layout_marginRight="@dimen/hive_picture_prompt_margin"
+	         android:layout_centerHorizontal="true"
+	         android:layout_centerVertical="true"
+	         android:text="@string/placeholder_hive_picture"
+	         android:textAppearance="?android:attr/textAppearanceLarge"
+	         android:onClick="onHiveImageClicked" />
+	     
+	 </RelativeLayout>
 	    
 </LinearLayout>

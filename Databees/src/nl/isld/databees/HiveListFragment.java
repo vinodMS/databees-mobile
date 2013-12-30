@@ -1,11 +1,8 @@
 package nl.isld.databees;
 
-import com.google.android.gms.maps.model.LatLng;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.ActionMode;
 import android.view.ActionMode.Callback;
@@ -19,13 +16,10 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class ApiaryListFragment extends ListFragment
+public class HiveListFragment extends ListFragment
 	implements OnItemLongClickListener, Callback {
 	
-	public static final String	BACKSTACK_LABEL = "APIARY_LIST_FRAGMENT";
-	
-	public static final int 	REQUEST_CODE_NEW_APIARY = 0x01;
-	public static final String	KEY_APIARY_LOCATION = "KEY_APIARY_LOCATION";
+	private static final int REQUEST_CODE_NEW_HIVE = 0x01;
 	
 	/*
 	 * Overridden method of class ListFragment.
@@ -47,7 +41,7 @@ public class ApiaryListFragment extends ListFragment
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		setListAdapter(new ApiaryAdapter(getActivity(), AppCommon.APIARY_LOCAL_STORE));
+		setListAdapter(new HiveAdapter(getActivity(), AppCommon.HIVE_LOCAL_STORE));
 		getListView().setOnItemLongClickListener(this);
 	}
 	
@@ -61,7 +55,7 @@ public class ApiaryListFragment extends ListFragment
 	 */
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		((ApiaryAdapter) getListAdapter()).notifyDataSetChanged();
+		((HiveAdapter) getListAdapter()).notifyDataSetChanged();
 	}
 
 	/*
@@ -75,19 +69,10 @@ public class ApiaryListFragment extends ListFragment
 		
 		if ((parent.getAdapter().getCount() - 1) == position) {
 			startActivityForResult(new Intent(getActivity(),
-					NewApiaryActivity.class), REQUEST_CODE_NEW_APIARY);
-		} else {
-			Bundle args 				= new Bundle();
-			ApiaryViewFragment fragment = new ApiaryViewFragment();
-			LatLng location = ((Apiary) parent.getAdapter().getItem(position))
-					.getLocation();
-			
-			args.putParcelable(KEY_APIARY_LOCATION, location);
-			fragment.setArguments(args);
-			getActivity().getSupportFragmentManager().beginTransaction()
-				.replace(R.id.container, fragment)
-				.addToBackStack(ApiaryViewFragment.BACKSTACK_LABEL)
-				.commit();
+					NewHiveActivity.class), REQUEST_CODE_NEW_HIVE);
+		}
+		else {
+			// TO FILL IN
 		}
 	}
 
@@ -116,7 +101,7 @@ public class ApiaryListFragment extends ListFragment
 	 */
 	@Override
 	public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-		mode.getMenuInflater().inflate(R.menu.fragment_apiary_list_action_mode, menu);
+		mode.getMenuInflater().inflate(R.menu.fragment_hive_list_action_mode, menu);
 		return true;
 	}
 	
@@ -178,11 +163,11 @@ public class ApiaryListFragment extends ListFragment
 			for(int i = 0; i < getListView().getCount() - 1; ++i) {
 				if(checkedItems.get(i)) {
 					getListView().setItemChecked(i, false);
-					((ApiaryAdapter) getListAdapter())
-						.remove((Apiary) getListAdapter().getItem(i));
+					((HiveAdapter) getListAdapter())
+						.remove((Hive) getListAdapter().getItem(i));
 				}
 			}
-			((ApiaryAdapter) getListAdapter()).notifyDataSetChanged();
+			((HiveAdapter) getListAdapter()).notifyDataSetChanged();
 		}
 		else {
 			Toast.makeText(getActivity(),

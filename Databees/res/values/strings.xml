@@ -30,12 +30,16 @@
     <string name="hint_new_apiary_notes">Add Notes Here</string>
     <string name="hint_new_hive_name">New Hive Name</string>
     
-    <!-- Items -->
-    <string name="item_hive_details_frames">Number Of Frames</string>
-    <string name="item_descr_hive_details_frames">Specify the number of frames the hive consists of</string>
+    <!-- Labels -->
+    <string name="label_title_frames">Number Of Frames</string>
+    <string name="label_descr_frames">Specify the number of frames the hive consists of</string>
+    <string name="label_title_colony_source">Colony source</string>
+    <string name="label_descr_colony_source">Specify the colony source</string>
     
     <!-- Other -->
     <string name="content_descr_weather_condition_graphical_indicator">Weather condition graphical indicator</string>
+    <string name="content_descr_hive_picture_holder">Hive picture holder</string>
+    <string name="hive_list_item_never_inspected">This hive has never been inspected</string>
     
     <!-- Toasts -->
     <string name="toast_nothing_to_delete">Nothing to delete</string>
@@ -49,5 +53,13 @@
     <string name="placeholder_weather_condition">Weather</string>
     <string name="placeholder_weather_degrees">XX°C</string>
     <string name="placeholder_apiary_info">Apiary details will be displayed in this context.</string>
+    <string name="placeholder_hive_picture">Tap here to add a picture</string>
+    
+    <!-- Weather -->
+    <string name="weather_condition_clear">Clear</string>
+    <string name="weather_condition_clouds">Clouds</string>
+    <string name="weather_condition_rain">Rain</string>
+    <string name="weather_condition_snow">Snow</string>
+    
 
 </resources>

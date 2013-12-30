@@ -1,15 +1,18 @@
 package nl.isld.databees;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -21,8 +24,8 @@ public class NewHiveActivity extends FragmentActivity
 	implements TextWatcher {
 	
 	public static final int			RESULT_SAVE	=	1;
-	
-	private Intent					intent;
+	public static final int CAPTURE_HIVE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+
 	private	NewHiveFrontFragment	front;
 	private NewHiveBackFragment		back;
 	private boolean					showingBack;
@@ -46,8 +49,6 @@ public class NewHiveActivity extends FragmentActivity
 		initMap();
 		initListeners();
 		initFrame();
-		
-		Log.d("Debug", "Waiting for events in NewHiveActivity");
 	}
 	
 	/*
@@ -111,6 +112,18 @@ public class NewHiveActivity extends FragmentActivity
 		// Nothing to be done
 	}
 	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		switch(requestCode) {
+		case CAPTURE_HIVE_IMAGE_ACTIVITY_REQUEST_CODE:
+			if(resultCode == RESULT_OK) {
+				ImageView hiveImage = (ImageView) findViewById(R.id.hive_image);
+				hiveImage.setImageBitmap((Bitmap) data.getExtras().get("data"));
+				Toast.makeText(getApplicationContext(), "Image saved to: " + data.getData(), Toast.LENGTH_SHORT).show();
+			}
+		}
+	}
+	
 	/*
 	 * Initializes the activity's action bar.
 	 */
@@ -126,7 +139,6 @@ public class NewHiveActivity extends FragmentActivity
 	 * Sets the values of all attributes.
 	 */
 	private void initAttributes() {
-		intent 	= getIntent();
 		front 	= new NewHiveFrontFragment();
 		back 	= new NewHiveBackFragment();
 		newHive = new Hive();
@@ -141,7 +153,7 @@ public class NewHiveActivity extends FragmentActivity
 	 * the apiary is located and places a marker.
 	 */
 	private void initMap() {
-		LatLng point = (LatLng) intent.getExtras()
+		LatLng point = (LatLng) getIntent().getExtras()
 			.get(NewApiaryActivity.INTENT_EXTRA_LAT_LNG);
 		
 		map.getUiSettings().setZoomControlsEnabled(false);
@@ -172,7 +184,7 @@ public class NewHiveActivity extends FragmentActivity
 	 * 
 	 */
 	private void swapFrame() {		
-	    if (showingBack) {
+	    if(showingBack) {
 	        getSupportFragmentManager().popBackStack();
 	        showingBack = false;
 	        return;
@@ -198,6 +210,19 @@ public class NewHiveActivity extends FragmentActivity
 	 */
 	public void onButtonEditHiveDetailsClicked(View view) {
 		swapFrame();
+	}
+	
+	/*
+	 * Called when the user clicks (taps) on the hive image.
+	 * A new camera activity is created, allowing the user to
+	 * capture an image. After that the control returns to this
+	 * activity and the new hive image is displayed.
+	 */
+	public void onHiveImageClicked(View view) {
+		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		intent.putExtra(MediaStore.EXTRA_OUTPUT,
+				getDir("private", MODE_PRIVATE).toURI());
+		startActivityForResult(intent, CAPTURE_HIVE_IMAGE_ACTIVITY_REQUEST_CODE);
 	}
 
 }
