@@ -29,6 +29,7 @@
         android:theme="@android:style/Theme.Holo"
         android:allowBackup="true"
         android:hardwareAccelerated="false" >
+        
         <activity
             android:name="nl.isld.databees.MainActivity"
             android:label="@string/app_name" >
@@ -38,21 +39,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
         <activity
             android:name="nl.isld.databees.SplashScreen"
             android:theme="@android:style/Theme.Black.NoTitleBar" 
             android:label="@string/app_name" >
         </activity>
+        
         <activity
-            android:name="nl.isld.databees.NewApiaryActivity"
-            android:theme="@android:style/Theme.Holo" 
-            android:label="@string/label_new_apiary_activity" >
+            android:name="nl.isld.databees.ApiaryActivity"
+            android:label="@string/label_apiary_activity" >
         </activity>
         
         <activity
-            android:name="nl.isld.databees.NewHiveActivity"
-            android:theme="@android:style/Theme.Holo" 
-            android:label="@string/label_new_hive_activity" >
+            android:name="nl.isld.databees.HiveActivity" 
+            android:label="@string/label_hive_activity" >
+        </activity>
+        
+        <activity
+            android:name="nl.isld.databees.InspectionActivity" 
+            android:label="@string/label_inspection_activity" >
         </activity>
         
         <!-- Google Maps API Key -->

@@ -21,21 +21,13 @@
 	     android:layout_width="200dp"
 	     android:layout_height="wrap_content"
 	     android:layout_gravity="center"
-	     android:text="@string/button_add_inspections" />
+	     android:text="@string/button_add_inspections"
+	     android:onClick="onButtonAddInspectionsClicked" />
 
 	 <RelativeLayout
 	     android:layout_width="match_parent"
-	     android:layout_height="wrap_content" >
-	     
-	     <ImageView
-	         android:id="@+id/hive_image"
-	         android:layout_width="match_parent"
-	         android:layout_height="match_parent"
-	         android:layout_alignParentLeft="true"
-	         android:layout_alignParentTop="true"
-	         android:contentDescription="@string/content_descr_hive_picture_holder"
-	         android:src="@drawable/square_dashed_rounded"
-	         android:onClick="onHiveImageClicked" />
+	     android:layout_height="0dp"
+	     android:layout_weight="1" >
 
 	     <TextView
 	         android:id="@+id/hive_image_prompt"
@@ -48,7 +40,24 @@
 	         android:text="@string/placeholder_hive_picture"
 	         android:textAppearance="?android:attr/textAppearanceLarge"
 	         android:onClick="onHiveImageClicked" />
+
+	     <ImageView
+	         android:id="@+id/hive_image"
+	         android:layout_width="match_parent"
+	         android:layout_height="wrap_content"
+	         android:layout_alignParentLeft="true"
+	         android:layout_alignParentTop="true"
+	         android:contentDescription="@string/content_descr_hive_image"
+	         android:onClick="onHiveImageClicked"
+	         android:src="@drawable/square_dashed_rounded" />
 	     
 	 </RelativeLayout>
+
+	 <EditText
+	     android:id="@+id/hive_notes_input"
+	     android:layout_width="match_parent"
+	     android:layout_height="wrap_content"
+	     android:hint="@string/hint_type_notes" >
+	 </EditText>
 	    
 </LinearLayout>

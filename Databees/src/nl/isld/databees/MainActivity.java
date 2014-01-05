@@ -6,6 +6,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
@@ -36,6 +37,8 @@ public class MainActivity extends SlidingFragmentActivity {
         initAttributes();
         initDrawer();
         initFrame();
+        
+        LocalStore.init();
     }
     
     /*
@@ -103,7 +106,7 @@ public class MainActivity extends SlidingFragmentActivity {
      */
     private void initFrame() {
     	getSupportFragmentManager().beginTransaction()
-    		.add(R.id.container, new ApiaryListFragment())
+    		.add(R.id.main_container, new ApiaryListFragment())
     		.addToBackStack(ApiaryListFragment.BACKSTACK_LABEL)
     		.commit();
     }

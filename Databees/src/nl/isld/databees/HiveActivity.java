@@ -7,6 +7,7 @@ import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,16 +21,20 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class NewHiveActivity extends FragmentActivity
+public class HiveActivity extends FragmentActivity
 	implements TextWatcher {
 	
-	public static final int			RESULT_SAVE	=	1;
-	public static final int CAPTURE_HIVE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+	public static final int			REQUEST_NEW_HIVE		= 100;
+	public static final int			REQUEST_EDIT_HIVE		= 101;
+	public static final int 		REQUEST_CAPTURE_IMAGE	= 900;
+	public static final String		REQUEST_EXTRA_LOCATION	= "REQUEST_EXTRA_LOCATION";
+	public static final String		RESULT_EXTRA_HIVE_ID	= "RESULT_EXTRA_HIVE_ID";
 
-	private	NewHiveFrontFragment	front;
-	private NewHiveBackFragment		back;
+	private	HiveFrontFragment		front;
+	private HiveBackFragment		back;
 	private boolean					showingBack;
-	private Hive					newHive;
+	
+	private Hive					hive;
 	private EditText				hiveName;
 	private SupportMapFragment		mapFragment;
 	private GoogleMap				map;
@@ -42,10 +47,10 @@ public class NewHiveActivity extends FragmentActivity
 	@Override
     public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_new_hive);
+		setContentView(R.layout.activity_hive);
 		
-		initActionbar();
 		initAttributes();
+		initActionbar();
 		initMap();
 		initListeners();
 		initFrame();
@@ -58,8 +63,36 @@ public class NewHiveActivity extends FragmentActivity
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-	    getMenuInflater().inflate(R.menu.activity_new_hive_actions, menu);
+	    getMenuInflater().inflate(R.menu.activity_hive_actions, menu);
 	    return true;
+	}
+	
+	@Override
+	public void startActivityForResult(Intent intent, int requestCode) {
+		intent.putExtra("REQUEST_CODE", requestCode);
+		super.startActivityForResult(intent, requestCode);
+	}
+	
+	/*
+	 * Overridden method of class FragmentActivity.
+	 * Overridden method finish() terminates the activity
+	 * returning an intent that contains the newly created
+	 * hive.
+	 * @see android.app.Activity#finish()
+	 */
+	@Override
+	public void finish() {
+		
+		if(getIntent().getIntExtra("REQUEST_CODE", 0)
+				== REQUEST_NEW_HIVE) {
+			LocalStore.HIVE_LIST.add(hive);
+		}
+		
+		Intent intent = new Intent();
+		intent.putExtra(RESULT_EXTRA_HIVE_ID, hive.getId());
+		
+		setResult(RESULT_OK, intent);
+		super.finish();
 	}
 	
 	/*
@@ -71,9 +104,15 @@ public class NewHiveActivity extends FragmentActivity
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch(item.getItemId()) {
 		case R.id.action_save:
-			AppCommon.HIVE_LOCAL_STORE.add(newHive);
-			setResult(RESULT_SAVE, new Intent());
-			finish();
+			// Overridden method finish() terminates the activity
+			// returning an intent that contains the newly created
+			// hive. If you want to finish the activity without
+			// a result call super.finish()
+			if(checkRequired()) {
+				finish();
+			}
+		default:
+			super.finish();
 		}
 		return false;
 	}
@@ -84,12 +123,18 @@ public class NewHiveActivity extends FragmentActivity
 	 * @see android.text.TextWatcher#afterTextChanged(android.text.Editable)
 	 */
 	@Override
-	public void afterTextChanged(Editable s) {
+	public void afterTextChanged(Editable editable) {
 		
 		if(getCurrentFocus().equals(hiveName)) {
-			newHive.setName(hiveName.getText().toString().trim());
+			hive.setName(editable.toString().trim());
 		}
-		else { // Nothing to be done YET
+		else if(getCurrentFocus().getId() == R.id.hive_notes_input) {
+			hive.setNotes(editable.toString().trim());
+		}
+		else if(getCurrentFocus().getId() == R.id.suppers_value_input) {
+			if(editable.toString().length() > 0) {
+				hive.setNumberOfSuppers(Integer.valueOf(editable.toString()));
+			}
 		}
 	}
 	
@@ -114,14 +159,54 @@ public class NewHiveActivity extends FragmentActivity
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		
 		switch(requestCode) {
-		case CAPTURE_HIVE_IMAGE_ACTIVITY_REQUEST_CODE:
+		case REQUEST_CAPTURE_IMAGE:
 			if(resultCode == RESULT_OK) {
 				ImageView hiveImage = (ImageView) findViewById(R.id.hive_image);
 				hiveImage.setImageBitmap((Bitmap) data.getExtras().get("data"));
 				Toast.makeText(getApplicationContext(), "Image saved to: " + data.getData(), Toast.LENGTH_SHORT).show();
+				break;
 			}
+		case InspectionActivity.REQUEST_NEW_INSPECTION:
+			Inspection inspection = LocalStore.findInspectionById(
+					data.getStringExtra(InspectionActivity.RESULT_EXTRA_INSPECTION_ID));
+			hive.getColony().addInspection(inspection);
+			finish();
 		}
+	}
+	
+	/*
+	 * It grabs clicks (taps) on the Edit Hive Details button
+	 * in the front fragment and flips to the back.
+	 */
+	public void onButtonEditHiveDetailsClicked(View view) {
+		swapFrame();
+	}
+	
+	/*
+	 * Called when the user clicks (taps) on the Add Inspections
+	 * button. If the required fields are filled in, then a new
+	 * activity is started to create an inspection.
+	 */
+	public void onButtonAddInspectionsClicked(View view) {
+		if(checkRequired()) {
+			startActivityForResult(new Intent(this, InspectionActivity.class),
+					InspectionActivity.REQUEST_NEW_INSPECTION);
+		}
+	}
+	
+	/*
+	 * Called when the user clicks (taps) on the hive image.
+	 * A new camera activity is created, allowing the user to
+	 * capture an image. After that the control returns to this
+	 * activity and the new hive image is displayed.
+	 */
+	public void onHiveImageClicked(View view) {
+		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		intent.putExtra(MediaStore.EXTRA_OUTPUT,
+				getDir("private", MODE_PRIVATE).toURI());
+		startActivityForResult(intent, REQUEST_CAPTURE_IMAGE);
 	}
 	
 	/*
@@ -132,20 +217,23 @@ public class NewHiveActivity extends FragmentActivity
 		getActionBar().setDisplayShowHomeEnabled(false);
 		getActionBar().setDisplayShowCustomEnabled(true);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-		getActionBar().setCustomView(R.layout.actionbar_new_item);
+		getActionBar().setCustomView(hiveName);
 	}
 	
 	/*
 	 * Sets the values of all attributes.
 	 */
 	private void initAttributes() {
-		front 	= new NewHiveFrontFragment();
-		back 	= new NewHiveBackFragment();
-		newHive = new Hive();
-		hiveName = (EditText) getActionBar().getCustomView().findViewById(R.id.edit_text);
+		hive = new Hive();
+		hiveName = new EditText(this);
+		hiveName.setHint(getResources().getString(R.string.hint_new_apiary_name));
+		hiveName.setEms(0);
 		mapFragment = ((SupportMapFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.map_fragment));
 		map = mapFragment.getMap();
+		
+		front 	= new HiveFrontFragment();
+		back 	= new HiveBackFragment();
 	}
 	
 	/*
@@ -153,13 +241,12 @@ public class NewHiveActivity extends FragmentActivity
 	 * the apiary is located and places a marker.
 	 */
 	private void initMap() {
-		LatLng point = (LatLng) getIntent().getExtras()
-			.get(NewApiaryActivity.INTENT_EXTRA_LAT_LNG);
+		LatLng location = getIntent().getExtras().getParcelable(REQUEST_EXTRA_LOCATION);
 		
 		map.getUiSettings().setZoomControlsEnabled(false);
 		map.getUiSettings().setAllGesturesEnabled(false);
-		map.addMarker(new MarkerOptions().position(point));
-		map.animateCamera(CameraUpdateFactory.newLatLngZoom(point, 16));
+		map.addMarker(new MarkerOptions().position(location));
+		map.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 13));
 		
 	}
 	
@@ -175,13 +262,14 @@ public class NewHiveActivity extends FragmentActivity
 	 */
 	private void initFrame() {
 		getSupportFragmentManager().beginTransaction()
-			.add(R.id.container, front)
+			.add(R.id.main_container, front)
 			.commit();
 		showingBack = false;
 	}
 	
 	/*
-	 * 
+	 * Swaps the front and the back fragments with
+	 * animation accordingly
 	 */
 	private void swapFrame() {		
 	    if(showingBack) {
@@ -199,30 +287,28 @@ public class NewHiveActivity extends FragmentActivity
 	            .setCustomAnimations(
 	                    R.anim.fade_in, R.anim.fade_out,
 	                    R.anim.fade_in, R.anim.fade_out)
-	            .replace(R.id.container, back)
+	            .replace(R.id.main_container, back)
 	            .addToBackStack(null)
 	            .commit();
 	}
 	
 	/*
-	 * It grabs clicks (taps) on the Edit Hive Details button
-	 * in the front fragment and flips to the back.
+	 * Checks if the required information about the
+	 * hive is given by the user. It also displays
+	 * a toast prompt message if something is missing.
+	 * @returns		true if all requirements are met,
+	 * 				otherwise return false
 	 */
-	public void onButtonEditHiveDetailsClicked(View view) {
-		swapFrame();
-	}
-	
-	/*
-	 * Called when the user clicks (taps) on the hive image.
-	 * A new camera activity is created, allowing the user to
-	 * capture an image. After that the control returns to this
-	 * activity and the new hive image is displayed.
-	 */
-	public void onHiveImageClicked(View view) {
-		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		intent.putExtra(MediaStore.EXTRA_OUTPUT,
-				getDir("private", MODE_PRIVATE).toURI());
-		startActivityForResult(intent, CAPTURE_HIVE_IMAGE_ACTIVITY_REQUEST_CODE);
+	private boolean checkRequired() {
+		
+		if(hive.getName().equals(new String())) {
+			Toast.makeText(getApplicationContext(), 
+					getResources().getString(R.string.toast_prompt_hive_name),
+					Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		
+		return true;
 	}
 
 }

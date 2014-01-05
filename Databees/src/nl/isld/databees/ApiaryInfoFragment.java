@@ -1,15 +1,21 @@
 package nl.isld.databees;
 
+import org.json.JSONObject;
+
+import com.google.android.gms.maps.model.LatLng;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class ApiaryInfoFragment extends Fragment {
+public class ApiaryInfoFragment extends Fragment
+	implements JsonParserCallback {
+	
+	public static final String 	ARG_LOCATION = "ARG_LOCATION";
 	
 	private ImageView	weatherIcon;
 	private TextView	weatherCondition;
@@ -35,9 +41,33 @@ public class ApiaryInfoFragment extends Fragment {
 		weatherIcon = (ImageView) getView().findViewById(R.id.weather_icon);
 		weatherCondition = (TextView) getView().findViewById(R.id.weather_condition);
 		weatherTemperature = (TextView) getView().findViewById(R.id.weather_temperature);
+		
+		LatLng location = (LatLng) getArguments().getParcelable(ARG_LOCATION);
+		OpenWeather.getWeather(location, this);
 	}
 	
-	public void setWeatherData(WeatherData data) {
+	/*
+	 * Overridden method of interface JsonParserCallback.
+	 * Called once the JSON file retrieved from Open Weather
+	 * is parsed.
+	 */
+	@Override
+	public void onParsed(JSONObject json) {
+		
+		if (!json.equals(new JSONObject())) {
+			WeatherData data = WeatherData.fromOpenWeatherJsonObject(json);
+			setWeatherData(data);
+		} else {
+			// failWeatherData()
+		}
+	}
+	
+	/*
+	 * Private method called when the JSON response from
+	 * OpenWeather has been successfully retrieved and
+	 * parsed. This method takes care of refreshing the UI.
+	 */
+	private void setWeatherData(WeatherData data) {
 		switch(data.getConditionCode()) {
 		case 500: case 501: case 502:
 		case 503: case 504: case 511:
@@ -59,6 +89,8 @@ public class ApiaryInfoFragment extends Fragment {
 		weatherCondition.setText(data.getCondition());
 		weatherTemperature.setText((int) data.getTemperatureCelcius() + "°C");
 		
+		getView().findViewById(R.id.progress_spin).setVisibility(View.INVISIBLE);
+		getView().findViewById(R.id.weather_info_container).setVisibility(View.VISIBLE);
 	}
 	
 }

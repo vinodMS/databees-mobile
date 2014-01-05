@@ -11,15 +11,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 public class HiveListFragment extends ListFragment
 	implements OnItemLongClickListener, Callback {
 	
-	private static final int REQUEST_CODE_NEW_HIVE = 0x01;
+	public static final String	ARG_APIARY_ID	=	"ARG_APIARY_ID";
+	
+	private Apiary apiary;
 	
 	/*
 	 * Overridden method of class ListFragment.
@@ -41,8 +46,18 @@ public class HiveListFragment extends ListFragment
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		setListAdapter(new HiveAdapter(getActivity(), AppCommon.HIVE_LOCAL_STORE));
+		
+		apiary = (Apiary) LocalStore.findApiaryById(
+				getArguments().getString(ARG_APIARY_ID));
+		
+		setListAdapter(new HiveAdapter(getActivity(), apiary.getHives()));
 		getListView().setOnItemLongClickListener(this);
+	}
+	
+	@Override
+	public void startActivityForResult(Intent intent, int requestCode) {
+		intent.putExtra("REQUEST_CODE", requestCode);
+		super.startActivityForResult(intent, requestCode);
 	}
 	
 	/*
@@ -55,6 +70,11 @@ public class HiveListFragment extends ListFragment
 	 */
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if(resultCode == HiveActivity.RESULT_OK) {
+			Hive hive = LocalStore.findHiveById(
+					data.getStringExtra(HiveActivity.RESULT_EXTRA_HIVE_ID));
+			apiary.addHive(hive);
+		}
 		((HiveAdapter) getListAdapter()).notifyDataSetChanged();
 	}
 
@@ -68,11 +88,27 @@ public class HiveListFragment extends ListFragment
 			int position, long id) {
 		
 		if ((parent.getAdapter().getCount() - 1) == position) {
-			startActivityForResult(new Intent(getActivity(),
-					NewHiveActivity.class), REQUEST_CODE_NEW_HIVE);
+			Intent intent =
+					new Intent(getActivity(), HiveActivity.class)
+					.putExtra(HiveActivity.REQUEST_EXTRA_LOCATION, apiary.getLocation());
+			
+			startActivityForResult(intent, HiveActivity.REQUEST_NEW_HIVE);
 		}
 		else {
-			// TO FILL IN
+			InspectionListFragment	inspectionList	= new InspectionListFragment();
+			HiveImageFragment		hiveImage		= new HiveImageFragment();
+			
+			Hive	hive	= (Hive) parent.getAdapter().getItem(position);
+			Bundle	args	= new Bundle();
+			
+			args.putString(InspectionListFragment.ARG_HIVE_ID, hive.getId());
+			inspectionList.setArguments(args);
+			
+			getActivity().getSupportFragmentManager().beginTransaction()
+				.add(R.id.top_container, hiveImage)
+				.replace(R.id.main_container, inspectionList)
+				.addToBackStack(null)
+				.commit();
 		}
 	}
 

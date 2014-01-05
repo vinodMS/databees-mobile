@@ -1,8 +1,5 @@
 package nl.isld.databees;
 
-import com.google.android.gms.maps.model.LatLng;
-
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -15,17 +12,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class ApiaryListFragment extends ListFragment
+public class InspectionListFragment extends ListFragment
 	implements OnItemLongClickListener, Callback {
 	
-	public static final String	BACKSTACK_LABEL = "APIARY_LIST_FRAGMENT";
-
+	public static final String	ARG_HIVE_ID	=	"ARG_HIVE_ID";
+	
+	private Hive hive;
 	
 	/*
 	 * Overridden method of class ListFragment.
@@ -47,7 +44,13 @@ public class ApiaryListFragment extends ListFragment
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		setListAdapter(new ApiaryAdapter(getActivity(), LocalStore.APIARY_LIST));
+		
+		hive = (Hive) LocalStore.findHiveById(
+				getArguments().getString(ARG_HIVE_ID));
+		
+		if(hive == null) { Log.d("Beebug", "Hive with ID: " + getArguments().getString(ARG_HIVE_ID) + " is NULL!"); }
+		
+		setListAdapter(new InspectionAdapter(getActivity(), hive.getInspections()));
 		getListView().setOnItemLongClickListener(this);
 	}
 	
@@ -67,7 +70,12 @@ public class ApiaryListFragment extends ListFragment
 	 */
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		((ApiaryAdapter) getListAdapter()).notifyDataSetChanged();
+		if(resultCode == HiveActivity.RESULT_OK) {
+			Inspection inspection = LocalStore.findInspectionById(
+					data.getStringExtra(InspectionActivity.RESULT_EXTRA_INSPECTION_ID));
+			hive.getColony().addInspection(inspection);
+		}
+		((InspectionAdapter) getListAdapter()).notifyDataSetChanged();
 	}
 
 	/*
@@ -80,27 +88,13 @@ public class ApiaryListFragment extends ListFragment
 			int position, long id) {
 		
 		if ((parent.getAdapter().getCount() - 1) == position) {
-			Intent intent = new Intent(getActivity(), ApiaryActivity.class);
-			startActivityForResult(intent, ApiaryActivity.REQUEST_NEW_APIARY);
+			Intent intent =
+					new Intent(getActivity(), InspectionActivity.class);
+			
+			startActivityForResult(intent, InspectionActivity.REQUEST_NEW_INSPECTION);
 		}
 		else {
-			ApiaryInfoFragment	apiaryInfo	= new ApiaryInfoFragment();
-			HiveListFragment	hiveList	= new HiveListFragment();
-			
-			Apiary	apiary	= (Apiary) parent.getAdapter().getItem(position);
-			Bundle	args	= new Bundle();
-			
-			args.putString(HiveListFragment.ARG_APIARY_ID, apiary.getId());
-			args.putParcelable(ApiaryInfoFragment.ARG_LOCATION, apiary.getLocation());
-			apiaryInfo.setArguments(args);
-			hiveList.setArguments(args);
-			
-			getActivity().getSupportFragmentManager().beginTransaction()
-				.add(R.id.top_container, MiniMapFragment.newInstance(apiary.getLocation()))
-				.add(R.id.middle_container, apiaryInfo)
-				.replace(R.id.main_container, hiveList)
-				.addToBackStack(null)
-				.commit();
+			// TODO
 		}
 	}
 
@@ -129,7 +123,7 @@ public class ApiaryListFragment extends ListFragment
 	 */
 	@Override
 	public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-		mode.getMenuInflater().inflate(R.menu.fragment_apiary_list_action_mode, menu);
+		mode.getMenuInflater().inflate(R.menu.fragment_hive_list_action_mode, menu);
 		return true;
 	}
 	
@@ -191,11 +185,11 @@ public class ApiaryListFragment extends ListFragment
 			for(int i = 0; i < getListView().getCount() - 1; ++i) {
 				if(checkedItems.get(i)) {
 					getListView().setItemChecked(i, false);
-					((ApiaryAdapter) getListAdapter())
-						.remove((Apiary) getListAdapter().getItem(i));
+					((HiveAdapter) getListAdapter())
+						.remove((Hive) getListAdapter().getItem(i));
 				}
 			}
-			((ApiaryAdapter) getListAdapter()).notifyDataSetChanged();
+			((HiveAdapter) getListAdapter()).notifyDataSetChanged();
 		}
 		else {
 			Toast.makeText(getActivity(),

@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class NewHiveFrontFragment extends Fragment {
+public class HiveFrontFragment extends Fragment {
 	
 	/*
 	 * Overridden method of class Fragment.
@@ -17,7 +17,7 @@ public class NewHiveFrontFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.fragment_new_hive_front, container, false);
+		View view = inflater.inflate(R.layout.fragment_hive_front, container, false);
 
 		return view;
 	}

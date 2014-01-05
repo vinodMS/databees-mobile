@@ -14,10 +14,6 @@
     <string name="action_add_new_inspection">Add a new inspection</string>
     <string name="action_add_new_task">Add a new task</string>
     
-    <!-- Activity Labels -->
-    <string name="label_new_apiary_activity">New Apiary</string>
-    <string name="label_new_hive_activity">New Hive</string>
-    
     <!-- Buttons -->
     <string name="button_add_hives">Add Hives</string>
     <string name="button_manage_flora">Manage Flora</string>
@@ -27,18 +23,32 @@
     
     <!-- Hints -->
     <string name="hint_new_apiary_name">New Apiary Name</string>
-    <string name="hint_new_apiary_notes">Add Notes Here</string>
+    <string name="hint_type_notes">Add Notes Here</string>
     <string name="hint_new_hive_name">New Hive Name</string>
     
     <!-- Labels -->
-    <string name="label_title_frames">Number Of Frames</string>
-    <string name="label_descr_frames">Specify the number of frames the hive consists of</string>
+    <string name="label_apiary_activity">Apiary</string>
+    <string name="label_hive_activity">Hive</string>
+    <string name="label_inspection_activity">Inspection</string>
+    <string name="label_general_ispection_tab">General</string>
+    <string name="label_feeding_ispection_tab">Feeding</string>
+    <string name="label_diseases_ispection_tab">Diseases</string>
+    <string name="label_title_suppers">Number Of Suppers</string>
+    <string name="label_descr_suppers">Specify the number of suppers the hive consists of</string>
     <string name="label_title_colony_source">Colony source</string>
     <string name="label_descr_colony_source">Specify the colony source</string>
     
+    <!-- Menu Items -->
+    <string name="menu_item_dashboard">Dashboard</string>
+    <string name="menu_item_apiaries">Apiaries</string>
+    <string name="menu_item_tasks">Tasks</string>
+    <string name="menu_item_desease_guide">Disease Guide</string>
+    <string name="menu_item_edit_account">Edit</string>
+    <string name="menu_item_logout">Logout</string>
+    
     <!-- Other -->
     <string name="content_descr_weather_condition_graphical_indicator">Weather condition graphical indicator</string>
-    <string name="content_descr_hive_picture_holder">Hive picture holder</string>
+    <string name="content_descr_hive_image">Hive image</string>
     <string name="hive_list_item_never_inspected">This hive has never been inspected</string>
     
     <!-- Toasts -->
@@ -52,7 +62,6 @@
     <string name="placeholder_item_description">Item Description</string>
     <string name="placeholder_weather_condition">Weather</string>
     <string name="placeholder_weather_degrees">XX°C</string>
-    <string name="placeholder_apiary_info">Apiary details will be displayed in this context.</string>
     <string name="placeholder_hive_picture">Tap here to add a picture</string>
     
     <!-- Weather -->
@@ -60,6 +69,13 @@
     <string name="weather_condition_clouds">Clouds</string>
     <string name="weather_condition_rain">Rain</string>
     <string name="weather_condition_snow">Snow</string>
+    
+    <!-- String Arrays -->
+    <string-array name="temper_values">
+        <item>Mild</item>
+        <item>Bad</item>
+        <item>Tantrum</item>
+    </string-array>
     
 
 </resources>
