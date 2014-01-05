@@ -2,14 +2,11 @@ package nl.isld.databees.rss;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import nl.isld.databees.MainActivity;
 import nl.isld.databees.R;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;

@@ -15,6 +15,234 @@
     </string-array>
     
     <array name="nav_drawer_icons">
+	</array>
+    
+    <string name="varroa">
+		<![CDATA[
+		
+		<h2>Varroa Mite</h2>
+		<p>The varroa mite, <i>Varroa destructor</i>, is an external parasite of honey bees and, globally, the most serious threat to the Western honey bee, <i>Apis mellifera</i>, which has few natural defences against varroa.</p>
+		<p>A parasite that feeds on the bee and acts as a vector for viruses, varroa is widely believed to be at the core of unexplained bee losses (Colony Collapse Disorder) across the world. Untreated, colonies will die in just a few years but signs of infestation may not be obvious until infestation levels are high, by which stage the colony is at great risk.</p>
+		<p>Early detection, therefore, is essential and beekeepers should remain constantly vigilant.</p>
+		<h2>Detection</h2>
+		Adult varroa mites are reddish-brown in colour, oval and small in size but visible to the naked eye (1.5 mm by 1 mm) with eight legs. Varroa mites are usually seen as reddish spots on the white larvae. Or behind the head or nestled between the abdominal segments of the adult bee.</br>
+		<br> </br>
+		<br>Check for:</br>
+		
+		<br>● Mites in hive floor debris (purpose-made varroa floors help)</br>
+		<br>● Mites visible on adult bees, on wax combs and in cells</br>
+		<br>● Varroa on uncapped and examined drone brood</br>
+		<br>● Diagnostic treat ment with approved acaricides and methods</br>
+		
+		<br>Warning signs:</br>
+		
+		<br>● Sudden crash in adult bee numbers</br>
+		<br>● Twisted/Shrivelled wings, small abdomens or other deformities</br>
+		<br>● Poor general colony health, irregular brood pattern</br>
+		
+		<h2>Prevention</h2>
+		Where possible, the following factors, which can accelerate the spread of the varroa mite, should be avoided:
+		
+		<br>● Migratory beekeeping</br>
+		<br>● Transfer of bees between colonies</br>
+		<br>● Allowing colonies (perhaps already weakened by varroa) to become vulnerable to robber bees</br>
+		
+		<h2>Treatment</h2>
+		It is very important to use a product that has been licensed for varroa control and has been thoroughly tested and approved for efficacy, safety and quality.
+		Apistan and Apiguard are each registered in approximately 60 countries globally and are two of the worlds leading varroa medicines. Additionally, VitaFeed Gold and VitaFeed Green help maintain health colonies better able to withstand varroa infestations.
+		
+		<br> </br>
+		<br>Tips:</br>
+		
+		<br>● Monitor infestation levels to assess mite count compared with harmful levels and to check effectiveness of current method of control</br>
+		<br>● Use a combination of methods (Integrated Pest Management), such as combining both biomechanical methods and chemical treatments</br>
+		<br>● Use approved varroacides such as Apistan and Apiguard with proven efficacy and safety</br>
+		<br>● Follow manufacturers guidelines; incorrect use may result in residues and promote the development of resistance</br>
+		<br>● Use a co-ordinated approach by developing a treatment programme with other local beekeepers to reduce the likelihood of re-infestation 
+		
+		]]>
+	</string>
 
-    </array>
+    <string name="european">
+		<![CDATA[
+		
+		<h2>European Foulbrood</h2>
+		<p>European Foulbrood (EFB) is a serious bacterial disease of honeybee brood caused by several agents, the main being the bacterium <i>Melissococcus plutonis</i>. Incidences of EFB are increasing although it is not yet thought as serious as American Foulbrood. However, the two diseases are easily confused and misdiagnosed.</p>
+
+		<p>European Foulbrood occurs most frequently in the spring or early summer during brood rearing and is thought to be caused by stress in the colony and lack of pollen.</p>
+
+		<p>Symptoms can be variable which makes EFB difficult to identify with certainty; frequently disappearing when there is a nectar flow. But EFB can seriously affect brood development and needs to be identified as soon as possible.</p>
+		
+		In the UK, around 50% of EFB-infected colonies per year are destroyed, with costs to beekeepers also imposed by standstill notices on infected apiaries (in place for years in some areas) and losses of honey yields, pollination contracts and sale of bees.
+		
+		<h2>Detection</h2>
+		<p>Early detection is essential because just one infected cell can lead to the destruction of an entire apiary. In colonies infected with either European or American Foulbrood the brood pattern can appear very patchy and irregular (sometimes termed pepper-pot) in distribution. </p>
+		
+		Unlike with AFB, cadavers of EFB infested larvae cannot be stretched (or roped out) with a matchstick or similar instrument.
+		
+		European Foulbrood can be identified by costly and time consuming laboratory tests but perhaps the best, and easiest, method is to use Vita EFB Diagnostic Kit - a simple to use field kit that gives a clear result in just three minutes.
+
+		]]>
+	</string>
+
+    <string name="american">
+		<![CDATA[
+			
+		<h2>American Foulbrood</h2>
+		<p>American Foulbrood (AFB) is an infectious brood disease caused by the spore-forming bacterium <i>Paenibacillus</i> larvae subsp. larvae. It is the most destructive and widespread of the honeybee brood diseases.</p>
+		
+		<p>AFB disseminates rapidly through the colony and, if left unchecked, spreads quickly to other healthy colonies both in the same apiary and those nearby. Untreated, AFB can result in the death of the hive in a very short time.</p>
+		
+		<h2>Detection</h2>
+		<p>It is vitally important to detect foulbrood as early as possible and distinguishing between AFB and EFB can be difficult.</p>
+		
+		<p>In colonies infected with either European or American Foulbrood the brood pattern can appear very patchy and irregular (sometimes termed pepper-pot) in distribution.</p>
+		
+		<p>Unlike with EFB, cadavers of AFB infested larvae can be stretched (or roped out) with a matchstick or similar instrument. </p>
+		<p>Cadavers of larvae infected with AFB die in the late larval stage. As the cadaver decays it becomes gelatinous.</p>
+		
+		<p>American Foulbrood can be identified by costly and time consuming laboratory tests but perhaps the best, and easiest, method is to use Vita AFB Diagnostic Kit a simple to use field kit that gives a clear result in just three minutes.</p>
+		
+		<h2>Prevention</h2>
+		<p>Since stresses on the colony can be a contributing factor to infestation, these should be removed wherever possible.</p>
+		
+		<h2>Treatment</h2>
+		<p>American Foulbrood can be controlled by the use of antibiotics but this can leave residues in wax and honey and is banned in many European countries.</p>
+				
+		]]>
+	</string>
+
+    <string name="nosema">
+		<![CDATA[
+	
+		<h2>Introduction</h2>
+		<p>Nosema, caused by the parasite <i>Nosema apis</i> and <i>ceranae</i>, leads to dysentery and other serious side effects such as reduced yield, increased winter losses, shortened life span and increased susceptibility to supersedure.</p>
+		
+		<p>Nosema is also known as Spring Dwindling Disease because as the weather improves and bees are able to leave the hive to defecate so the disease level often drops and (although colonies will not do as well as those that were uninfected), they often recover for the summer.</p>
+		
+		<h2>Detection</h2>
+		<p>The most easily observed symptom of Nosema is dysentery, which can be seen as yellow streaks outside and (in cases of severe infestation) within the hive. Supersedure may be induced and physical signs such as increased abdomen girth are possible. Colony productivity is adversely affected and colony population will drop (female worker bees are particularly affected).</p>
+				
+		<h2>Prevention</h2>
+		<p>The best methods of prevention are good husbandry techniques such as removing stress factors and providing sufficient nutrition.</p>
+		
+		<h2>Treatment</h2>
+		<p>The traditional treatment for Nosema has been the antibiotic Fumagillin. However, many beekeepers have stopped using Fumagillin because they found that colonies built up too quickly and swarm control became nearly impossible. This product has also been withdrawn from a number of countries because of antibiotic residues in hive products.
+		
+		An alternative is VitaFeed Gold, a natural biostimulant that provides controlled brood build-up, stimulates colony development and is particularly effective when applied to colonies infected with Nosema. VitaFeed Gold contains no antibiotics and leaves no harmful residues.</p>
+	
+		]]>
+	</string>
+	
+    <string name="small">
+		<![CDATA[
+				
+		<h2>Small Hive Beetle</h2>
+		<p>The small hive beetle, <i>Athina tumida</i>, is a native of South Africa but is now being found in different parts of the world where it is causing great damage by destroying and contaminating colonies.</p>
+		
+		<h2>Detection</h2>
+		<p>Colonies invaded by SHB are commonly described as a mess. The SHB larvae tunnel through combs and cappings, eating and destroying them and often causing the honey to ferment giving off an orange-like smell.</p>
+		
+		<p>In very heavy infestations, bees simply abscond from the hive. Adult SHB can live for up to six months in a hive before their presence becomes obvious. The females will lay many eggs in cracks and crevices in the hive. The larvae then emerge to do the damage and before pupating leave the hive and bury themselves in ground nearby.</p>
+		
+		<h2>Prevention</h2>
+		<p>There is no known way to eradicate SHB. VitaFeed Gold and VitaFeed Green will help keep colonies strong and healthy and lower the risk of a severe attack.</p>
+		
+		<h2>Treatment</h2>
+		<p>There is no known way to eradicate SHB. VitaFeed Gold and VitaFeed Green will help keep colonies strong and healthy and lower the risk of a severe attack.</p>
+			
+		]]>
+	</string>
+	
+    <string name="tracheal">
+		<![CDATA[
+			
+		<h2>Tracheal Mite</h2>
+		<p>The parasitic mite <i>Acarapis woodi</i> causes Acarine disease in honeybees by infesting the breathing tubes (tracheae) of the adult bee, piercing the trachea wall and feeding on the bee haemolymph.</p>
+		
+		<h2>Detection</h2>
+		<p>Tracheal mites are invisible to the naked eye - they measure only 125 and 174 microns - and can therefore be seen only with a microscope. They are oval in shape and translucent-white in colour.</p>
+		
+		<p>Adult bees can be seen crawling on the ground or on grass in front of hives of heavily infested colonies. But this evidence may suggest more than a tracheal mite infestation - it may indicate the presence of other diseases.</p>
+		
+		<p>To check for infection: adult bees are decapitated and the prothoracic collar removed with a scalpel. The thoracic tracheae can then be inspected. When stained, infested honeybee tracheae will show up as brown or black scabs or may be entirely black depending on the infestation level.</p>
+		
+		<p>Non-infested healthy tracheae appear transparent and clear-amber.</p>
+				
+		<h2>Prevention</h2>
+		<p>Selective bee breeding is the first measure that beekeepers should employ to counteract tracheal mites. Buckfast bees, for example, are known to be highly resistant to this mite, while New Zealand strains are very susceptible.</p>
+		
+		<h2>Treatment</h2>
+		<p>Menthol crystals have been used with considerable success in North America although relatively high temperatures are required and the effects are variable.</p>
+			
+		]]>
+	</string>  
+	
+    <string name="viruses">
+		<![CDATA[
+		
+		<h2>Viruses</h2>
+		<p>Viruses are commonly present in any honeybee colony. However infection of honeybees and the appearance of disease symptoms seems to depend to a large extent on other stress factors on the colony, such as lack of space, food or water, weather or infection by other means be they bacterial, fungal or mite.</p>
+		
+		<h2>Detection</h2>
+		<p>Certain viruses can cause dramatic paralysis of adult bees, especially Acute Paralysis Virus (APV) and Chronic Paralysis Virus (CPV).</p>
+		
+		<p>Signs of paralysis include dark and shiny adult bees at or near the hive entrance that are unable to fly. They may be seen crawling and trembling in large numbers on nearby foliage. The wings are usually dislocated and spread out from the body in an unnatural posture and the abdomen can also be swollen.</p>
+		
+		<p>Accurate diagnosis of viral diseases in honeybees is often not straightforward. Seemingly healthy colonies can succumb alarmingly quickly when other trigger stress factors such as Varroa mite infestation appear. For example, APV or CPV may appear in the middle of a good summer season when Varroa mite levels are at their highest.</p>
+		
+		<p>Honeybee colonies can exhibit many symptoms simultaneously, a phenomena collectively called Parasitic Mite Syndrome (PMS). Varroa mite infestation is always associated with PMS, which is also characterised by diseased bee brood, infected with one or several types of virus.</p>
+		
+		<p>PMS in bee brood may at first be confused with European foulbrood (EFB) with the larvae dying stretched or curled in their cells. When pressed with a matchstick the cadaver is globular, as in EFB. Yet laboratory analysis shows that these symptoms are virus/es rather than foulbrood bacteria.</p>
+		
+		<p>There are many viral agents of disease in honeybees. Some of the more common ones include sacbrood virus, Deformed Wing Virus (DWV), Cloudy Wing Virus and Kashmir Bee Virus.</p>
+				
+		<h2>Prevention</h2>
+		<p>Keeping colonies healthy and strong reduces the risks. VitaFeed Gold and VitaFeed can help.</p>
+		
+		<p>Good beekeeping and timely treatment of other pests and diseases can help to subdue virus activity. Viruses and Varroa mites are often a deadly combination, but if Varroa numbers are controlled, the risks decrease.</p>
+		
+		<h2>Treatment</h2>
+		<p>At present there are no available treatments against honeybee viruses. However, Vita is researching limitation of virus infection.</p>
+	
+		]]>
+	</string>
+	
+    <string name="wax">
+		<![CDATA[
+			
+		<h2>Wax Moth</h2>
+		<p>The larvae of the wax moth, <i>Galleria mellonella</i> live on impurities in the comb and are known to cause damage worth upwards of US $5 million annually in the United States alone.</p>
+		
+		<p>Since wax moth numbers are kept under control in healthy colonies, it is in weakened or abandoned hives, or stored frames, that populations explode. Little or no comb survives a wax moth infestation; very quickly all that will remain is gritty debris of comb remnants on the bottom board and cocoon attachments.</p>
+		
+		<h2>Detection</h2>
+		<p>The adult wax moth is greyish-brown and has a wingspan of around 3 cm. Heavy infestations are characterised by tunnels of silk throughout the combs and deposits of dark faecal matter.</p>
+		
+		<h2>Prevention</h2>
+		<p>Removal and storage of drawn comb (particularly in warmer temperatures) increases the risk of infestation. Comb can be protected by storage within plastic bags but this is often ineffective as eggs may already be present. Similarly, frames can be stored in a freezer. Outside storage is only effective when temperatures are consistently below freezing for the entire storage period.</p>
+		
+		<h2>Treatment</h2>
+		<p>The naturally occurring bacteria <i>Bacillus thuringiensis</i> offers highly effective protection against wax moth. The Vita product B401 (also known as Certan) is a concentrated solution of <i>B. thuringiensis</i>, offering up to 100% efficacy after one simple treatment.</p>
+	
+		]]>
+	</string>
+	<string name="chalkbrood">
+		<![CDATA[
+		
+		<h2>Introduction</h2>
+		<p>Fungal spores of the causative agent of Chalkbrood, <i>Ascophaera apis</i>, develop into mycelia in capped cells - eventually engulfing the entire larvae giving a fluffy cotton-wool appearance.</p>
+
+		<h2>Detection</h2>
+		<p>The larval cadaver shrinks and dries to form a white or grey-black chalk-like mummy. Frames with a high level of Chalkbrood rattle, in addition holes in cell cappings are found (cut by nurse bees when retrieving the mummy to discard it). These discarded mummies can be found near the hive entrance of infected colonies.</p>
+
+		<h2>Prevention</h2>
+		<p>Reducing humidity and condensation by elevating hives and through the use of a ventilated floor can prevent Chalkbrood infestations, as can positioning colonies in bright, sunny areas with low moisture levels. Old comb is particularly susceptible so frames should be replaced at least every three years.</p>
+
+		<h2>Treatment</h2>
+		<p>VitaFeed Green, a natural biostimulant ideal for colony strengthening, has been shown to reduce the incidence of Chalkbrood.</p>
+		
+		]]>
+	
+	</string>
 </resources>

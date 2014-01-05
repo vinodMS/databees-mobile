@@ -155,13 +155,31 @@
             </intent-filter>
         </activity>
 
-        
+                <activity
+            android:name="nl.isld.databees.disease.Varroa"
+            android:theme="@style/NBV_Theme" 
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
              <activity android:name="nl.isld.databees.rss.FileCache" ></activity>
              <activity android:name="nl.isld.databees.rss.LazyAdapter" ></activity>
              <activity android:name="nl.isld.databees.rss.MemoryCache" ></activity>
              <activity android:name="nl.isld.databees.rss.Utils" ></activity>
              <activity android:name="nl.isld.databees.rss.XMLParser" >   </activity>
+             
+             <activity android:name="nl.isld.databees.disease.American" ></activity>
+             <activity android:name="nl.isld.databees.disease.Chalkbrood" ></activity>
+             <activity android:name="nl.isld.databees.disease.European" ></activity>
+             <activity android:name="nl.isld.databees.disease.Nosema" ></activity>
+             <activity android:name="nl.isld.databees.disease.Small" ></activity>
+             <activity android:name="nl.isld.databees.disease.Tracheal" ></activity>
 
+             <activity android:name="nl.isld.databees.disease.Viruses" ></activity>
+             <activity android:name="nl.isld.databees.disease.Wax" ></activity>
+             
 
     </application>
 
