@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ApiaryInfoFragment extends Fragment
-	implements JsonParserCallback {
+	implements ResponseRecipient {
 	
 	public static final String 	ARG_LOCATION = "ARG_LOCATION";
 	
@@ -52,7 +52,7 @@ public class ApiaryInfoFragment extends Fragment
 	 * is parsed.
 	 */
 	@Override
-	public void onParsed(JSONObject json) {
+	public void onResponseReceived(JSONObject json) {
 		
 		if (!json.equals(new JSONObject())) {
 			WeatherData data = WeatherData.fromOpenWeatherJsonObject(json);

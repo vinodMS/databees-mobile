@@ -9,6 +9,7 @@ import android.view.ActionMode;
 import android.view.ActionMode.Callback;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ public class InspectionListFragment extends ListFragment
 	public static final String	ARG_HIVE_ID	=	"ARG_HIVE_ID";
 	
 	private Hive hive;
+	private boolean actionMode = false;
 	
 	/*
 	 * Overridden method of class ListFragment.
@@ -33,6 +35,7 @@ public class InspectionListFragment extends ListFragment
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
+		setHasOptionsMenu(true);
 		return super.onCreateView(inflater, container, savedInstanceState);
 	}
 	
@@ -48,10 +51,30 @@ public class InspectionListFragment extends ListFragment
 		hive = (Hive) LocalStore.findHiveById(
 				getArguments().getString(ARG_HIVE_ID));
 		
-		if(hive == null) { Log.d("Beebug", "Hive with ID: " + getArguments().getString(ARG_HIVE_ID) + " is NULL!"); }
-		
 		setListAdapter(new InspectionAdapter(getActivity(), hive.getInspections()));
 		getListView().setOnItemLongClickListener(this);
+	}
+	
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		inflater.inflate(R.menu.actions_basic, menu);
+		super.onCreateOptionsMenu(menu, inflater); 
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		
+		switch(item.getItemId()) {
+		
+		case R.id.action_edit:
+			Intent intent = new Intent(getActivity(), HiveActivity.class);
+			intent.putExtra(HiveActivity.REQUEST_EXTRA_LOCATION, hive.getApiary().getLocation());
+			intent.putExtra(HiveActivity.REQUEST_EXTRA_HIVE_ID, hive.getId());
+			startActivityForResult(intent, HiveActivity.REQUEST_EDIT_HIVE);
+			
+		}
+		
+		return false;
 	}
 	
 	@Override
@@ -70,10 +93,13 @@ public class InspectionListFragment extends ListFragment
 	 */
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if(resultCode == HiveActivity.RESULT_OK) {
-			Inspection inspection = LocalStore.findInspectionById(
-					data.getStringExtra(InspectionActivity.RESULT_EXTRA_INSPECTION_ID));
-			hive.getColony().addInspection(inspection);
+		if(requestCode == InspectionActivity.REQUEST_NEW_INSPECTION) {
+			if(resultCode == HiveActivity.RESULT_OK) {
+				Inspection inspection = LocalStore.findInspectionById(
+						data.getStringExtra(InspectionActivity.RESULT_EXTRA_INSPECTION_ID));
+				
+				hive.getColony().addInspection(inspection);
+			}
 		}
 		((InspectionAdapter) getListAdapter()).notifyDataSetChanged();
 	}
@@ -86,16 +112,23 @@ public class InspectionListFragment extends ListFragment
 	@Override
 	public void onListItemClick(ListView parent, View clickedView,
 			int position, long id) {
+		Intent intent =
+				new Intent(getActivity(), InspectionActivity.class);
 		
-		if ((parent.getAdapter().getCount() - 1) == position) {
-			Intent intent =
-					new Intent(getActivity(), InspectionActivity.class);
+		if((parent.getAdapter().getCount() - 1) != position) {
 			
+			if(actionMode) {
+				return;
+			}
+			
+			intent.putExtra(InspectionActivity.REQUEST_EXTRA_INSPECTION_ID,
+					((Inspection) parent.getAdapter().getItem(position)).getId());
+			startActivityForResult(intent, InspectionActivity.REQUEST_EDIT_INSPECTION);
+		} else {
 			startActivityForResult(intent, InspectionActivity.REQUEST_NEW_INSPECTION);
 		}
-		else {
-			// TODO
-		}
+			
+		
 	}
 
 	/*
@@ -124,7 +157,7 @@ public class InspectionListFragment extends ListFragment
 	@Override
 	public boolean onCreateActionMode(ActionMode mode, Menu menu) {
 		mode.getMenuInflater().inflate(R.menu.fragment_hive_list_action_mode, menu);
-		return true;
+		return actionMode = true;
 	}
 	
 	/*
@@ -156,6 +189,7 @@ public class InspectionListFragment extends ListFragment
 			getListView().setItemChecked(i, false);
 		}
 		getListView().setChoiceMode(ListView.CHOICE_MODE_NONE);
+		actionMode = false;
 	}
 
 	/*
@@ -185,11 +219,11 @@ public class InspectionListFragment extends ListFragment
 			for(int i = 0; i < getListView().getCount() - 1; ++i) {
 				if(checkedItems.get(i)) {
 					getListView().setItemChecked(i, false);
-					((HiveAdapter) getListAdapter())
-						.remove((Hive) getListAdapter().getItem(i));
+					((InspectionAdapter) getListAdapter())
+						.remove((Inspection) getListAdapter().getItem(i));
 				}
 			}
-			((HiveAdapter) getListAdapter()).notifyDataSetChanged();
+			((InspectionAdapter) getListAdapter()).notifyDataSetChanged();
 		}
 		else {
 			Toast.makeText(getActivity(),

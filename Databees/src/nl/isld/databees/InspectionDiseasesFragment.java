@@ -33,6 +33,18 @@ public class InspectionDiseasesFragment extends Fragment
 		diseaseName.addTextChangedListener((InspectionActivity) getActivity());
 		otherDescr		= (EditText) view.findViewById(R.id.other_descr);
 		otherDescr.addTextChangedListener((InspectionActivity) getActivity());
+		
+		if(getArguments() != null) {
+			Inspection inspection = LocalStore.findInspectionById(getArguments().getString(
+					InspectionActivity.REQUEST_EXTRA_INSPECTION_ID));
+			
+			diseasePresent.setChecked(inspection.getParameters().disease.equals(new String()) ? false : true);
+			diseaseName.requestFocus();
+			diseaseName.setText(inspection.getParameters().disease);
+			otherPresent.setChecked(inspection.getParameters().other.equals(new String()) ? false : true);
+			otherDescr.requestFocus();
+			otherDescr.setText(inspection.getParameters().other);
+		}
 	}
 
 	@Override

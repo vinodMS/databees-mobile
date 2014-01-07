@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ public class HiveActivity extends FragmentActivity
 	public static final int			REQUEST_EDIT_HIVE		= 101;
 	public static final int 		REQUEST_CAPTURE_IMAGE	= 900;
 	public static final String		REQUEST_EXTRA_LOCATION	= "REQUEST_EXTRA_LOCATION";
+	public static final String		REQUEST_EXTRA_HIVE_ID	= "REQUEST_EXTRA_HIVE_ID";
 	public static final String		RESULT_EXTRA_HIVE_ID	= "RESULT_EXTRA_HIVE_ID";
 
 	private	HiveFrontFragment		front;
@@ -67,34 +69,6 @@ public class HiveActivity extends FragmentActivity
 	    return true;
 	}
 	
-	@Override
-	public void startActivityForResult(Intent intent, int requestCode) {
-		intent.putExtra("REQUEST_CODE", requestCode);
-		super.startActivityForResult(intent, requestCode);
-	}
-	
-	/*
-	 * Overridden method of class FragmentActivity.
-	 * Overridden method finish() terminates the activity
-	 * returning an intent that contains the newly created
-	 * hive.
-	 * @see android.app.Activity#finish()
-	 */
-	@Override
-	public void finish() {
-		
-		if(getIntent().getIntExtra("REQUEST_CODE", 0)
-				== REQUEST_NEW_HIVE) {
-			LocalStore.HIVE_LIST.add(hive);
-		}
-		
-		Intent intent = new Intent();
-		intent.putExtra(RESULT_EXTRA_HIVE_ID, hive.getId());
-		
-		setResult(RESULT_OK, intent);
-		super.finish();
-	}
-	
 	/*
 	 * Overridden method of class FragmentActivity.
 	 * Called when an item in the options menu is selected.
@@ -111,10 +85,73 @@ public class HiveActivity extends FragmentActivity
 			if(checkRequired()) {
 				finish();
 			}
+			break;
 		default:
 			super.finish();
 		}
 		return false;
+	}
+	
+	@Override
+	public void onBackPressed() {
+		super.finish();
+	}
+	
+	@Override
+	public void startActivityForResult(Intent intent, int requestCode) {
+		intent.putExtra("REQUEST_CODE", requestCode);
+		super.startActivityForResult(intent, requestCode);
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		
+		if(resultCode == RESULT_OK) {
+		
+			switch(requestCode) {
+			case REQUEST_CAPTURE_IMAGE:
+				if(resultCode == RESULT_OK) {
+					ImageView hiveImage = (ImageView) findViewById(R.id.hive_image);
+					hiveImage.setImageBitmap((Bitmap) data.getExtras().get("data"));
+					Toast.makeText(getApplicationContext(), "Image saved to: " + data.getData(), Toast.LENGTH_SHORT).show();
+					break;
+				}
+				
+			case InspectionActivity.REQUEST_NEW_INSPECTION:
+				Inspection inspection = LocalStore.findInspectionById(
+						data.getStringExtra(InspectionActivity.RESULT_EXTRA_INSPECTION_ID));
+				hive.getColony().addInspection(inspection);
+				finish();
+			}
+		}
+	}
+	
+	/*
+	 * Overridden method of class FragmentActivity.
+	 * Overridden method finish() terminates the activity
+	 * returning an intent that contains the newly created
+	 * hive.
+	 * @see android.app.Activity#finish()
+	 */
+	@Override
+	public void finish() {
+		
+		switch(getIntent().getIntExtra("REQUEST_CODE", 0)) {
+		
+		case REQUEST_NEW_HIVE:
+			LocalStore.HIVE_LIST.add(hive);
+			break;
+			
+		case REQUEST_EDIT_HIVE:
+			// TODO
+			break;
+		}
+		
+		Intent intent = new Intent();
+		intent.putExtra(RESULT_EXTRA_HIVE_ID, hive.getId());
+		
+		setResult(RESULT_OK, intent);
+		super.finish();
 	}
 	
 	/*
@@ -157,30 +194,15 @@ public class HiveActivity extends FragmentActivity
 		// Nothing to be done
 	}
 	
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		
-		switch(requestCode) {
-		case REQUEST_CAPTURE_IMAGE:
-			if(resultCode == RESULT_OK) {
-				ImageView hiveImage = (ImageView) findViewById(R.id.hive_image);
-				hiveImage.setImageBitmap((Bitmap) data.getExtras().get("data"));
-				Toast.makeText(getApplicationContext(), "Image saved to: " + data.getData(), Toast.LENGTH_SHORT).show();
-				break;
-			}
-		case InspectionActivity.REQUEST_NEW_INSPECTION:
-			Inspection inspection = LocalStore.findInspectionById(
-					data.getStringExtra(InspectionActivity.RESULT_EXTRA_INSPECTION_ID));
-			hive.getColony().addInspection(inspection);
-			finish();
-		}
-	}
-	
 	/*
 	 * It grabs clicks (taps) on the Edit Hive Details button
 	 * in the front fragment and flips to the back.
 	 */
 	public void onButtonEditHiveDetailsClicked(View view) {
+		swapFrame();
+	}
+	
+	public void onButtonReturnClicked(View view) {
 		swapFrame();
 	}
 	
@@ -224,16 +246,37 @@ public class HiveActivity extends FragmentActivity
 	 * Sets the values of all attributes.
 	 */
 	private void initAttributes() {
-		hive = new Hive();
-		hiveName = new EditText(this);
-		hiveName.setHint(getResources().getString(R.string.hint_new_apiary_name));
-		hiveName.setEms(0);
+		
+		hiveName	= new EditText(this);
+		hiveName.setHint(getResources().getString(R.string.hint_new_hive_name));
+		LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+		hiveName.setLayoutParams(params);
 		mapFragment = ((SupportMapFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.map_fragment));
-		map = mapFragment.getMap();
+		map 		= mapFragment.getMap();
 		
+		switch(getIntent().getIntExtra("REQUEST_CODE", 0)) {
+		
+		case REQUEST_NEW_HIVE:
+			hive = new Hive();
+			break;
+			
+		case REQUEST_EDIT_HIVE:
+			hive = LocalStore.findHiveById(
+					getIntent().getStringExtra(REQUEST_EXTRA_HIVE_ID));
+			if(hive != null) {
+				hiveName.setText(hive.getName());
+			}
+			break;
+		}
+		
+		Bundle args = new Bundle();
+		args.putInt("REQUEST_CODE", getIntent().getIntExtra("REQUEST_CODE", 0));
+		args.putString(REQUEST_EXTRA_HIVE_ID, hive.getId());
 		front 	= new HiveFrontFragment();
+		front.setArguments(args);
 		back 	= new HiveBackFragment();
+		back.setArguments(args);
 	}
 	
 	/*
@@ -246,7 +289,7 @@ public class HiveActivity extends FragmentActivity
 		map.getUiSettings().setZoomControlsEnabled(false);
 		map.getUiSettings().setAllGesturesEnabled(false);
 		map.addMarker(new MarkerOptions().position(location));
-		map.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 13));
+		map.animateCamera(CameraUpdateFactory.newLatLngZoom(location, MiniMapFragment.STANDARD_ZOOM));
 		
 	}
 	

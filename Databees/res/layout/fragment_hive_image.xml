@@ -7,7 +7,7 @@
     <ImageView
         android:id="@+id/hive_image"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="@dimen/height_hive_image"
         android:contentDescription="@string/content_descr_hive_image"
         android:scaleType="matrix"
         android:src="@drawable/hive_image_placeholder" />

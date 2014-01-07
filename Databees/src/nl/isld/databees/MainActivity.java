@@ -56,6 +56,15 @@ public class MainActivity extends SlidingFragmentActivity {
 		return super.onOptionsItemSelected(item);
     }
     
+    public void setMapMarker(LatLng position) {
+    	MiniMapFragment map = 
+    			(MiniMapFragment) getSupportFragmentManager().findFragmentByTag("MINI_MAP_FRAGMENT");
+    	
+    	if(map != null) {
+    		map.moveMarker(position);
+    	}
+    }
+    
     /*
      * Internal private method that initializes the action bar of
      * the current activity.
@@ -107,7 +116,6 @@ public class MainActivity extends SlidingFragmentActivity {
     private void initFrame() {
     	getSupportFragmentManager().beginTransaction()
     		.add(R.id.main_container, new ApiaryListFragment())
-    		.addToBackStack(ApiaryListFragment.BACKSTACK_LABEL)
     		.commit();
     }
 }

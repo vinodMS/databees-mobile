@@ -15,11 +15,16 @@ import org.json.JSONObject;
 
 import android.os.AsyncTask;
 
-public class JsonParser extends AsyncTask<Void, Void, JSONObject> {
+public class AsyncJsonMessage extends AsyncTask<Void, Void, JSONObject> {
 	
-	protected String				url		= null;
-	protected JSONObject			object	= new JSONObject();
-	protected JsonParserCallback	callback;
+	public enum HttpMethod { GET, POST };
+	
+	protected String			url			= new String();
+	protected JSONObject		object		= new JSONObject();
+	protected ResponseRecipient	recipient;
+	
+	protected HttpMethod		method;
+	protected boolean			secure;
 	
 	/*
 	 * This method can be called once an instance of this
@@ -29,9 +34,12 @@ public class JsonParser extends AsyncTask<Void, Void, JSONObject> {
 	 * @param	url		the URL from where to fetch the
 	 * 					JSON file
 	 */
-	public final void parse(String url, JsonParserCallback callback) {
+	public final void viaHttpRequest(String url, ResponseRecipient recipient,
+			boolean secure, HttpMethod method) {
 		this.url 		= url;
-		this.callback	= callback;
+		this.recipient	= recipient;
+		this.method		= method;
+		this.secure		= secure;
 		execute((Void) null);
 	}
 	
@@ -43,12 +51,29 @@ public class JsonParser extends AsyncTask<Void, Void, JSONObject> {
 	 */
 	@Override
 	protected final JSONObject doInBackground(Void...voids) {
-		return fetchAndParse();
+		JSONObject json;
+		
+		switch(method) {
+		
+		case POST:
+			json = secure ? 
+					executeSecurePost() : executeSecurelessPost();
+			break;
+			
+		case GET:
+			json = executeSecureGet();
+			
+		default:
+			json = new JSONObject();
+			break;
+		}
+		
+		return json;
 	}
 	
 	@Override
 	protected final void onPostExecute(JSONObject json) {
-		callback.onParsed(json);
+		recipient.onResponseReceived(json);
 	}
 	
 	/*
@@ -58,10 +83,10 @@ public class JsonParser extends AsyncTask<Void, Void, JSONObject> {
 	 * Finally it calls the callback method passing the object
 	 * that was just created.
 	 */
-	private JSONObject fetchAndParse() {
+	private JSONObject executeSecurelessPost() {
 		
 		if(url == null) {
-			return null;
+			return new JSONObject();
 		}
 		
 		InputStream is;
@@ -76,13 +101,13 @@ public class JsonParser extends AsyncTask<Void, Void, JSONObject> {
  
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
-            return null;
+            return new JSONObject();
         } catch (ClientProtocolException e) {
             e.printStackTrace();
-            return null;
+            return new JSONObject();
         } catch (IOException e) {
             e.printStackTrace();
-            return null;
+            return new JSONObject();
         }
         
 		// Once we have a response, try to convert it to a JSON object
@@ -100,8 +125,17 @@ public class JsonParser extends AsyncTask<Void, Void, JSONObject> {
             
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return new JSONObject();
         }
 	}
 	
+	private JSONObject executeSecurePost() {
+		// TODO
+		return null;
+	}
+	
+	private JSONObject executeSecureGet() {
+		// TODO
+		return null;
+	}
 }

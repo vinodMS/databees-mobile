@@ -1,13 +1,16 @@
 package nl.isld.databees;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.util.SparseBooleanArray;
 import android.view.ActionMode;
 import android.view.ActionMode.Callback;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +28,7 @@ public class HiveListFragment extends ListFragment
 	public static final String	ARG_APIARY_ID	=	"ARG_APIARY_ID";
 	
 	private Apiary apiary;
+	private boolean actionMode = false;
 	
 	/*
 	 * Overridden method of class ListFragment.
@@ -35,6 +39,7 @@ public class HiveListFragment extends ListFragment
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
+		setHasOptionsMenu(true);
 		return super.onCreateView(inflater, container, savedInstanceState);
 	}
 	
@@ -55,6 +60,27 @@ public class HiveListFragment extends ListFragment
 	}
 	
 	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		inflater.inflate(R.menu.actions_basic, menu);
+		super.onCreateOptionsMenu(menu, inflater);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		
+		switch(item.getItemId()) {
+		
+		case R.id.action_edit:
+			Intent intent = new Intent(getActivity(), ApiaryActivity.class);
+			intent.putExtra(ApiaryActivity.REQUEST_EXTRA_APIARY_ID, apiary.getId());
+			startActivityForResult(intent, ApiaryActivity.REQUEST_EDIT_APIARY);
+			
+		}
+		
+		return false;
+	}
+	
+	@Override
 	public void startActivityForResult(Intent intent, int requestCode) {
 		intent.putExtra("REQUEST_CODE", requestCode);
 		super.startActivityForResult(intent, requestCode);
@@ -70,12 +96,23 @@ public class HiveListFragment extends ListFragment
 	 */
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if(resultCode == HiveActivity.RESULT_OK) {
-			Hive hive = LocalStore.findHiveById(
-					data.getStringExtra(HiveActivity.RESULT_EXTRA_HIVE_ID));
-			apiary.addHive(hive);
+		
+		if(resultCode == Activity.RESULT_OK) {
+			switch(requestCode) {
+			
+			case HiveActivity.REQUEST_NEW_HIVE:
+				Hive hive = LocalStore.findHiveById(
+						data.getStringExtra(HiveActivity.RESULT_EXTRA_HIVE_ID));
+				apiary.addHive(hive);
+				break;
+				
+			case ApiaryActivity.REQUEST_EDIT_APIARY:
+				((MainActivity) getActivity()).setMapMarker(apiary.getLocation());
+				break;
+				
+			default:break;
+			}
 		}
-		((HiveAdapter) getListAdapter()).notifyDataSetChanged();
 	}
 
 	/*
@@ -95,6 +132,11 @@ public class HiveListFragment extends ListFragment
 			startActivityForResult(intent, HiveActivity.REQUEST_NEW_HIVE);
 		}
 		else {
+			
+			if(actionMode) {
+				return;
+			}
+			
 			InspectionListFragment	inspectionList	= new InspectionListFragment();
 			HiveImageFragment		hiveImage		= new HiveImageFragment();
 			
@@ -138,7 +180,7 @@ public class HiveListFragment extends ListFragment
 	@Override
 	public boolean onCreateActionMode(ActionMode mode, Menu menu) {
 		mode.getMenuInflater().inflate(R.menu.fragment_hive_list_action_mode, menu);
-		return true;
+		return actionMode = true;
 	}
 	
 	/*
@@ -170,6 +212,7 @@ public class HiveListFragment extends ListFragment
 			getListView().setItemChecked(i, false);
 		}
 		getListView().setChoiceMode(ListView.CHOICE_MODE_NONE);
+		actionMode = false;
 	}
 
 	/*

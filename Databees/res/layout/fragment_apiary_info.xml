@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="@dimen/common_padding">
+    android:paddingTop="@dimen/padding_common">
 
     <ProgressBar
         android:id="@+id/progress_spin"
@@ -35,8 +35,8 @@
 	        android:id="@+id/weather_icon"
 	        android:layout_width="100dp"
 	        android:layout_height="100dp"
-	        android:layout_marginLeft="@dimen/common_margin"
-	        android:layout_marginRight="@dimen/common_margin"
+	        android:layout_marginLeft="@dimen/margin_common"
+	        android:layout_marginRight="@dimen/margin_common"
 	        android:contentDescription="@string/content_descr_weather_condition_graphical_indicator"
 	        android:src="@drawable/weather_condition_clear" />
 	

@@ -1,5 +1,6 @@
 package nl.isld.databees;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import android.content.Context;
@@ -52,7 +53,12 @@ public class HiveAdapter extends ArrayAdapter<Hive> {
 			name.setText(getItem(position).getName());
 			
 			TextView notes = (TextView) view.findViewById(R.id.text2);
-			notes.setText(context.getResources().getString(R.string.hive_list_item_never_inspected));
+			if(this.getItem(position).getInspections().size() > 0) {
+				notes.setText(context.getResources().getString(R.string.last_inspected_on) + " " +
+						new SimpleDateFormat("dd/MM/yyyy").format(getItem(position).getLastInspectionDate()));
+			} else {
+				notes.setText(context.getResources().getString(R.string.hive_list_item_never_inspected));
+			}
 		}
 		
 		return view;

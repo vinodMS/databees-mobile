@@ -29,6 +29,7 @@ public class ApiaryActivity extends FragmentActivity
 	
 	public static final int			REQUEST_NEW_APIARY		= 100;
 	public static final int			REQUEST_EDIT_APIARY		= 101;
+	public static final String		REQUEST_EXTRA_APIARY_ID	= "REQUEST_EXTRA_APIARY_ID";
 	public static final String		RESULT_EXTRA_APIARY_ID	= "RESULT_EXTRA_APIARY_ID";
 
 	private Apiary					apiary;
@@ -78,6 +79,33 @@ public class ApiaryActivity extends FragmentActivity
 			}
 		}
 		return false;
+	}
+	
+	@Override
+	public void onBackPressed() {
+		super.finish();
+	}
+	
+	@Override
+	public void startActivityForResult(Intent intent, int requestCode) {
+		intent.putExtra("REQUEST_CODE", requestCode);
+		super.startActivityForResult(intent, requestCode);
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		switch(requestCode) {	
+		case HiveActivity.REQUEST_NEW_HIVE:
+			if(resultCode == RESULT_OK) {
+				Hive hive = LocalStore.findHiveById(
+						data.getStringExtra(HiveActivity.RESULT_EXTRA_HIVE_ID));
+				apiary.addHive(hive);
+				finish();
+			}
+		default:
+			// Something went wrong obviously
+			super.finish();
+		}
 	}
 
 	/*
@@ -146,10 +174,15 @@ public class ApiaryActivity extends FragmentActivity
 	        Criteria criteria = new Criteria();
 	        String provider = locationManager.getBestProvider(criteria, true);
 	        Location location = locationManager.getLastKnownLocation(provider);
-	        LatLng point = new LatLng(location.getLatitude(), location.getLongitude());
 	        
-	        apiary.setLocation(point);
-	        drawMarker(point);
+	        if(location != null) {
+	        	LatLng point = new LatLng(location.getLatitude(), location.getLongitude());
+	        	apiary.setLocation(point);
+		        drawMarker(point);
+	        } else {
+	        	Toast.makeText(this, "Unable to locate device", Toast.LENGTH_SHORT)
+	        		.show();
+	        }
 		}
 	}
 	
@@ -169,28 +202,6 @@ public class ApiaryActivity extends FragmentActivity
 		}
 	}
 	
-	@Override
-	public void startActivityForResult(Intent intent, int requestCode) {
-		intent.putExtra("REQUEST_CODE", requestCode);
-		super.startActivityForResult(intent, requestCode);
-	}
-	
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		switch(requestCode) {	
-		case HiveActivity.REQUEST_NEW_HIVE:
-			if(resultCode == RESULT_OK) {
-				Hive hive = LocalStore.findHiveById(
-						data.getStringExtra(HiveActivity.RESULT_EXTRA_HIVE_ID));
-				apiary.addHive(hive);
-				finish();
-			}
-		default:
-			// Something went wrong obviously
-			super.finish();
-		}
-	}
-	
 	/*
 	 * Saves the apiary to the store and finishes the activity.
 	 * Note that is should always be called after a call to
@@ -199,9 +210,14 @@ public class ApiaryActivity extends FragmentActivity
 	@Override
 	public void finish() {
 		
-		if(getIntent().getIntExtra("REQUEST_CODE", 0)
-				== REQUEST_NEW_APIARY) {
+		switch(getIntent().getIntExtra("REQUEST_CODE", 0)) {
+		
+		case REQUEST_NEW_APIARY:
 			LocalStore.APIARY_LIST.add(apiary);
+			
+		case REQUEST_EDIT_APIARY:
+			// TODO
+			break;
 		}
 		
 		Intent intent = new Intent();
@@ -226,12 +242,28 @@ public class ApiaryActivity extends FragmentActivity
 	 * Sets the values of all attributes.
 	 */
 	private void initAttributes() {
-		apiary = new Apiary();
 		apiaryName = (EditText) getActionBar().getCustomView().findViewById(R.id.edit_text);
 		apiaryNotes = (EditText) findViewById(R.id.notes_edit_text);
 		mapFragment = ((SupportMapFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.map_fragment));
 		map = mapFragment.getMap();
+		
+		switch(getIntent().getIntExtra("REQUEST_CODE", 0)) {
+		
+		case REQUEST_NEW_APIARY:
+			apiary = new Apiary();
+			break;
+			
+		case REQUEST_EDIT_APIARY:
+			apiary = LocalStore.findApiaryById(
+					getIntent().getStringExtra(REQUEST_EXTRA_APIARY_ID));
+			if(apiary != null) {
+				apiaryName.setText(apiary.getName());
+				apiaryNotes.setText(apiary.getNotes());
+				drawMarker(apiary.getLocation());
+			}
+			break;
+		}
 	}
 	
 	/*
@@ -246,7 +278,7 @@ public class ApiaryActivity extends FragmentActivity
 	private void drawMarker(LatLng point) {
 		map.clear();
 		map.addMarker(new MarkerOptions().position(point));
-		map.animateCamera(CameraUpdateFactory.newLatLng(point));
+		map.animateCamera(CameraUpdateFactory.newLatLngZoom(point, 12));
 	}
 	
 	/*

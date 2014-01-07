@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_menu_add"
         android:gravity="center"
-        android:padding="@dimen/common_padding"
+        android:padding="@dimen/padding_common"
         android:text="Add New Item"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 

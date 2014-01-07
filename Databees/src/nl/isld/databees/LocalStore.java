@@ -1,6 +1,7 @@
 package nl.isld.databees;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -23,8 +24,15 @@ public class LocalStore {
 				"The rise of the testers group");
 		Hive hive = new Hive(apiary, "The Hive");
 		
+		InspectionParameters parameters = new InspectionParameters();
+		parameters.eggs = true;
+		parameters.queenSeen = true;
+		Inspection inspection = new Inspection(hive.getColony(), new Date(),
+				"Testers season is coming", parameters);
+		
 		APIARY_LIST.add(apiary);
 		HIVE_LIST.add(hive);
+		INSPECTION_LIST.add(inspection);
 	}
 	
 	public static String generateApiaryId() {

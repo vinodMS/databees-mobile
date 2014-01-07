@@ -1,48 +1,27 @@
 package nl.isld.databees;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-public class InspectionParameters implements Parcelable {
-	
-	public static final String PARCEL_KEY	=	"PARCELABLE_INSPECTION_PARAMETERS";
+public class InspectionParameters {
 
 	public enum Temper { Undefined, Mild, Angry, Tantrum } 
 	
 	public Temper		temper;
 	public boolean		polen;
 	public boolean		eggs;
+	public boolean		queenSeen;
+	public boolean		queenMarked;
+	public String		queenOrigin;
+	public String		disease;
+	public String		other;
 	
-	public InspectionParameters(Parcel source) {
-		this.temper			= Temper.valueOf(source.readString());
-		this.polen			= (Boolean) source.readValue(null);
-		this.eggs			= (Boolean) source.readValue(null);
-	}
-	
-	public static final Parcelable.Creator<InspectionParameters> CREATOR =
-			new Parcelable.Creator<InspectionParameters>() {
-
-				@Override
-				public InspectionParameters createFromParcel(Parcel source) {
-					return new InspectionParameters(source);
-				}
-
-				@Override
-				public InspectionParameters[] newArray(int size) {
-					return new InspectionParameters[size];
-				}
-			};
-
-	@Override
-	public int describeContents() {
-		return 0;
-	}
-
-	@Override
-	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeString(temper.toString());
-		dest.writeValue(polen);
-		dest.writeValue(eggs);
+	public InspectionParameters() {
+		this.temper			= Temper.Undefined;
+		this.polen			= false;
+		this.eggs			= false;
+		this.queenSeen		= false;
+		this.queenMarked	= false;
+		this.queenOrigin	= new String();
+		this.disease		= new String();
+		this.other			= new String();
 	}
 
 }

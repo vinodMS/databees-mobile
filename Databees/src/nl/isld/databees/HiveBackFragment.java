@@ -27,6 +27,12 @@ public class HiveBackFragment extends Fragment {
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		hiveSuppers = (EditText) view.findViewById(R.id.suppers_value_input);
 		hiveSuppers.addTextChangedListener((HiveActivity) getActivity());
+		
+		if(getArguments().getInt("REQUEST_CODE") == HiveActivity.REQUEST_EDIT_HIVE) {
+			Hive hive = LocalStore.findHiveById(
+					getArguments().getString(HiveActivity.REQUEST_EXTRA_HIVE_ID));
+			hiveSuppers.setText(String.valueOf(hive.getNumberOfSuppers()));
+		}
 	}
 
 }

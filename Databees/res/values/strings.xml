@@ -20,23 +20,35 @@
     <string name="locate_me_button">Locate Me</string>
     <string name="button_edit_hive_details">Edit Hive Details</string>
     <string name="button_add_inspections">Add Inspections</string>
+    <string name="button_inspection_date_now">Now</string>
     
     <!-- Hints -->
     <string name="hint_new_apiary_name">New Apiary Name</string>
     <string name="hint_type_notes">Add Notes Here</string>
     <string name="hint_new_hive_name">New Hive Name</string>
+    <string name="hint_inspection_date_day">DAY</string>
+    <string name="hint_inspection_date_month">MONTH</string>
+    <string name="hint_inspection_date_year">YEAR</string>
+    <string name="hint_suppers">Specify the number of suppers the hive consists of</string>
+    <string name="hint_colony_source">Specify the colony source</string>
+    <string name="hint_queen_seen">Was he queen found in the hive?</string>
+    <string name="hint_queen_marked">Is the queen marked?</string>
     
     <!-- Labels -->
     <string name="label_apiary_activity">Apiary</string>
     <string name="label_hive_activity">Hive</string>
     <string name="label_inspection_activity">Inspection</string>
     <string name="label_general_ispection_tab">General</string>
-    <string name="label_feeding_ispection_tab">Feeding</string>
+    <string name="label_queen_ispection_tab">Queen</string>
     <string name="label_diseases_ispection_tab">Diseases</string>
-    <string name="label_title_suppers">Number Of Suppers</string>
-    <string name="label_descr_suppers">Specify the number of suppers the hive consists of</string>
-    <string name="label_title_colony_source">Colony source</string>
-    <string name="label_descr_colony_source">Specify the colony source</string>
+    <string name="label_suppers">Number Of Suppers</string>
+    <string name="label_colony_source">Colony source</string>
+    <string name="label_queen_seen">Queen seen</string>
+    <string name="label_queen_marked">Queen marked</string>
+    <string name="label_inspection_date">Inspection Date</string>
+    <string name="label_bees_temper">Bees Temper</string>
+    <string name="label_eggs_present">Eggs are present</string>
+    <string name="label_polen_in">Polen in hive</string>
     
     <!-- Menu Items -->
     <string name="menu_item_dashboard">Dashboard</string>
@@ -50,6 +62,8 @@
     <string name="content_descr_weather_condition_graphical_indicator">Weather condition graphical indicator</string>
     <string name="content_descr_hive_image">Hive image</string>
     <string name="hive_list_item_never_inspected">This hive has never been inspected</string>
+    <string name="last_inspected_on">Last inspected on</string>
+    <string name="inspection_on">Inspection on</string>
     
     <!-- Toasts -->
     <string name="toast_nothing_to_delete">Nothing to delete</string>
@@ -72,8 +86,9 @@
     
     <!-- String Arrays -->
     <string-array name="temper_values">
+        <item>Undefined</item>
         <item>Mild</item>
-        <item>Bad</item>
+        <item>Angry</item>
         <item>Tantrum</item>
     </string-array>
     

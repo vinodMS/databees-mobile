@@ -322,22 +322,26 @@ containing a value of this type.
         public static final int common_signin_btn_text_light=0x7f06000b;
     }
     public static final class dimen {
-        /**  Default screen margins, per the Android Design guidelines. 
+        public static final int height_hive_image=0x7f0a0009;
+        /**  Heights 
+         */
+        public static final int height_mini_map=0x7f0a0008;
+        public static final int margin_common=0x7f0a0002;
+        /**  Margins 
 
          Customize dimensions originally defined in res/values/dimens.xml (such as
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f0a0000;
-        public static final int activity_margin=0x7f0a0002;
-        public static final int activity_vertical_margin=0x7f0a0001;
-        public static final int common_horizontal_padding=0x7f0a0006;
-        public static final int common_margin=0x7f0a0005;
-        public static final int common_padding=0x7f0a0008;
-        public static final int common_vertical_padding=0x7f0a0007;
-        public static final int expandable_list_view_left_padding=0x7f0a0009;
-        public static final int hive_picture_prompt_margin=0x7f0a0004;
-        public static final int horizontal_divider_margin=0x7f0a0003;
+        public static final int margin_common_horizontal=0x7f0a0000;
+        public static final int margin_common_vertical=0x7f0a0001;
+        public static final int margin_hive_picture_hint=0x7f0a0003;
+        public static final int padding_common=0x7f0a0006;
+        /**  Paddings 
+         */
+        public static final int padding_common_horizontal=0x7f0a0004;
+        public static final int padding_common_vertical=0x7f0a0005;
+        public static final int padding_expandable_list_view_left=0x7f0a0007;
         public static final int tab_host_default_height=0x7f0a000a;
     }
     public static final class drawable {
@@ -504,71 +508,84 @@ containing a value of this type.
         public static final int weather_info_sun=0x7f0200a0;
     }
     public static final class id {
-        public static final int action_delete=0x7f070041;
-        public static final int action_save=0x7f07003f;
-        public static final int action_settings=0x7f070040;
+        public static final int action_delete=0x7f07004e;
+        public static final int action_edit=0x7f07004b;
+        public static final int action_save=0x7f07004c;
+        public static final int action_settings=0x7f07004d;
         public static final int add_hives=0x7f07000d;
-        public static final int add_item_text_view=0x7f070015;
+        public static final int add_item_text_view=0x7f070014;
+        public static final int bees_temper_label=0x7f070034;
         public static final int button_add_inspections=0x7f070024;
         public static final int button_edit_hive_details=0x7f070023;
-        public static final int check_box=0x7f07003a;
-        public static final int child_item_text_view=0x7f070018;
+        public static final int check_box=0x7f070046;
+        public static final int child_item_text_view=0x7f070017;
         public static final int date_frame=0x7f07002e;
+        public static final int date_label=0x7f07002d;
         public static final int day_input=0x7f07002f;
         public static final int disease_guide_button=0x7f07002b;
         public static final int disease_name=0x7f070028;
         public static final int disease_present=0x7f070027;
-        public static final int editText1=0x7f07002c;
         public static final int edit_text=0x7f07000a;
-        public static final int eggs_present_value=0x7f070036;
+        public static final int eggs_present_input=0x7f070036;
         public static final int fullscreen=0x7f070008;
-        public static final int hive_image=0x7f070011;
-        public static final int hive_image_prompt=0x7f070025;
-        public static final int hive_notes_input=0x7f070026;
+        public static final int hive_image=0x7f070026;
+        public static final int hive_notes_input=0x7f070025;
         public static final int hybrid=0x7f070004;
-        public static final int layout=0x7f07002d;
+        public static final int layout=0x7f07002c;
         public static final int left=0x7f070005;
         public static final int locate_me_button=0x7f07000c;
-        public static final int logged_in_decorator=0x7f070017;
+        public static final int logged_in_decorator=0x7f070016;
         public static final int main_container=0x7f070010;
         public static final int manage_flora=0x7f07000e;
         public static final int map_fragment=0x7f07000b;
         public static final int margin=0x7f070007;
-        public static final int menu=0x7f07003d;
-        public static final int middle_container=0x7f070014;
+        public static final int menu=0x7f070049;
+        public static final int middle_container=0x7f070013;
         public static final int month_input=0x7f070030;
-        public static final int nav_drawer_main_layout=0x7f07003b;
+        public static final int nav_drawer_main_layout=0x7f070047;
         public static final int none=0x7f070000;
         public static final int normal=0x7f070001;
         public static final int notes_edit_text=0x7f07000f;
+        public static final int notes_input=0x7f070038;
         public static final int now_button=0x7f070032;
         public static final int other_descr=0x7f07002a;
         public static final int other_problem=0x7f070029;
-        public static final int polen_in_value=0x7f070037;
-        public static final int progress_spin=0x7f070019;
+        public static final int polen_in_input=0x7f070037;
+        public static final int progress_spin=0x7f070018;
+        public static final int queen_marked_descr=0x7f070041;
+        public static final int queen_marked_input=0x7f070042;
+        public static final int queen_marked_label=0x7f070040;
+        public static final int queen_marked_label_holder=0x7f07003f;
+        public static final int queen_marked_row=0x7f07003e;
+        public static final int queen_origin_input=0x7f070043;
+        public static final int queen_seen_input=0x7f07003d;
+        public static final int queen_seen_label_descr=0x7f07003c;
+        public static final int queen_seen_label_title=0x7f07003b;
+        public static final int queen_seen_row=0x7f070039;
+        public static final int queen_seen_row_label_holder=0x7f07003a;
+        public static final int return_button=0x7f070022;
         public static final int right=0x7f070006;
         public static final int satellite=0x7f070002;
         public static final int selected_view=0x7f070009;
-        public static final int slidingmenumain=0x7f07003e;
-        public static final int suppers_label_descr=0x7f070021;
-        public static final int suppers_label_title=0x7f070020;
-        public static final int suppers_row=0x7f07001e;
-        public static final int suppers_row_label_holder=0x7f07001f;
-        public static final int suppers_value_input=0x7f070022;
+        public static final int slidingmenumain=0x7f07004a;
+        public static final int suppers_label_descr=0x7f070020;
+        public static final int suppers_label_title=0x7f07001f;
+        public static final int suppers_row=0x7f07001d;
+        public static final int suppers_row_label_holder=0x7f07001e;
+        public static final int suppers_value_input=0x7f070021;
         public static final int temper_frame=0x7f070033;
-        public static final int temper_hint=0x7f070034;
-        public static final int temper_value=0x7f070035;
+        public static final int temper_input=0x7f070035;
         public static final int terrain=0x7f070003;
-        public static final int text1=0x7f070038;
-        public static final int text2=0x7f070039;
-        public static final int top_container=0x7f070013;
-        public static final int user_info_text_view=0x7f070016;
-        public static final int user_menu=0x7f07003c;
-        public static final int view_pager=0x7f070012;
-        public static final int weather_condition=0x7f07001b;
-        public static final int weather_icon=0x7f07001c;
-        public static final int weather_info_container=0x7f07001a;
-        public static final int weather_temperature=0x7f07001d;
+        public static final int text1=0x7f070044;
+        public static final int text2=0x7f070045;
+        public static final int top_container=0x7f070012;
+        public static final int user_info_text_view=0x7f070015;
+        public static final int user_menu=0x7f070048;
+        public static final int view_pager=0x7f070011;
+        public static final int weather_condition=0x7f07001a;
+        public static final int weather_icon=0x7f07001b;
+        public static final int weather_info_container=0x7f070019;
+        public static final int weather_temperature=0x7f07001c;
         public static final int year_input=0x7f070031;
     }
     public static final class integer {
@@ -588,8 +605,8 @@ containing a value of this type.
         public static final int fragment_hive_front=0x7f03000a;
         public static final int fragment_hive_image=0x7f03000b;
         public static final int fragment_inspection_diseases=0x7f03000c;
-        public static final int fragment_inspection_feeding=0x7f03000d;
-        public static final int fragment_inspection_general=0x7f03000e;
+        public static final int fragment_inspection_general=0x7f03000d;
+        public static final int fragment_inspection_queen=0x7f03000e;
         public static final int list_view_item=0x7f03000f;
         public static final int navigation_drawer=0x7f030010;
         public static final int nbvtheme_tab_indicator_holo=0x7f030011;
@@ -597,12 +614,13 @@ containing a value of this type.
         public static final int splashscreen=0x7f030013;
     }
     public static final class menu {
-        public static final int activity_apiary_actions=0x7f0d0000;
-        public static final int activity_hive_actions=0x7f0d0001;
-        public static final int activity_inspection_actions=0x7f0d0002;
-        public static final int actvity_main=0x7f0d0003;
-        public static final int fragment_apiary_list_action_mode=0x7f0d0004;
-        public static final int fragment_hive_list_action_mode=0x7f0d0005;
+        public static final int actions_basic=0x7f0d0000;
+        public static final int activity_apiary_actions=0x7f0d0001;
+        public static final int activity_hive_actions=0x7f0d0002;
+        public static final int activity_inspection_actions=0x7f0d0003;
+        public static final int actvity_main=0x7f0d0004;
+        public static final int fragment_apiary_list_action_mode=0x7f0d0005;
+        public static final int fragment_hive_list_action_mode=0x7f0d0006;
     }
     public static final class string {
         public static final int action_add_new_apiary=0x7f08001f;
@@ -646,6 +664,7 @@ containing a value of this type.
         public static final int button_add_hives=0x7f080023;
         public static final int button_add_inspections=0x7f080027;
         public static final int button_edit_hive_details=0x7f080026;
+        public static final int button_inspection_date_now=0x7f080028;
         public static final int button_manage_flora=0x7f080024;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
@@ -718,56 +737,69 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f080013;
-        public static final int content_descr_hive_image=0x7f08003c;
+        public static final int content_descr_hive_image=0x7f080048;
         /**  Other 
          */
-        public static final int content_descr_weather_condition_graphical_indicator=0x7f08003b;
+        public static final int content_descr_weather_condition_graphical_indicator=0x7f080047;
+        public static final int hint_colony_source=0x7f080030;
+        public static final int hint_inspection_date_day=0x7f08002c;
+        public static final int hint_inspection_date_month=0x7f08002d;
+        public static final int hint_inspection_date_year=0x7f08002e;
         /**  Hints 
          */
-        public static final int hint_new_apiary_name=0x7f080028;
-        public static final int hint_new_hive_name=0x7f08002a;
-        public static final int hint_type_notes=0x7f080029;
-        public static final int hive_list_item_never_inspected=0x7f08003d;
+        public static final int hint_new_apiary_name=0x7f080029;
+        public static final int hint_new_hive_name=0x7f08002b;
+        public static final int hint_queen_marked=0x7f080032;
+        public static final int hint_queen_seen=0x7f080031;
+        public static final int hint_suppers=0x7f08002f;
+        public static final int hint_type_notes=0x7f08002a;
+        public static final int hive_list_item_never_inspected=0x7f080049;
+        public static final int inspection_on=0x7f08004b;
         /**  Labels 
          */
-        public static final int label_apiary_activity=0x7f08002b;
-        public static final int label_descr_colony_source=0x7f080034;
-        public static final int label_descr_suppers=0x7f080032;
-        public static final int label_diseases_ispection_tab=0x7f080030;
-        public static final int label_feeding_ispection_tab=0x7f08002f;
-        public static final int label_general_ispection_tab=0x7f08002e;
-        public static final int label_hive_activity=0x7f08002c;
-        public static final int label_inspection_activity=0x7f08002d;
-        public static final int label_title_colony_source=0x7f080033;
-        public static final int label_title_suppers=0x7f080031;
+        public static final int label_apiary_activity=0x7f080033;
+        public static final int label_bees_temper=0x7f08003e;
+        public static final int label_colony_source=0x7f08003a;
+        public static final int label_diseases_ispection_tab=0x7f080038;
+        public static final int label_eggs_present=0x7f08003f;
+        public static final int label_general_ispection_tab=0x7f080036;
+        public static final int label_hive_activity=0x7f080034;
+        public static final int label_inspection_activity=0x7f080035;
+        public static final int label_inspection_date=0x7f08003d;
+        public static final int label_polen_in=0x7f080040;
+        public static final int label_queen_ispection_tab=0x7f080037;
+        public static final int label_queen_marked=0x7f08003c;
+        public static final int label_queen_seen=0x7f08003b;
+        public static final int label_suppers=0x7f080039;
+        public static final int last_inspected_on=0x7f08004a;
         public static final int locate_me_button=0x7f080025;
-        public static final int menu_item_apiaries=0x7f080036;
+        public static final int menu_item_apiaries=0x7f080042;
         /**  Menu Items 
          */
-        public static final int menu_item_dashboard=0x7f080035;
-        public static final int menu_item_desease_guide=0x7f080038;
-        public static final int menu_item_edit_account=0x7f080039;
-        public static final int menu_item_logout=0x7f08003a;
-        public static final int menu_item_tasks=0x7f080037;
-        public static final int placeholder_hive_picture=0x7f080046;
-        public static final int placeholder_item_description=0x7f080043;
+        public static final int menu_item_dashboard=0x7f080041;
+        public static final int menu_item_desease_guide=0x7f080044;
+        public static final int menu_item_edit_account=0x7f080045;
+        public static final int menu_item_logout=0x7f080046;
+        public static final int menu_item_tasks=0x7f080043;
+        public static final int placeholder_hive_picture=0x7f080054;
+        public static final int placeholder_item_description=0x7f080051;
         /**  Placeholders 
          */
-        public static final int placeholder_item_title=0x7f080042;
-        public static final int placeholder_weather_condition=0x7f080044;
-        public static final int placeholder_weather_degrees=0x7f080045;
+        public static final int placeholder_item_title=0x7f080050;
+        public static final int placeholder_weather_condition=0x7f080052;
+        public static final int placeholder_weather_degrees=0x7f080053;
         /**  Toasts 
          */
-        public static final int toast_nothing_to_delete=0x7f08003e;
-        public static final int toast_prompt_apiary_location=0x7f080040;
-        public static final int toast_prompt_apiary_name=0x7f08003f;
-        public static final int toast_prompt_hive_name=0x7f080041;
+        public static final int toast_nothing_to_delete=0x7f08004c;
+        public static final int toast_prompt_apiary_location=0x7f08004e;
+        public static final int toast_prompt_apiary_name=0x7f08004d;
+        public static final int toast_prompt_hive_name=0x7f08004f;
         /**  Weather 
          */
-        public static final int weather_condition_clear=0x7f080047;
-        public static final int weather_condition_clouds=0x7f080048;
-        public static final int weather_condition_rain=0x7f080049;
-        public static final int weather_condition_snow=0x7f08004a;
+        public static final int weather_condition_clear=0x7f080055;
+        public static final int weather_condition_clouds=0x7f080056;
+        public static final int weather_condition_rain=0x7f080057;
+        public static final int weather_condition_snow=0x7f080058;
     }
     public static final class style {
         /** 

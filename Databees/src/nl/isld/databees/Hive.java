@@ -1,5 +1,6 @@
 package nl.isld.databees;
 
+import java.util.Date;
 import java.util.List;
 
 import android.os.Parcel;
@@ -98,12 +99,23 @@ public class Hive implements Parcelable {
 	
 	public List<Inspection> getInspections() {
 		List<Inspection> inspections = colony.getInspections();
+		Colony colony = this.colony;
 		
 		while((colony = colony.getParent()) != null) {
 			inspections.addAll(colony.getInspections());
 		}
 		
 		return inspections;
+	}
+	
+	public Date getLastInspectionDate() {
+		List<Inspection> inspections = colony.getInspections();
+		
+		if(inspections.size() > 0) {
+			return inspections.get(inspections.size() - 1).getDate();
+		} else {
+			return null;
+		}
 	}
 	
 	public void setApiary(Apiary apiary) {

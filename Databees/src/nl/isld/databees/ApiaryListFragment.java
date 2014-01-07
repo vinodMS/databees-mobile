@@ -25,6 +25,8 @@ public class ApiaryListFragment extends ListFragment
 	implements OnItemLongClickListener, Callback {
 	
 	public static final String	BACKSTACK_LABEL = "APIARY_LIST_FRAGMENT";
+	
+	public boolean actionMode = false;
 
 	
 	/*
@@ -84,6 +86,11 @@ public class ApiaryListFragment extends ListFragment
 			startActivityForResult(intent, ApiaryActivity.REQUEST_NEW_APIARY);
 		}
 		else {
+			
+			if(actionMode) {
+				return;
+			}
+			
 			ApiaryInfoFragment	apiaryInfo	= new ApiaryInfoFragment();
 			HiveListFragment	hiveList	= new HiveListFragment();
 			
@@ -96,7 +103,8 @@ public class ApiaryListFragment extends ListFragment
 			hiveList.setArguments(args);
 			
 			getActivity().getSupportFragmentManager().beginTransaction()
-				.add(R.id.top_container, MiniMapFragment.newInstance(apiary.getLocation()))
+				.add(R.id.top_container, MiniMapFragment.newInstance(apiary.getLocation()),
+						"MINI_MAP_FRAGMENT")
 				.add(R.id.middle_container, apiaryInfo)
 				.replace(R.id.main_container, hiveList)
 				.addToBackStack(null)
@@ -130,7 +138,7 @@ public class ApiaryListFragment extends ListFragment
 	@Override
 	public boolean onCreateActionMode(ActionMode mode, Menu menu) {
 		mode.getMenuInflater().inflate(R.menu.fragment_apiary_list_action_mode, menu);
-		return true;
+		return actionMode = true;
 	}
 	
 	/*
@@ -162,6 +170,7 @@ public class ApiaryListFragment extends ListFragment
 			getListView().setItemChecked(i, false);
 		}
 		getListView().setChoiceMode(ListView.CHOICE_MODE_NONE);
+		actionMode = false;
 	}
 
 	/*

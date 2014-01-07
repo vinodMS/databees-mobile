@@ -1,6 +1,7 @@
 package nl.isld.databees;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import android.content.Context;
@@ -50,7 +51,8 @@ public class InspectionAdapter extends ArrayAdapter<Inspection> {
 			view = LayoutInflater.from(context).inflate(RESOURCE_ID, null);
 			
 			TextView date = (TextView) view.findViewById(R.id.text1);
-			date.setText(DateFormat.getInstance().format(getItem(position).getDate()));
+			date.setText(context.getResources().getString(R.string.inspection_on) + " " +
+					new SimpleDateFormat("dd/MM/yyyy").format(getItem(position).getDate()));
 			
 			TextView notes = (TextView) view.findViewById(R.id.text2);
 			notes.setText(getItem(position).getNotes());

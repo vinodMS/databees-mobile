@@ -66,7 +66,6 @@ public class Inspection implements Parcelable {
 		dest.writeString(id);
 		dest.writeLong(date.getTime());
 		dest.writeString(notes);
-		dest.writeParcelable(parameters, flags);
 	}
 	
 	public String getId() {
