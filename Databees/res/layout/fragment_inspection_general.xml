@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/date_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/label_inspection_date"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+     <LinearLayout
+        android:id="@+id/date_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_common"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+	    <EditText
+	        android:id="@+id/day_input"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:inputType="number"
+	        android:hint="@string/hint_inspection_date_day" />	    
+	    <EditText
+	        android:id="@+id/month_input"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:inputType="number"
+	        android:hint="@string/hint_inspection_date_month" />
+	    
+	    <EditText
+	        android:id="@+id/year_input"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:inputType="number"
+	        android:hint="@string/hint_inspection_date_year" />
+	    
+	    <Button
+	        android:id="@+id/now_button"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="center"
+	        android:text="@string/button_inspection_date_now"
+	        android:onClick="onButtonNowClicked" />
+    
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/temper_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_common"
+        android:orientation="vertical" >
+	    
+        <TextView
+	        android:id="@+id/bees_temper_label"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="center"
+	        android:text="@string/label_bees_temper"
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	    <Spinner
+	        android:id="@+id/temper_input"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:entries="@array/temper_values" />
+    
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/eggs_present_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_eggs_present" />
+    
+    <CheckBox
+        android:id="@+id/polen_in_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_polen_in" />
+
+    <EditText
+        android:id="@+id/notes_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_common"
+        android:inputType="text"
+        android:hint="@string/hint_type_notes" />
+
+</LinearLayout>
