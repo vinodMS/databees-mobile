@@ -19,7 +19,7 @@ Dependencies
 There are two projects found under `Databees/additional_resource/`
 The two libraries required by the application are `google-play-services_lib` and `library`
 
-Both the folders should be imported to eclipse and marked as library by `Right click on project directory --> Properties --> Android`
+Both the folders should be imported to eclipse and marked as library by `Right click on project directory --> Properties --> Android --> Is Library`
 
 Then `Go to the properties of Databees --> Android --> Library --> Add the above libraries from the list`
 
