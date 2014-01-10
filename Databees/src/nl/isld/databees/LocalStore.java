@@ -1,6 +1,7 @@
 package nl.isld.databees;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -11,13 +12,22 @@ public class LocalStore {
 	public static final List<Apiary> 		APIARY_LIST		= new ArrayList<Apiary>();
 	public static final List<Hive> 			HIVE_LIST		= new ArrayList<Hive>();
 	public static final List<Inspection>	INSPECTION_LIST	= new ArrayList<Inspection>();
+	public static final List<Task>			TASK_LIST		= new ArrayList<Task>();
 	
 	public static int APIARY_ID_INCR			= 0;
 	public static int HIVE_ID_INCR				= 0;
 	public static int INSPECTION_ID_INCR		= 0;
 	public static int COLONY_ID_INCR			= 0;
+	public static int TASK_ID_INCR				= 0;
 	
-	public static void init() {
+	public static boolean initialized = false;
+	
+	public static void initOnce() {
+		
+		if(initialized) {
+			return;
+		}
+		
 		Apiary apiary = new Apiary(
 				"The Apiary",
 				new LatLng(52.4500, 4.8333),
@@ -30,9 +40,14 @@ public class LocalStore {
 		Inspection inspection = new Inspection(hive.getColony(), new Date(),
 				"Testers season is coming", parameters);
 		
+		Task task = new Task("Clean Hive Entrance", "If there is heavy snow, make certain the entrance to the hive is cleared to allow for proper ventilation.", Calendar.getInstance().getTime());
+		
+		TASK_LIST.add(task);
 		APIARY_LIST.add(apiary);
 		HIVE_LIST.add(hive);
 		INSPECTION_LIST.add(inspection);
+		
+		initialized = true;
 	}
 	
 	public static String generateApiaryId() {
@@ -49,6 +64,10 @@ public class LocalStore {
 	
 	public static String generateColonyId() {
 		return "CID" + (++COLONY_ID_INCR);
+	}
+	
+	public static String generateTaskId() {
+		return "TID" + (++TASK_ID_INCR);
 	}
 	
 	public static Apiary findApiaryById(String id) {
@@ -142,5 +161,14 @@ public class LocalStore {
 		}
 		return null;
 	}
-
+	
+	public static Task findTaskById(String id) {
+		
+		for(Task task : TASK_LIST) {
+			if(task.getId().equals(id)) {
+				return task;
+			}
+		}
+		return null;
+	}
 }

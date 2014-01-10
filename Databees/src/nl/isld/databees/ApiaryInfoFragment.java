@@ -6,6 +6,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,6 +69,11 @@ public class ApiaryInfoFragment extends Fragment
 	 * parsed. This method takes care of refreshing the UI.
 	 */
 	private void setWeatherData(WeatherData data) {
+		
+		if(getView() == null) {
+			return;
+		}
+		
 		switch(data.getConditionCode()) {
 		case 500: case 501: case 502:
 		case 503: case 504: case 511:

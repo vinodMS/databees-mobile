@@ -1,7 +1,15 @@
 package nl.isld.databees;
 
+import nl.isld.databees.rss.RSSFeed;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
@@ -10,13 +18,15 @@ import com.google.android.gms.maps.model.LatLng;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
-public class MainActivity extends SlidingFragmentActivity {
+public class MainActivity extends SlidingFragmentActivity
+	implements OnItemClickListener {
 	
 	private SlidingMenu				navDrawer;
 	private ExpandableListView		navDrawerUserMenu;
 	private ListView				navDrawerMenu;
 	private UserExpandableAdapter	navDrawerUserMenuAdapter;
 	private ArrayAdapter<String> 	navDrawerMenuAdapter;
+	
 	
 	/*
 	 * Overridden method of class SlidingFragmentActivity.
@@ -29,7 +39,7 @@ public class MainActivity extends SlidingFragmentActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+    
         setContentView(R.layout.activity_main);
         setBehindContentView(R.layout.navigation_drawer);
         
@@ -38,7 +48,7 @@ public class MainActivity extends SlidingFragmentActivity {
         initDrawer();
         initFrame();
         
-        LocalStore.init();
+        LocalStore.initOnce();
     }
     
     /*
@@ -98,15 +108,13 @@ public class MainActivity extends SlidingFragmentActivity {
      * drawer for this activity.
      */
     private void initDrawer() {
-    	navDrawer.findViewById(R.id.nav_drawer_main_layout)
-    		.getBackground()
-    		.setAlpha(80);
     	navDrawer.setShadowDrawable(R.drawable.drawer_shadow);
     	navDrawer.setShadowWidth(35);
     	navDrawer.setBehindOffset(120);
     	
     	navDrawerUserMenu.setAdapter(navDrawerUserMenuAdapter);
     	navDrawerMenu.setAdapter(navDrawerMenuAdapter);
+    	navDrawerMenu.setOnItemClickListener(this);
     }
     
     /*
@@ -115,7 +123,61 @@ public class MainActivity extends SlidingFragmentActivity {
      */
     private void initFrame() {
     	getSupportFragmentManager().beginTransaction()
-    		.add(R.id.main_container, new ApiaryListFragment())
+    		.add(R.id.main_container, new DashboardFragment())
     		.commit();
     }
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
+		for(Fragment fragment : getSupportFragmentManager().getFragments()) {
+			Log.d("Beebug", "Fragment present: " + fragment.toString());
+			getSupportFragmentManager().beginTransaction()
+				.remove(fragment).commit();
+		}
+		
+		switch(position) {
+		
+		case 0:
+			getSupportFragmentManager().beginTransaction()
+    		.add(R.id.main_container, new DashboardFragment())
+    		.commit();
+			break;
+			
+		case 1:
+			getSupportFragmentManager().beginTransaction()
+    		.add(R.id.main_container, new ApiaryListFragment())
+    		.commit();
+			break;
+			
+		case 2:
+			getSupportFragmentManager().beginTransaction()
+    		.add(R.id.main_container, new TaskListFragment())
+    		.commit();
+			break;
+			
+		case 3:
+			getSupportFragmentManager().beginTransaction()
+    		.add(R.id.main_container, new FloraFragment())
+    		.commit();
+			break;
+			
+		case 4:
+			getSupportFragmentManager().beginTransaction()
+    		.add(R.id.main_container, new DiseaseFragment())
+    		.commit();
+			break;
+		
+		case 5:
+			startActivity(new Intent(this, RSSFeed.class));
+			break;
+			
+		default:break;
+		}
+		
+		navDrawer.toggle();
+		
+	}
+	
+	
 }

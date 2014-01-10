@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/padding_common">
+
+    <TextView
+        android:id="@+id/task_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+	    android:layout_marginTop="0dip"
+	    android:textColor="#FFA500"
+	    android:textSize="25sp"
+	    android:layout_gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/task_date_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="10dip"
+        android:layout_below="@+id/task_title"
+        android:textSize="15sp"
+        android:text="@string/label_task_date" />
+
+    <TextView
+        android:id="@+id/task_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/task_date_label"
+        android:textSize="20sp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+   <TextView
+        android:id="@+id/task_details_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="10dip"
+        android:layout_below="@+id/task_date"
+        android:textSize="15sp"
+        android:text="@string/label_task_details" />
+
+    <TextView
+        android:id="@+id/task_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/task_details_label"
+        android:textSize="20sp"
+        android:maxLines="5"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+</RelativeLayout>

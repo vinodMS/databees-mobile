@@ -241,6 +241,11 @@ public class InspectionActivity extends FragmentActivity
 		
 	}
 	
+	public void onButtonDiseasesGuideClicked(View view) {
+		// TODO
+		
+	}
+	
 	private void initAttributes() {
 		int requestCode = getIntent().getIntExtra("REQUEST_CODE", 0);
 		

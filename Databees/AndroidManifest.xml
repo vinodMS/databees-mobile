@@ -52,6 +52,11 @@
         </activity>
         
         <activity
+            android:name="nl.isld.databees.TaskActivity"
+            android:label="@string/label_task_activity">
+        </activity>
+        
+        <activity
             android:name="nl.isld.databees.HiveActivity" 
             android:label="@string/label_hive_activity" >
         </activity>
@@ -70,6 +75,14 @@
 		    android:name="com.google.android.gms.version"
 		    android:value="@integer/google_play_services_version" />
         
+        <activity
+            android:name="nl.isld.databees.rss.RSSFeed"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

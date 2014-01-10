@@ -73,7 +73,9 @@ public class AsyncJsonMessage extends AsyncTask<Void, Void, JSONObject> {
 	
 	@Override
 	protected final void onPostExecute(JSONObject json) {
-		recipient.onResponseReceived(json);
+		if(recipient != null) {
+			recipient.onResponseReceived(json);
+		}
 	}
 	
 	/*
