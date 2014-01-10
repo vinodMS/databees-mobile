@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Generated with http://android-holo-colors.com -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <style name="AutoCompleteTextViewNBVTheme" parent="android:Widget.Holo.Light.AutoCompleteTextView">
+      <item name="android:dropDownSelector">@drawable/nbvtheme_list_selector_holo_light</item>
+	    <item name="android:background">@drawable/nbvtheme_edit_text_holo_light</item>
+  </style>
+
+  <style name="ButtonNBVTheme" parent="android:Widget.Holo.Light.Button">
+	  <item name="android:background">@drawable/nbvtheme_btn_default_holo_light</item>
+  </style>
+
+  <style name="ImageButtonNBVTheme" parent="android:Widget.Holo.Light.ImageButton">
+	  <item name="android:background">@drawable/nbvtheme_btn_default_holo_light</item>
+  </style>
+
+  <style name="SpinnerNBVTheme" parent="android:Widget.Holo.Light.Spinner">
+      <item name="android:background">@drawable/nbvtheme_spinner_background_holo_light</item>
+      <item name="android:dropDownSelector">@drawable/nbvtheme_list_selector_holo_light</item>
+  </style>
+
+  <style name="TabWidgetNBVTheme" parent="@android:style/Widget.TabWidget">
+      <item name="android:tabStripLeft">@null</item>
+      <item name="android:tabStripRight">@null</item>
+      <item name="android:tabStripEnabled">false</item>
+      <item name="android:divider">?android:attr/dividerVertical</item>
+      <item name="android:showDividers">middle</item>
+      <item name="android:dividerPadding">8dip</item>
+      <item name="android:measureWithLargestChild">true</item>
+      <item name="tabLayout">@layout/nbvtheme_tab_indicator_holo</item>
+  </style>
+
+  <style name="ProgressBarNBVTheme" parent="android:Widget.Holo.Light.ProgressBar.Horizontal">
+      <item name="android:progressDrawable">@drawable/nbvtheme_progress_horizontal_holo_light</item>
+      <item name="android:indeterminateDrawable">@drawable/nbvtheme_progress_indeterminate_horizontal_holo_light</item>
+  </style>
+
+  <style name="SeekBarNBVTheme" parent="android:Widget.Holo.Light.SeekBar">
+      <item name="android:progressDrawable">@drawable/nbvtheme_scrubber_progress_horizontal_holo_light</item>
+      <item name="android:indeterminateDrawable">@drawable/nbvtheme_scrubber_progress_horizontal_holo_light</item>
+      <item name="android:thumb">@drawable/nbvtheme_scrubber_control_selector_holo_light</item>
+  </style>
+
+  <style name="RatingBarNBVTheme" parent="android:Widget.Holo.Light.RatingBar">
+      <item name="android:progressDrawable">@drawable/nbvtheme_ratingbar_full_holo_light</item>
+      <item name="android:indeterminateDrawable">@drawable/nbvtheme_ratingbar_full_holo_light</item>
+  </style>
+
+  <style name="RatingBarBigNBVTheme" parent="android:Widget.Holo.Light.RatingBar.Indicator">
+      <item name="android:progressDrawable">@drawable/nbvtheme_ratingbar_holo_light</item>
+      <item name="android:indeterminateDrawable">@drawable/nbvtheme_ratingbar_holo_light</item>
+  </style>
+
+  <style name="RatingBarSmallNBVTheme" parent="android:Widget.Holo.Light.RatingBar.Small">
+      <item name="android:progressDrawable">@drawable/nbvtheme_ratingbar_small_holo_light</item>
+      <item name="android:indeterminateDrawable">@drawable/nbvtheme_ratingbar_small_holo_light</item>
+  </style>
+
+  <style name="ToggleNBVTheme" parent="android:Widget.Holo.Light.Button.Toggle">
+      <item name="android:background">@drawable/nbvtheme_btn_toggle_holo_light</item>
+  </style>
+
+</resources>
