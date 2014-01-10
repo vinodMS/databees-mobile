@@ -12,7 +12,6 @@ public class AppCommon {
 	public static final String[] NAV_MENU_ITEMS = {	"Dashboard",
 													"Apiaries",
 													"Tasks",
-													"Flora",
 													"Diseases",
 													"News Feed"};
 	

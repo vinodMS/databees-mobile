@@ -158,17 +158,11 @@ public class MainActivity extends SlidingFragmentActivity
 			
 		case 3:
 			getSupportFragmentManager().beginTransaction()
-    		.add(R.id.main_container, new FloraFragment())
-    		.commit();
-			break;
-			
-		case 4:
-			getSupportFragmentManager().beginTransaction()
     		.add(R.id.main_container, new DiseaseFragment())
     		.commit();
 			break;
 		
-		case 5:
+		case 4:
 			startActivity(new Intent(this, RSSFeed.class));
 			break;
 			
