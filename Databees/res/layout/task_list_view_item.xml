@@ -38,7 +38,6 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_below="@id/task_list_1"
-	    	android:layout_alignStart="@id/task_list_1"
 	    	android:textSize="17sp" />
 	
 	</TwoLineListItem>

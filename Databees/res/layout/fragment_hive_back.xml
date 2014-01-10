@@ -43,7 +43,6 @@
             android:layout_gravity="center_vertical"
             android:ems="4"
             android:inputType="number"
-            android:textAlignment="viewEnd"
             android:hint="0" >
             <requestFocus />
         </EditText>

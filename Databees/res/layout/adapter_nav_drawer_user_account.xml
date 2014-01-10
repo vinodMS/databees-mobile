@@ -21,7 +21,6 @@
         android:layout_weight="2"
         android:layout_gravity="center"
         android:padding="10dp"
-        android:textAlignment="center"
         android:text="Logged In" />
     
  
