@@ -23,8 +23,3 @@ Both the folders should be imported to eclipse and marked as library by `Right c
 
 Then `Go to the properties of Databees --> Android --> Library --> Add the above libraries from the list`
 
-Troubleshooting
-----------
-
-If you continue to have errors then check the `Project Build Target` and make sure Google APIs - API level 17 is choosen.
-Clean project and test again
