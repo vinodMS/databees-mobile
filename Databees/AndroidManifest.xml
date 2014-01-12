@@ -43,8 +43,7 @@
         
         <activity
             android:name="nl.isld.databees.SplashScreen"
-            android:theme="@android:style/Theme.Black.NoTitleBar" 
-            android:label="@string/app_name" >
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         
         <activity

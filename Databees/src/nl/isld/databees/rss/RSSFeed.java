@@ -1,13 +1,14 @@
 package nl.isld.databees.rss;
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
+
 import nl.isld.databees.MainActivity;
 import nl.isld.databees.R;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -39,18 +40,16 @@ public class RSSFeed extends Activity
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.rss);
+
+    	getActionBar().setDisplayShowCustomEnabled(true);
+    	getActionBar().setDisplayHomeAsUpEnabled(true);
+    	getActionBar().setHomeButtonEnabled(true);
 		
-		ActionBar actionBar = getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-
-        
-
 		XMLParser parser = new XMLParser(URL, this);
 		parser.execute((Void) null); // getting XML from URL
-		//Document doc = parser.getDomElement(xml); // getting DOM element
-		
-		
+		//Document doc = parser.getDomElement(xml); // getting DOM element				
 	}
+	
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
 	        case android.R.id.home:
@@ -61,6 +60,7 @@ public class RSSFeed extends Activity
 	            return super.onOptionsItemSelected(item);
 	    }
 	}
+	
 	@Override
 	public void onXMLParsed(String xml) {
 		Log.d("Beebug", "XML PARSED");
@@ -105,4 +105,10 @@ public class RSSFeed extends Activity
 			}
 		});		
 	}
+	
+	public void onBackPressed() {
+        Intent setIntent = new Intent(this, MainActivity.class);
+        startActivity(setIntent); 
+        return;
+    }   
 }

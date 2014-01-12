@@ -115,11 +115,6 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int cameraZoom=0x7f010015;
-        /**  Drawable used to draw the divider between tabs. 
-         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-         */
-        public static final int divider=0x7f01001e;
         /** <p>Must be a floating point value, such as "<code>1.2</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -187,30 +182,6 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int shadowWidth=0x7f010009;
-        /**  Layout used to organize each tab's content. 
-         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-         */
-        public static final int tabLayout=0x7f010022;
-        /**  Determines whether the strip under the tab indicators is drawn or not. 
-         <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int tabStripEnabled=0x7f01001f;
-        /**  Drawable used to draw the left part of the strip underneath the tabs. 
-         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-         */
-        public static final int tabStripLeft=0x7f010020;
-        /**  Drawable used to draw the right part of the strip underneath the tabs. 
-         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-         */
-        public static final int tabStripRight=0x7f010021;
         /** <p>Must be one of the following constant values.</p>
 <table>
 <colgroup align="left" />
@@ -350,7 +321,6 @@ containing a value of this type.
         public static final int padding_common_horizontal=0x7f0a0004;
         public static final int padding_common_vertical=0x7f0a0005;
         public static final int padding_expandable_list_view_left=0x7f0a0007;
-        public static final int tab_host_default_height=0x7f0a000a;
     }
     public static final class drawable {
         public static final int btn1=0x7f020000;
@@ -405,130 +375,12 @@ containing a value of this type.
         public static final int map_marker=0x7f020031;
         public static final int nav_drawer_background=0x7f020032;
         public static final int nav_drawer_image=0x7f020033;
-        public static final int nbvtheme_activated_background_holo_light=0x7f020034;
-        public static final int nbvtheme_btn_check_holo_light=0x7f020035;
-        public static final int nbvtheme_btn_check_off_disabled_focused_holo_light=0x7f020036;
-        public static final int nbvtheme_btn_check_off_disabled_holo_light=0x7f020037;
-        public static final int nbvtheme_btn_check_off_focused_holo_light=0x7f020038;
-        public static final int nbvtheme_btn_check_off_holo_light=0x7f020039;
-        public static final int nbvtheme_btn_check_off_pressed_holo_light=0x7f02003a;
-        public static final int nbvtheme_btn_check_on_disabled_focused_holo_light=0x7f02003b;
-        public static final int nbvtheme_btn_check_on_disabled_holo_light=0x7f02003c;
-        public static final int nbvtheme_btn_check_on_focused_holo_light=0x7f02003d;
-        public static final int nbvtheme_btn_check_on_holo_light=0x7f02003e;
-        public static final int nbvtheme_btn_check_on_pressed_holo_light=0x7f02003f;
-        public static final int nbvtheme_btn_default_disabled_focused_holo_light=0x7f020040;
-        public static final int nbvtheme_btn_default_disabled_holo_light=0x7f020041;
-        public static final int nbvtheme_btn_default_focused_holo_light=0x7f020042;
-        public static final int nbvtheme_btn_default_holo_light=0x7f020043;
-        public static final int nbvtheme_btn_default_normal_holo_light=0x7f020044;
-        public static final int nbvtheme_btn_default_pressed_holo_light=0x7f020045;
-        public static final int nbvtheme_btn_radio_holo_light=0x7f020046;
-        public static final int nbvtheme_btn_radio_off_disabled_focused_holo_light=0x7f020047;
-        public static final int nbvtheme_btn_radio_off_disabled_holo_light=0x7f020048;
-        public static final int nbvtheme_btn_radio_off_focused_holo_light=0x7f020049;
-        public static final int nbvtheme_btn_radio_off_holo_light=0x7f02004a;
-        public static final int nbvtheme_btn_radio_off_pressed_holo_light=0x7f02004b;
-        public static final int nbvtheme_btn_radio_on_disabled_focused_holo_light=0x7f02004c;
-        public static final int nbvtheme_btn_radio_on_disabled_holo_light=0x7f02004d;
-        public static final int nbvtheme_btn_radio_on_focused_holo_light=0x7f02004e;
-        public static final int nbvtheme_btn_radio_on_holo_light=0x7f02004f;
-        public static final int nbvtheme_btn_radio_on_pressed_holo_light=0x7f020050;
-        public static final int nbvtheme_btn_rating_star_off_focused_holo_light=0x7f020051;
-        public static final int nbvtheme_btn_rating_star_off_normal_holo_light=0x7f020052;
-        public static final int nbvtheme_btn_rating_star_off_pressed_holo_light=0x7f020053;
-        public static final int nbvtheme_btn_rating_star_on_focused_holo_light=0x7f020054;
-        public static final int nbvtheme_btn_rating_star_on_normal_holo_light=0x7f020055;
-        public static final int nbvtheme_btn_rating_star_on_pressed_holo_light=0x7f020056;
-        public static final int nbvtheme_btn_toggle_holo_light=0x7f020057;
-        public static final int nbvtheme_btn_toggle_off_disabled_focused_holo_light=0x7f020058;
-        public static final int nbvtheme_btn_toggle_off_disabled_holo_light=0x7f020059;
-        public static final int nbvtheme_btn_toggle_off_focused_holo_light=0x7f02005a;
-        public static final int nbvtheme_btn_toggle_off_normal_holo_light=0x7f02005b;
-        public static final int nbvtheme_btn_toggle_off_pressed_holo_light=0x7f02005c;
-        public static final int nbvtheme_btn_toggle_on_disabled_focused_holo_light=0x7f02005d;
-        public static final int nbvtheme_btn_toggle_on_disabled_holo_light=0x7f02005e;
-        public static final int nbvtheme_btn_toggle_on_focused_holo_light=0x7f02005f;
-        public static final int nbvtheme_btn_toggle_on_normal_holo_light=0x7f020060;
-        public static final int nbvtheme_btn_toggle_on_pressed_holo_light=0x7f020061;
-        public static final int nbvtheme_edit_text_holo_light=0x7f020062;
-        public static final int nbvtheme_fastscroll_thumb_default_holo=0x7f020063;
-        public static final int nbvtheme_fastscroll_thumb_holo=0x7f020064;
-        public static final int nbvtheme_fastscroll_thumb_pressed_holo=0x7f020065;
-        public static final int nbvtheme_item_background_holo_light=0x7f020066;
-        public static final int nbvtheme_list_activated_holo=0x7f020067;
-        public static final int nbvtheme_list_focused_holo=0x7f020068;
-        public static final int nbvtheme_list_longpressed_holo=0x7f020069;
-        public static final int nbvtheme_list_pressed_holo_light=0x7f02006a;
-        public static final int nbvtheme_list_selector_background_transition_holo_light=0x7f02006b;
-        public static final int nbvtheme_list_selector_disabled_holo_light=0x7f02006c;
-        public static final int nbvtheme_list_selector_holo_light=0x7f02006d;
-        public static final int nbvtheme_progress_bg_holo_light=0x7f02006e;
-        public static final int nbvtheme_progress_horizontal=0x7f02006f;
-        public static final int nbvtheme_progress_horizontal_holo_light=0x7f020070;
-        public static final int nbvtheme_progress_indeterminate_horizontal_holo_light=0x7f020071;
-        public static final int nbvtheme_progress_primary_holo_light=0x7f020072;
-        public static final int nbvtheme_progress_secondary_holo_light=0x7f020073;
-        public static final int nbvtheme_progressbar_indeterminate_holo1=0x7f020074;
-        public static final int nbvtheme_progressbar_indeterminate_holo2=0x7f020075;
-        public static final int nbvtheme_progressbar_indeterminate_holo3=0x7f020076;
-        public static final int nbvtheme_progressbar_indeterminate_holo4=0x7f020077;
-        public static final int nbvtheme_progressbar_indeterminate_holo5=0x7f020078;
-        public static final int nbvtheme_progressbar_indeterminate_holo6=0x7f020079;
-        public static final int nbvtheme_progressbar_indeterminate_holo7=0x7f02007a;
-        public static final int nbvtheme_progressbar_indeterminate_holo8=0x7f02007b;
-        public static final int nbvtheme_rate_star_big_half_holo_light=0x7f02007c;
-        public static final int nbvtheme_rate_star_big_off_holo_light=0x7f02007d;
-        public static final int nbvtheme_rate_star_big_on_holo_light=0x7f02007e;
-        public static final int nbvtheme_rate_star_small_half_holo_light=0x7f02007f;
-        public static final int nbvtheme_rate_star_small_off_holo_light=0x7f020080;
-        public static final int nbvtheme_rate_star_small_on_holo_light=0x7f020081;
-        public static final int nbvtheme_ratingbar_full_empty_holo_light=0x7f020082;
-        public static final int nbvtheme_ratingbar_full_filled_holo_light=0x7f020083;
-        public static final int nbvtheme_ratingbar_full_holo_light=0x7f020084;
-        public static final int nbvtheme_ratingbar_holo_light=0x7f020085;
-        public static final int nbvtheme_ratingbar_small_holo_light=0x7f020086;
-        public static final int nbvtheme_scrubber_control_disabled_holo=0x7f020087;
-        public static final int nbvtheme_scrubber_control_focused_holo=0x7f020088;
-        public static final int nbvtheme_scrubber_control_normal_holo=0x7f020089;
-        public static final int nbvtheme_scrubber_control_pressed_holo=0x7f02008a;
-        public static final int nbvtheme_scrubber_control_selector_holo_light=0x7f02008b;
-        public static final int nbvtheme_scrubber_primary_holo=0x7f02008c;
-        public static final int nbvtheme_scrubber_progress_horizontal_holo_light=0x7f02008d;
-        public static final int nbvtheme_scrubber_secondary_holo=0x7f02008e;
-        public static final int nbvtheme_scrubber_track_holo_light=0x7f02008f;
-        public static final int nbvtheme_spinner_background_holo_light=0x7f020090;
-        public static final int nbvtheme_spinner_default_holo_light=0x7f020091;
-        public static final int nbvtheme_spinner_disabled_holo_light=0x7f020092;
-        public static final int nbvtheme_spinner_focused_holo_light=0x7f020093;
-        public static final int nbvtheme_spinner_pressed_holo_light=0x7f020094;
-        public static final int nbvtheme_switch_bg_disabled_holo_light=0x7f020095;
-        public static final int nbvtheme_switch_bg_focused_holo_light=0x7f020096;
-        public static final int nbvtheme_switch_bg_holo_light=0x7f020097;
-        public static final int nbvtheme_switch_inner_holo_light=0x7f020098;
-        public static final int nbvtheme_switch_thumb_activated_holo_light=0x7f020099;
-        public static final int nbvtheme_switch_thumb_disabled_holo_light=0x7f02009a;
-        public static final int nbvtheme_switch_thumb_holo_light=0x7f02009b;
-        public static final int nbvtheme_switch_thumb_pressed_holo_light=0x7f02009c;
-        public static final int nbvtheme_switch_track_holo_light=0x7f02009d;
-        public static final int nbvtheme_tab_indicator_holo=0x7f02009e;
-        public static final int nbvtheme_tab_selected_focused_holo=0x7f02009f;
-        public static final int nbvtheme_tab_selected_holo=0x7f0200a0;
-        public static final int nbvtheme_tab_selected_pressed_holo=0x7f0200a1;
-        public static final int nbvtheme_tab_unselected_focused_holo=0x7f0200a2;
-        public static final int nbvtheme_tab_unselected_holo=0x7f0200a3;
-        public static final int nbvtheme_tab_unselected_pressed_holo=0x7f0200a4;
-        public static final int nbvtheme_textfield_activated_holo_light=0x7f0200a5;
-        public static final int nbvtheme_textfield_default_holo_light=0x7f0200a6;
-        public static final int nbvtheme_textfield_disabled_focused_holo_light=0x7f0200a7;
-        public static final int nbvtheme_textfield_disabled_holo_light=0x7f0200a8;
-        public static final int nbvtheme_textfield_focused_holo_light=0x7f0200a9;
-        public static final int splash=0x7f0200aa;
-        public static final int square_dashed_rounded=0x7f0200ab;
-        public static final int weather_condition_clear=0x7f0200ac;
-        public static final int weather_condition_clouds=0x7f0200ad;
-        public static final int weather_condition_rain=0x7f0200ae;
-        public static final int weather_info_sun=0x7f0200af;
+        public static final int splash=0x7f020034;
+        public static final int square_dashed_rounded=0x7f020035;
+        public static final int weather_condition_clear=0x7f020036;
+        public static final int weather_condition_clouds=0x7f020037;
+        public static final int weather_condition_rain=0x7f020038;
+        public static final int weather_info_sun=0x7f020039;
     }
     public static final class id {
         public static final int action_delete=0x7f06006f;
@@ -681,11 +533,10 @@ containing a value of this type.
         public static final int list_row=0x7f03001e;
         public static final int list_view_item=0x7f03001f;
         public static final int navigation_drawer=0x7f030020;
-        public static final int nbvtheme_tab_indicator_holo=0x7f030021;
-        public static final int rss=0x7f030022;
-        public static final int slidingmenumain=0x7f030023;
-        public static final int splashscreen=0x7f030024;
-        public static final int task_list_view_item=0x7f030025;
+        public static final int rss=0x7f030021;
+        public static final int slidingmenumain=0x7f030022;
+        public static final int splashscreen=0x7f030023;
+        public static final int task_list_view_item=0x7f030024;
     }
     public static final class menu {
         public static final int actions_basic=0x7f0d0000;
@@ -925,27 +776,6 @@ containing a value of this type.
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f0c0001;
-        public static final int AutoCompleteTextViewNBVTheme=0x7f0c0003;
-        public static final int ButtonNBVTheme=0x7f0c0006;
-        public static final int CheckBoxNBVTheme=0x7f0c0004;
-        public static final int EditTextNBVTheme=0x7f0c0002;
-        public static final int ImageButtonNBVTheme=0x7f0c0007;
-        public static final int ListViewNBVTheme=0x7f0c0012;
-        public static final int ListViewNBVTheme_White=0x7f0c0013;
-        public static final int NBVTheme=0x7f0c0016;
-        public static final int ProgressBarNBVTheme=0x7f0c000c;
-        public static final int RadioButtonNBVTheme=0x7f0c0005;
-        public static final int RatingBarBigNBVTheme=0x7f0c000f;
-        public static final int RatingBarNBVTheme=0x7f0c000e;
-        public static final int RatingBarSmallNBVTheme=0x7f0c0010;
-        public static final int SeekBarNBVTheme=0x7f0c000d;
-        public static final int SpinnerDropDownItemNBVTheme=0x7f0c0009;
-        public static final int SpinnerItemNBVTheme=0x7f0c0014;
-        public static final int SpinnerNBVTheme=0x7f0c0008;
-        public static final int TabNBVTheme=0x7f0c000a;
-        public static final int TabTextNBVTheme=0x7f0c000b;
-        public static final int TabWidgetNBVTheme=0x7f0c0015;
-        public static final int ToggleNBVTheme=0x7f0c0011;
     }
     public static final class styleable {
         /** Attributes that can be used with a AdsAttrs.
@@ -1481,91 +1311,5 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           @attr name nl.isld.databees:viewBehind
         */
         public static final int SlidingMenu_viewBehind = 2;
-        /** Attributes that can be used with a TabWidget.
-           <p>Includes the following attributes:</p>
-           <table>
-           <colgroup align="left" />
-           <colgroup align="left" />
-           <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #TabWidget_divider nl.isld.databees:divider}</code></td><td> Drawable used to draw the divider between tabs.</td></tr>
-           <tr><td><code>{@link #TabWidget_tabLayout nl.isld.databees:tabLayout}</code></td><td> Layout used to organize each tab's content.</td></tr>
-           <tr><td><code>{@link #TabWidget_tabStripEnabled nl.isld.databees:tabStripEnabled}</code></td><td> Determines whether the strip under the tab indicators is drawn or not.</td></tr>
-           <tr><td><code>{@link #TabWidget_tabStripLeft nl.isld.databees:tabStripLeft}</code></td><td> Drawable used to draw the left part of the strip underneath the tabs.</td></tr>
-           <tr><td><code>{@link #TabWidget_tabStripRight nl.isld.databees:tabStripRight}</code></td><td> Drawable used to draw the right part of the strip underneath the tabs.</td></tr>
-           </table>
-           @see #TabWidget_divider
-           @see #TabWidget_tabLayout
-           @see #TabWidget_tabStripEnabled
-           @see #TabWidget_tabStripLeft
-           @see #TabWidget_tabStripRight
-         */
-        public static final int[] TabWidget = {
-            0x7f01001e, 0x7f01001f, 0x7f010020, 0x7f010021,
-            0x7f010022
-        };
-        /**
-          <p>
-          @attr description
-           Drawable used to draw the divider between tabs. 
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          <p>This is a private symbol.
-          @attr name nl.isld.databees:divider
-        */
-        public static final int TabWidget_divider = 0;
-        /**
-          <p>
-          @attr description
-           Layout used to organize each tab's content. 
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          <p>This is a private symbol.
-          @attr name nl.isld.databees:tabLayout
-        */
-        public static final int TabWidget_tabLayout = 4;
-        /**
-          <p>
-          @attr description
-           Determines whether the strip under the tab indicators is drawn or not. 
-
-
-          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          <p>This is a private symbol.
-          @attr name nl.isld.databees:tabStripEnabled
-        */
-        public static final int TabWidget_tabStripEnabled = 1;
-        /**
-          <p>
-          @attr description
-           Drawable used to draw the left part of the strip underneath the tabs. 
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          <p>This is a private symbol.
-          @attr name nl.isld.databees:tabStripLeft
-        */
-        public static final int TabWidget_tabStripLeft = 2;
-        /**
-          <p>
-          @attr description
-           Drawable used to draw the right part of the strip underneath the tabs. 
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          <p>This is a private symbol.
-          @attr name nl.isld.databees:tabStripRight
-        */
-        public static final int TabWidget_tabStripRight = 3;
     };
 }
