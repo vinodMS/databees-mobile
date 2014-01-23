@@ -21,20 +21,30 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import android.os.AsyncTask;
 import android.util.Log;
 
-public class XMLParser {
+public class XMLParser extends AsyncTask<Void, Void, Void> {
+	
+	public interface Callback {
+		public void onXMLParsed(String xml);
+	}
+	
+	String url = new String();
+	Callback callback;
+	String xml = new String();
 
 	// constructor
-	public XMLParser() {
-
+	public XMLParser(String url, Callback callback) {
+		this.url = url;
+		this.callback = callback;
 	}
 
 	/**
 	 * Getting XML from URL making HTTP request
 	 * @param url string
 	 * */
-	public String getXmlFromUrl(String url) {
+	public void getXmlFromUrl(String url) {
 		String xml = null;
 
 		try {
@@ -54,14 +64,14 @@ public class XMLParser {
 			e.printStackTrace();
 		}
 		// return XML
-		return xml;
+		this.xml = xml;
 	}
 	
 	/**
 	 * Getting XML DOM element
 	 * @param XML string
 	 * */
-	public Document getDomElement(String xml){
+	public static Document getDomElement(String xml){
 		Document doc = null;
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		try {
@@ -89,7 +99,7 @@ public class XMLParser {
 	/** Getting node value
 	  * @param elem element
 	  */
-	 public final String getElementValue( Node elem ) {
+	 public static final String getElementValue( Node elem ) {
 	     Node child;
 	     if( elem != null){
 	         if (elem.hasChildNodes()){
@@ -108,8 +118,19 @@ public class XMLParser {
 	  * @param Element node
 	  * @param key string
 	  * */
-	 public String getValue(Element item, String str) {		
+	 public static String getValue(Element item, String str) {		
 			NodeList n = item.getElementsByTagName(str);		
-			return this.getElementValue(n.item(0));
+			return getElementValue(n.item(0));
 		}
+
+	@Override
+	protected Void doInBackground(Void... params) {
+		getXmlFromUrl(url);
+		return null;
+	}
+	
+	@Override
+	protected void onPostExecute(Void param) {
+		callback.onXMLParsed(xml);
+	}
 }

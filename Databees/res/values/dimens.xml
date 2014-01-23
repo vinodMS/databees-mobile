@@ -1,7 +1,19 @@
 <resources>
 
-    <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
+    <!-- Margins -->
+    <dimen name="margin_common_horizontal">10dp</dimen>
+    <dimen name="margin_common_vertical">10dp</dimen>
+    <dimen name="margin_common">10dp</dimen>
+    <dimen name="margin_hive_picture_hint">70dp</dimen>
+    
+    <!-- Paddings -->
+    <dimen name="padding_common_horizontal">10dp</dimen>
+    <dimen name="padding_common_vertical">10dp</dimen>
+    <dimen name="padding_common">10dp</dimen>
+    <dimen name="padding_expandable_list_view_left">20dp</dimen>
+    
+    <!-- Heights -->
+    <dimen name="height_mini_map">150dp</dimen>
+    <dimen name="height_hive_image">150dp</dimen>
 
 </resources>

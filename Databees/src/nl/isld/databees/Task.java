@@ -1,34 +1,62 @@
 package nl.isld.databees;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Task {
-	
-	public int ID;
-	public String desc;
-	public Date deadLine, alarmDate;
 
-	public Task(int ID, String desc, Date deadLine, boolean alarmOn, Date alarmDate) {
+	public static final String PARCEL_KEY	=	"PARCELABLE_apiary";
+	
+	private String		id;
+	private String		title;
+	private String		desc;
+	private Date		taskDate;
+	
+	Task() {
+		this.id			= LocalStore.generateTaskId();
+		this.title		= new String();
+		this.desc		= new String();
+		this.taskDate   = new Date();
+	}
+	
+	Task(String title, String desc, Date taskDate) {
+		this.id			= LocalStore.generateTaskId();
+		this.title		= title;
+		this.desc		= desc;
+		this.taskDate	= taskDate;
+	}
+
+	public String getId() {
+		return id;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+	
+	
+	public String getDesc() {
+		return desc;
+	}
+	
+	public Date getTaskDate() {
+		return taskDate;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+
+	public void setTaskDate(Date taskDate) {
+		this.taskDate = taskDate;
+	}
+
+	public void setTaskDate(String trim) {
+		// TODO Auto-generated method stub
 		
 	}
-		
-	public int getID() {
-		return ID;	
-	}
 	
-	public String getDescription() {
-		return desc ;
-	}
-	
-	public Date getDeadLine() {
-		return deadLine ;
-	}
-	
-	public boolean isAlarmOn() {
-		return false;
-	}
-	
-	public Date getAlarmDate() {
-		return alarmDate;
-	}
 }

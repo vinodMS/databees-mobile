@@ -1,233 +1,177 @@
 package nl.isld.databees;
 
-import java.util.ArrayList;
-
 import nl.isld.databees.rss.RSSFeed;
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.os.StrictMode;
-import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
-import android.view.Menu;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.ExpandableListView;
 import android.widget.ListView;
 
-public class MainActivity extends Activity {
-	private DrawerLayout mDrawerLayout;
-	private ListView mDrawerList;
-	private ActionBarDrawerToggle mDrawerToggle;
+import com.google.android.gms.maps.model.LatLng;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
-	// nav drawer title
-	private CharSequence mDrawerTitle;
-
-	// used to store app title
-	private CharSequence mTitle;
-
-	// slide menu items
-	private String[] navMenuTitles;
-	private TypedArray navMenuIcons;
-
-	private ArrayList<NavDrawerItem> navDrawerItems;
-	private NavDrawerListAdapter adapter;
+public class MainActivity extends SlidingFragmentActivity
+	implements OnItemClickListener {
+	
+	private SlidingMenu				navDrawer;
+	private ExpandableListView		navDrawerUserMenu;
+	private ListView				navDrawerMenu;
+	private UserExpandableAdapter	navDrawerUserMenuAdapter;
+	private ArrayAdapter<String> 	navDrawerMenuAdapter;
+	
+	
+	/*
+	 * Overridden method of class SlidingFragmentActivity.
+	 * Sets the content views for the main view and the
+	 * navigation drawer, lying behind the first, and it
+	 * initializes the activity by calling a series of
+	 * private initialization methods.
+	 * @see com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity#onCreate(android.os.Bundle)
+	 */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    
+        setContentView(R.layout.activity_main);
+        setBehindContentView(R.layout.navigation_drawer);
+        
+        initActionBar();
+        initAttributes();
+        initDrawer();
+        initFrame();
+        
+        LocalStore.initOnce();
+    }
+    
+    /*
+     * Overridden method of class SlidingFragmentActivity.
+     * Called whenever an item in the option menu is clicked.
+     * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	switch(item.getItemId()) {
+    	case android.R.id.home:
+    		navDrawer.toggle();
+    	}
+    	
+		return super.onOptionsItemSelected(item);
+    }
+    
+    public void setMapMarker(LatLng position) {
+    	MiniMapFragment map = 
+    			(MiniMapFragment) getSupportFragmentManager().findFragmentByTag("MINI_MAP_FRAGMENT");
+    	
+    	if(map != null) {
+    		map.moveMarker(position);
+    	}
+    }
+    
+    /*
+     * Internal private method that initializes the action bar of
+     * the current activity.
+     */
+    private void initActionBar() {
+    	getActionBar().setDisplayShowCustomEnabled(true);
+    	getActionBar().setDisplayHomeAsUpEnabled(true);
+    	getActionBar().setHomeButtonEnabled(true);
+    }
+    
+    /*
+     * Internal private method that initializes all the attributes
+     * declared in this activity.
+     */
+    private void initAttributes() {
+    	navDrawer = getSlidingMenu();
+    	navDrawerUserMenu = (ExpandableListView) navDrawer.findViewById(R.id.user_menu);
+    	navDrawerMenu = (ListView) navDrawer.findViewById(R.id.menu);
+    	navDrawerUserMenuAdapter = new UserExpandableAdapter
+    			(getApplicationContext(),
+    					"Barack Obama",
+    							AppCommon.USER_MENU_ITEMS);
+    	navDrawerMenuAdapter = new ArrayAdapter<String>
+    			(getApplicationContext(),
+    					android.R.layout.simple_list_item_1,
+    							AppCommon.NAV_MENU_ITEMS);
+    }
+    
+    /*
+     * Internal private method that initializes the navigation
+     * drawer for this activity.
+     */
+    private void initDrawer() {
+    	navDrawer.setShadowDrawable(R.drawable.drawer_shadow);
+    	navDrawer.setShadowWidth(35);
+    	navDrawer.setBehindOffset(120);
+    	
+    	navDrawerUserMenu.setAdapter(navDrawerUserMenuAdapter);
+    	navDrawerMenu.setAdapter(navDrawerMenuAdapter);
+    	navDrawerMenu.setOnItemClickListener(this);
+    }
+    
+    /*
+     * Internal private method that adds the initial fragment
+     * to the activity's layout for display.
+     */
+    private void initFrame() {
+    	getSupportFragmentManager().beginTransaction()
+    		.add(R.id.main_container, new DashboardFragment())
+    		.commit();
+    }
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		if (android.os.Build.VERSION.SDK_INT > 9) {
-		    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-		    StrictMode.setThreadPolicy(policy);
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
+		for(Fragment fragment : getSupportFragmentManager().getFragments()) {
+			Log.d("Beebug", "Fragment present: " + fragment.toString());
+			getSupportFragmentManager().beginTransaction()
+				.remove(fragment).commit();
 		}
-		mTitle = mDrawerTitle = getTitle();
-
-		// load slide menu items
-		navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
-
-		// nav drawer icons from resources
-		navMenuIcons = getResources()
-				.obtainTypedArray(R.array.nav_drawer_icons);
-
-		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-		mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
-
-		navDrawerItems = new ArrayList<NavDrawerItem>();
-
-		// adding nav drawer items to array
-		// Home
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
-		// Apiaries
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
-		// Tasks
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
-		// Flora
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
-		// Diseases
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
-		//RSS Feed
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
 		
-		// Recycle the typed array
-		navMenuIcons.recycle();
-
-		mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
-
-		// setting the nav drawer list adapter
-		adapter = new NavDrawerListAdapter(getApplicationContext(),
-				navDrawerItems);
-		mDrawerList.setAdapter(adapter);
-
-		// enabling action bar app icon and behaving it as toggle button
-		getActionBar().setDisplayHomeAsUpEnabled(true);
-		getActionBar().setHomeButtonEnabled(true);
-
-		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-				R.drawable.ic_drawer, //nav menu toggle icon
-				R.string.app_name, // nav drawer open - description for accessibility
-				R.string.app_name // nav drawer close - description for accessibility
-		) {
-			public void onDrawerClosed(View view) {
-				getActionBar().setTitle(mTitle);
-				// calling onPrepareOptionsMenu() to show action bar icons
-				invalidateOptionsMenu();
-			}
-
-			public void onDrawerOpened(View drawerView) {
-				getActionBar().setTitle(mDrawerTitle);
-				// calling onPrepareOptionsMenu() to hide action bar icons
-				invalidateOptionsMenu();
-			}
-		};
-		mDrawerLayout.setDrawerListener(mDrawerToggle);
-
-		if (savedInstanceState == null) {
-			// on first time display view for first nav item
-			displayView(0);
-		}
-	}
-
-	/**
-	 * Slide menu item click listener
-	 * */
-	private class SlideMenuClickListener implements
-			ListView.OnItemClickListener {
-		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position,
-				long id) {
-			// display view for selected nav drawer item
-			displayView(position);
-		}
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// toggle nav drawer on selecting action bar app icon/title
-		if (mDrawerToggle.onOptionsItemSelected(item)) {
-			return true;
-		}
-		// Handle action bar actions click
-		switch (item.getItemId()) {
-		case R.id.action_settings:
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
-		}
-	}
-
-	/* *
-	 * Called when invalidateOptionsMenu() is triggered
-	 */
-	@Override
-	public boolean onPrepareOptionsMenu(Menu menu) {
-		// if nav drawer is opened, hide the action items
-		boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
-		menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
-		return super.onPrepareOptionsMenu(menu);
-	}
-
-	/**
-	 * Diplaying fragment view for selected nav drawer list item
-	 * */
-	private void displayView(int position) {
-		// update the main content by replacing fragments
-		Fragment fragment = null;
-		switch (position) {
+		switch(position) {
+		
 		case 0:
-			fragment = new HomeFragment();
+			getSupportFragmentManager().beginTransaction()
+    		.add(R.id.main_container, new DashboardFragment())
+    		.commit();
 			break;
-		case 1:
-			fragment = new ApiarieFragment();
-			break;
-		case 2:
-			fragment = new TaskFragment();
-			break;
-		case 3:
-			fragment = new FloraFragment();
-			break;
-		case 4:
-			fragment = new DiseaseFragment();
-			break;
-		case 5:
-			fragment = new HomeFragment();
-			Intent i = new Intent(this, RSSFeed.class);
-			startActivity(i);			
-			break;
-		default:
-			break;
-		}
-
-		if (fragment != null) {
-			FragmentManager fragmentManager = getFragmentManager();
-			fragmentManager.beginTransaction()
-				.replace(R.id.frame_container, fragment).commit();
-
-			// update selected item and title, then close the drawer
-			mDrawerList.setItemChecked(position, true);
-			mDrawerList.setSelection(position);
-			setTitle(navMenuTitles[position]);
-			mDrawerLayout.closeDrawer(mDrawerList);
 			
-		} else {
-			// error in creating fragment
-			//Log.e("MainActivity", "Error in creating fragment");
+		case 1:
+			getSupportFragmentManager().beginTransaction()
+    		.add(R.id.main_container, new ApiaryListFragment())
+    		.commit();
+			break;
+			
+		case 2:
+			getSupportFragmentManager().beginTransaction()
+    		.add(R.id.main_container, new TaskListFragment())
+    		.commit();
+			break;
+			
+		case 3:
+			getSupportFragmentManager().beginTransaction()
+    		.add(R.id.main_container, new DiseaseFragment())
+        		.commit();
+			break;
+		
+		case 4:
+			startActivity(new Intent(this, RSSFeed.class));
+			break;
+			
+		default:break;
 		}
+		
+		navDrawer.toggle();
+		
 	}
-
-	@Override
-	public void setTitle(CharSequence title) {
-		mTitle = title;
-		getActionBar().setTitle(mTitle);
-	}
-
-	/**
-	 * When using the ActionBarDrawerToggle, you must call it during
-	 * onPostCreate() and onConfigurationChanged()...
-	 */
-
-	@Override
-	protected void onPostCreate(Bundle savedInstanceState) {
-		super.onPostCreate(savedInstanceState);
-		// Sync the toggle state after onRestoreInstanceState has occurred.
-		mDrawerToggle.syncState();
-	}
-
-	@Override
-	public void onConfigurationChanged(Configuration newConfig) {
-		super.onConfigurationChanged(newConfig);
-		// Pass any configuration change to the drawer toggls
-		mDrawerToggle.onConfigurationChanged(newConfig);
-	}
-
+	
+	
 }

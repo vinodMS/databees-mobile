@@ -12,31 +12,316 @@ public final class R {
         public static final int fade_in=0x7f040000;
         public static final int fade_out=0x7f040001;
     }
+    public static final class animator {
+        public static final int flip_left_in=0x7f050000;
+        public static final int flip_left_out=0x7f050001;
+        public static final int flip_right_in=0x7f050002;
+        public static final int flip_right_out=0x7f050003;
+    }
     public static final class array {
-        public static final int nav_drawer_icons=0x7f080001;
-        public static final int nav_drawer_items=0x7f080000;
+        public static final int hives_spinner=0x7f0b0001;
+        public static final int reminder_spinner=0x7f0b0002;
+        /**  String Arrays 
+         */
+        public static final int temper_values=0x7f0b0000;
     }
     public static final class attr {
+        /** 
+    The size of the ad. It must be one of BANNER, FULL_BANNER, LEADERBOARD,
+    MEDIUM_RECTANGLE, SMART_BANNER, WIDE_SKYSCRAPER, or
+    &lt;width&gt;x&lt;height&gt;.
+    
+         <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int adSize=0x7f01000e;
+        /**  The ad unit ID. 
+         <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int adUnitId=0x7f01000f;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int behindOffset=0x7f010003;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int behindScrollScale=0x7f010005;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int behindWidth=0x7f010004;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int cameraBearing=0x7f010011;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int cameraTargetLat=0x7f010012;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int cameraTargetLng=0x7f010013;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int cameraTilt=0x7f010014;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int cameraZoom=0x7f010015;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int fadeDegree=0x7f01000b;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int fadeEnabled=0x7f01000a;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>none</code></td><td>0</td><td></td></tr>
+<tr><td><code>normal</code></td><td>1</td><td></td></tr>
+<tr><td><code>satellite</code></td><td>2</td><td></td></tr>
+<tr><td><code>terrain</code></td><td>3</td><td></td></tr>
+<tr><td><code>hybrid</code></td><td>4</td><td></td></tr>
+</table>
+         */
+        public static final int mapType=0x7f010010;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>left</code></td><td>0</td><td></td></tr>
+<tr><td><code>right</code></td><td>1</td><td></td></tr>
+</table>
+         */
+        public static final int mode=0x7f010000;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int selectorDrawable=0x7f01000d;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int selectorEnabled=0x7f01000c;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int shadowDrawable=0x7f010008;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int shadowWidth=0x7f010009;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>margin</code></td><td>0</td><td></td></tr>
+<tr><td><code>fullscreen</code></td><td>1</td><td></td></tr>
+</table>
+         */
+        public static final int touchModeAbove=0x7f010006;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>margin</code></td><td>0</td><td></td></tr>
+<tr><td><code>fullscreen</code></td><td>1</td><td></td></tr>
+</table>
+         */
+        public static final int touchModeBehind=0x7f010007;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int uiCompass=0x7f010016;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int uiRotateGestures=0x7f010017;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int uiScrollGestures=0x7f010018;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int uiTiltGestures=0x7f010019;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int uiZoomControls=0x7f01001a;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int uiZoomGestures=0x7f01001b;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int useViewLifecycle=0x7f01001c;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int viewAbove=0x7f010001;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int viewBehind=0x7f010002;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int zOrderOnTop=0x7f01001d;
     }
     public static final class color {
-        public static final int counter_text_bg=0x7f050004;
-        public static final int counter_text_color=0x7f050005;
-        public static final int list_background=0x7f050001;
-        public static final int list_background_pressed=0x7f050002;
-        public static final int list_divider=0x7f050003;
-        public static final int list_item_title=0x7f050000;
-        public static final int nbv_color=0x7f050006;
+        public static final int common_action_bar_splitter=0x7f070009;
+        /**  Sign-in Button Colors 
+         */
+        public static final int common_signin_btn_dark_text_default=0x7f070000;
+        public static final int common_signin_btn_dark_text_disabled=0x7f070002;
+        public static final int common_signin_btn_dark_text_focused=0x7f070003;
+        public static final int common_signin_btn_dark_text_pressed=0x7f070001;
+        public static final int common_signin_btn_default_background=0x7f070008;
+        public static final int common_signin_btn_light_text_default=0x7f070004;
+        public static final int common_signin_btn_light_text_disabled=0x7f070006;
+        public static final int common_signin_btn_light_text_focused=0x7f070007;
+        public static final int common_signin_btn_light_text_pressed=0x7f070005;
+        public static final int common_signin_btn_text_dark=0x7f070011;
+        public static final int common_signin_btn_text_light=0x7f070012;
+        public static final int counter_text_bg=0x7f07000e;
+        public static final int counter_text_color=0x7f07000f;
+        public static final int list_background=0x7f07000b;
+        public static final int list_background_pressed=0x7f07000c;
+        public static final int list_divider=0x7f07000d;
+        public static final int list_item_title=0x7f07000a;
+        public static final int nbv_color=0x7f070010;
     }
     public static final class dimen {
-        /**  Default screen margins, per the Android Design guidelines. 
+        public static final int height_hive_image=0x7f0a0009;
+        /**  Heights 
+         */
+        public static final int height_mini_map=0x7f0a0008;
+        public static final int margin_common=0x7f0a0002;
+        /**  Margins 
 
          Customize dimensions originally defined in res/values/dimens.xml (such as
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f060000;
-        public static final int activity_vertical_margin=0x7f060001;
-        public static final int tab_host_default_height=0x7f060002;
+        public static final int margin_common_horizontal=0x7f0a0000;
+        public static final int margin_common_vertical=0x7f0a0001;
+        public static final int margin_hive_picture_hint=0x7f0a0003;
+        public static final int padding_common=0x7f0a0006;
+        /**  Paddings 
+         */
+        public static final int padding_common_horizontal=0x7f0a0004;
+        public static final int padding_common_vertical=0x7f0a0005;
+        public static final int padding_expandable_list_view_left=0x7f0a0007;
     }
     public static final class drawable {
         public static final int btn1=0x7f020000;
@@ -48,201 +333,432 @@ public final class R {
         public static final int btn7=0x7f020006;
         public static final int btn8=0x7f020007;
         public static final int btn9=0x7f020008;
-        public static final int counter_bg=0x7f020009;
-        public static final int drawer_shadow=0x7f02000a;
-        public static final int ic_drawer=0x7f02000b;
-        public static final int ic_launcher=0x7f02000c;
-        public static final int image_bg=0x7f02000d;
-        public static final int list_item_bg_normal=0x7f02000e;
-        public static final int list_item_bg_pressed=0x7f02000f;
-        public static final int list_selector=0x7f020010;
-        public static final int nbv_theme_activated_background_holo_light=0x7f020011;
-        public static final int nbv_theme_btn_check_holo_light=0x7f020012;
-        public static final int nbv_theme_btn_check_off_disabled_focused_holo_light=0x7f020013;
-        public static final int nbv_theme_btn_check_off_disabled_holo_light=0x7f020014;
-        public static final int nbv_theme_btn_check_off_focused_holo_light=0x7f020015;
-        public static final int nbv_theme_btn_check_off_holo_light=0x7f020016;
-        public static final int nbv_theme_btn_check_off_pressed_holo_light=0x7f020017;
-        public static final int nbv_theme_btn_check_on_disabled_focused_holo_light=0x7f020018;
-        public static final int nbv_theme_btn_check_on_disabled_holo_light=0x7f020019;
-        public static final int nbv_theme_btn_check_on_focused_holo_light=0x7f02001a;
-        public static final int nbv_theme_btn_check_on_holo_light=0x7f02001b;
-        public static final int nbv_theme_btn_check_on_pressed_holo_light=0x7f02001c;
-        public static final int nbv_theme_btn_default_disabled_focused_holo_light=0x7f02001d;
-        public static final int nbv_theme_btn_default_disabled_holo_light=0x7f02001e;
-        public static final int nbv_theme_btn_default_focused_holo_light=0x7f02001f;
-        public static final int nbv_theme_btn_default_holo_light=0x7f020020;
-        public static final int nbv_theme_btn_default_normal_holo_light=0x7f020021;
-        public static final int nbv_theme_btn_default_pressed_holo_light=0x7f020022;
-        public static final int nbv_theme_btn_radio_holo_light=0x7f020023;
-        public static final int nbv_theme_btn_radio_off_disabled_focused_holo_light=0x7f020024;
-        public static final int nbv_theme_btn_radio_off_disabled_holo_light=0x7f020025;
-        public static final int nbv_theme_btn_radio_off_focused_holo_light=0x7f020026;
-        public static final int nbv_theme_btn_radio_off_holo_light=0x7f020027;
-        public static final int nbv_theme_btn_radio_off_pressed_holo_light=0x7f020028;
-        public static final int nbv_theme_btn_radio_on_disabled_focused_holo_light=0x7f020029;
-        public static final int nbv_theme_btn_radio_on_disabled_holo_light=0x7f02002a;
-        public static final int nbv_theme_btn_radio_on_focused_holo_light=0x7f02002b;
-        public static final int nbv_theme_btn_radio_on_holo_light=0x7f02002c;
-        public static final int nbv_theme_btn_radio_on_pressed_holo_light=0x7f02002d;
-        public static final int nbv_theme_btn_rating_star_off_focused_holo_light=0x7f02002e;
-        public static final int nbv_theme_btn_rating_star_off_normal_holo_light=0x7f02002f;
-        public static final int nbv_theme_btn_rating_star_off_pressed_holo_light=0x7f020030;
-        public static final int nbv_theme_btn_rating_star_on_focused_holo_light=0x7f020031;
-        public static final int nbv_theme_btn_rating_star_on_normal_holo_light=0x7f020032;
-        public static final int nbv_theme_btn_rating_star_on_pressed_holo_light=0x7f020033;
-        public static final int nbv_theme_btn_toggle_holo_light=0x7f020034;
-        public static final int nbv_theme_btn_toggle_off_disabled_focused_holo_light=0x7f020035;
-        public static final int nbv_theme_btn_toggle_off_disabled_holo_light=0x7f020036;
-        public static final int nbv_theme_btn_toggle_off_focused_holo_light=0x7f020037;
-        public static final int nbv_theme_btn_toggle_off_normal_holo_light=0x7f020038;
-        public static final int nbv_theme_btn_toggle_off_pressed_holo_light=0x7f020039;
-        public static final int nbv_theme_btn_toggle_on_disabled_focused_holo_light=0x7f02003a;
-        public static final int nbv_theme_btn_toggle_on_disabled_holo_light=0x7f02003b;
-        public static final int nbv_theme_btn_toggle_on_focused_holo_light=0x7f02003c;
-        public static final int nbv_theme_btn_toggle_on_normal_holo_light=0x7f02003d;
-        public static final int nbv_theme_btn_toggle_on_pressed_holo_light=0x7f02003e;
-        public static final int nbv_theme_edit_text_holo_light=0x7f02003f;
-        public static final int nbv_theme_fastscroll_thumb_default_holo=0x7f020040;
-        public static final int nbv_theme_fastscroll_thumb_holo=0x7f020041;
-        public static final int nbv_theme_fastscroll_thumb_pressed_holo=0x7f020042;
-        public static final int nbv_theme_ic_navigation_drawer=0x7f020043;
-        public static final int nbv_theme_item_background_holo_light=0x7f020044;
-        public static final int nbv_theme_list_activated_holo=0x7f020045;
-        public static final int nbv_theme_list_focused_holo=0x7f020046;
-        public static final int nbv_theme_list_longpressed_holo=0x7f020047;
-        public static final int nbv_theme_list_pressed_holo_light=0x7f020048;
-        public static final int nbv_theme_list_selector_background_transition_holo_light=0x7f020049;
-        public static final int nbv_theme_list_selector_disabled_holo_light=0x7f02004a;
-        public static final int nbv_theme_list_selector_holo_light=0x7f02004b;
-        public static final int nbv_theme_progress_bg_holo_light=0x7f02004c;
-        public static final int nbv_theme_progress_horizontal_holo_light=0x7f02004d;
-        public static final int nbv_theme_progress_indeterminate_horizontal_holo_light=0x7f02004e;
-        public static final int nbv_theme_progress_primary_holo_light=0x7f02004f;
-        public static final int nbv_theme_progress_secondary_holo_light=0x7f020050;
-        public static final int nbv_theme_progressbar_indeterminate_holo1=0x7f020051;
-        public static final int nbv_theme_progressbar_indeterminate_holo2=0x7f020052;
-        public static final int nbv_theme_progressbar_indeterminate_holo3=0x7f020053;
-        public static final int nbv_theme_progressbar_indeterminate_holo4=0x7f020054;
-        public static final int nbv_theme_progressbar_indeterminate_holo5=0x7f020055;
-        public static final int nbv_theme_progressbar_indeterminate_holo6=0x7f020056;
-        public static final int nbv_theme_progressbar_indeterminate_holo7=0x7f020057;
-        public static final int nbv_theme_progressbar_indeterminate_holo8=0x7f020058;
-        public static final int nbv_theme_rate_star_big_half_holo_light=0x7f020059;
-        public static final int nbv_theme_rate_star_big_off_holo_light=0x7f02005a;
-        public static final int nbv_theme_rate_star_big_on_holo_light=0x7f02005b;
-        public static final int nbv_theme_rate_star_small_half_holo_light=0x7f02005c;
-        public static final int nbv_theme_rate_star_small_off_holo_light=0x7f02005d;
-        public static final int nbv_theme_rate_star_small_on_holo_light=0x7f02005e;
-        public static final int nbv_theme_ratingbar_full_empty_holo_light=0x7f02005f;
-        public static final int nbv_theme_ratingbar_full_filled_holo_light=0x7f020060;
-        public static final int nbv_theme_ratingbar_full_holo_light=0x7f020061;
-        public static final int nbv_theme_ratingbar_holo_light=0x7f020062;
-        public static final int nbv_theme_ratingbar_small_holo_light=0x7f020063;
-        public static final int nbv_theme_scrubber_control_disabled_holo=0x7f020064;
-        public static final int nbv_theme_scrubber_control_focused_holo=0x7f020065;
-        public static final int nbv_theme_scrubber_control_normal_holo=0x7f020066;
-        public static final int nbv_theme_scrubber_control_pressed_holo=0x7f020067;
-        public static final int nbv_theme_scrubber_control_selector_holo_light=0x7f020068;
-        public static final int nbv_theme_scrubber_primary_holo=0x7f020069;
-        public static final int nbv_theme_scrubber_progress_horizontal_holo_light=0x7f02006a;
-        public static final int nbv_theme_scrubber_secondary_holo=0x7f02006b;
-        public static final int nbv_theme_scrubber_track_holo_light=0x7f02006c;
-        public static final int nbv_theme_spinner_background_holo_light=0x7f02006d;
-        public static final int nbv_theme_spinner_default_holo_light=0x7f02006e;
-        public static final int nbv_theme_spinner_disabled_holo_light=0x7f02006f;
-        public static final int nbv_theme_spinner_focused_holo_light=0x7f020070;
-        public static final int nbv_theme_spinner_pressed_holo_light=0x7f020071;
-        public static final int nbv_theme_switch_bg_disabled_holo_light=0x7f020072;
-        public static final int nbv_theme_switch_bg_focused_holo_light=0x7f020073;
-        public static final int nbv_theme_switch_bg_holo_light=0x7f020074;
-        public static final int nbv_theme_switch_inner_holo_light=0x7f020075;
-        public static final int nbv_theme_switch_thumb_activated_holo_light=0x7f020076;
-        public static final int nbv_theme_switch_thumb_disabled_holo_light=0x7f020077;
-        public static final int nbv_theme_switch_thumb_holo_light=0x7f020078;
-        public static final int nbv_theme_switch_thumb_pressed_holo_light=0x7f020079;
-        public static final int nbv_theme_switch_track_holo_light=0x7f02007a;
-        public static final int nbv_theme_tab_indicator_holo=0x7f02007b;
-        public static final int nbv_theme_tab_selected_focused_holo=0x7f02007c;
-        public static final int nbv_theme_tab_selected_holo=0x7f02007d;
-        public static final int nbv_theme_tab_selected_pressed_holo=0x7f02007e;
-        public static final int nbv_theme_tab_unselected_focused_holo=0x7f02007f;
-        public static final int nbv_theme_tab_unselected_holo=0x7f020080;
-        public static final int nbv_theme_tab_unselected_pressed_holo=0x7f020081;
-        public static final int nbv_theme_text_select_handle_left=0x7f020082;
-        public static final int nbv_theme_text_select_handle_middle=0x7f020083;
-        public static final int nbv_theme_text_select_handle_right=0x7f020084;
-        public static final int nbv_theme_textfield_activated_holo_light=0x7f020085;
-        public static final int nbv_theme_textfield_default_holo_light=0x7f020086;
-        public static final int nbv_theme_textfield_disabled_focused_holo_light=0x7f020087;
-        public static final int nbv_theme_textfield_disabled_holo_light=0x7f020088;
-        public static final int nbv_theme_textfield_focused_holo_light=0x7f020089;
-        public static final int splash=0x7f02008a;
+        public static final int calendar_icon=0x7f020009;
+        public static final int calendar_icon1=0x7f02000a;
+        public static final int common_signin_btn_icon_dark=0x7f02000b;
+        public static final int common_signin_btn_icon_disabled_dark=0x7f02000c;
+        public static final int common_signin_btn_icon_disabled_focus_dark=0x7f02000d;
+        public static final int common_signin_btn_icon_disabled_focus_light=0x7f02000e;
+        public static final int common_signin_btn_icon_disabled_light=0x7f02000f;
+        public static final int common_signin_btn_icon_focus_dark=0x7f020010;
+        public static final int common_signin_btn_icon_focus_light=0x7f020011;
+        public static final int common_signin_btn_icon_light=0x7f020012;
+        public static final int common_signin_btn_icon_normal_dark=0x7f020013;
+        public static final int common_signin_btn_icon_normal_light=0x7f020014;
+        public static final int common_signin_btn_icon_pressed_dark=0x7f020015;
+        public static final int common_signin_btn_icon_pressed_light=0x7f020016;
+        public static final int common_signin_btn_text_dark=0x7f020017;
+        public static final int common_signin_btn_text_disabled_dark=0x7f020018;
+        public static final int common_signin_btn_text_disabled_focus_dark=0x7f020019;
+        public static final int common_signin_btn_text_disabled_focus_light=0x7f02001a;
+        public static final int common_signin_btn_text_disabled_light=0x7f02001b;
+        public static final int common_signin_btn_text_focus_dark=0x7f02001c;
+        public static final int common_signin_btn_text_focus_light=0x7f02001d;
+        public static final int common_signin_btn_text_light=0x7f02001e;
+        public static final int common_signin_btn_text_normal_dark=0x7f02001f;
+        public static final int common_signin_btn_text_normal_light=0x7f020020;
+        public static final int common_signin_btn_text_pressed_dark=0x7f020021;
+        public static final int common_signin_btn_text_pressed_light=0x7f020022;
+        public static final int drawer_shadow=0x7f020023;
+        public static final int hive_image_placeholder=0x7f020024;
+        public static final int ic_cab_done_holo_dark=0x7f020025;
+        public static final int ic_launcher=0x7f020026;
+        public static final int ic_menu_add=0x7f020027;
+        public static final int ic_open_nav_drawer=0x7f020028;
+        public static final int ic_plusone_medium_off_client=0x7f020029;
+        public static final int ic_plusone_small_off_client=0x7f02002a;
+        public static final int ic_plusone_standard_off_client=0x7f02002b;
+        public static final int ic_plusone_tall_off_client=0x7f02002c;
+        public static final int image_bg=0x7f02002d;
+        public static final int list_item_bg_normal=0x7f02002e;
+        public static final int list_item_bg_pressed=0x7f02002f;
+        public static final int list_selector=0x7f020030;
+        public static final int map_marker=0x7f020031;
+        public static final int nav_drawer_background=0x7f020032;
+        public static final int nav_drawer_image=0x7f020033;
+        public static final int splash=0x7f020034;
+        public static final int square_dashed_rounded=0x7f020035;
+        public static final int weather_condition_clear=0x7f020036;
+        public static final int weather_condition_clouds=0x7f020037;
+        public static final int weather_condition_rain=0x7f020038;
+        public static final int weather_info_sun=0x7f020039;
     }
     public static final class id {
-        public static final int action_settings=0x7f0b0017;
-        public static final int btn1=0x7f0b0009;
-        public static final int btn2=0x7f0b000a;
-        public static final int btn3=0x7f0b000b;
-        public static final int btn4=0x7f0b000c;
-        public static final int btn5=0x7f0b000d;
-        public static final int btn6=0x7f0b000e;
-        public static final int btn7=0x7f0b000f;
-        public static final int btn8=0x7f0b0010;
-        public static final int btn9=0x7f0b0011;
-        public static final int container=0x7f0b0008;
-        public static final int counter=0x7f0b0006;
-        public static final int description=0x7f0b0014;
-        public static final int drawer_layout=0x7f0b0000;
-        public static final int frame_container=0x7f0b0001;
-        public static final int icon=0x7f0b0004;
-        public static final int list=0x7f0b0016;
-        public static final int list_image=0x7f0b0013;
-        public static final int list_slidermenu=0x7f0b0002;
-        public static final int publish_date=0x7f0b0015;
-        public static final int textView1=0x7f0b0003;
-        public static final int thumbnail=0x7f0b0012;
-        public static final int title=0x7f0b0005;
-        public static final int txtLabel=0x7f0b0007;
+        public static final int action_delete=0x7f060075;
+        public static final int action_edit=0x7f060072;
+        public static final int action_save=0x7f060073;
+        public static final int action_settings=0x7f060074;
+        public static final int add_hives=0x7f06000e;
+        public static final int add_item_text_view=0x7f060022;
+        public static final int bees_temper_label=0x7f06004e;
+        public static final int btn1=0x7f06002e;
+        public static final int btn2=0x7f06002f;
+        public static final int btn3=0x7f060030;
+        public static final int btn4=0x7f060031;
+        public static final int btn5=0x7f060032;
+        public static final int btn6=0x7f060033;
+        public static final int btn7=0x7f060034;
+        public static final int btn8=0x7f060035;
+        public static final int btn9=0x7f060036;
+        public static final int button_add_inspections=0x7f06003e;
+        public static final int button_edit_hive_details=0x7f06003d;
+        public static final int check_box=0x7f06006a;
+        public static final int child_item_text_view=0x7f060025;
+        public static final int container=0x7f06002d;
+        public static final int date_frame=0x7f060048;
+        public static final int date_label=0x7f060047;
+        public static final int day_input=0x7f060049;
+        public static final int desc_edit_text=0x7f060021;
+        public static final int description=0x7f060066;
+        public static final int disease_guide_button=0x7f060045;
+        public static final int disease_name=0x7f060042;
+        public static final int disease_present=0x7f060041;
+        public static final int edit_task_calendar=0x7f060015;
+        public static final int edit_text=0x7f06000a;
+        public static final int edit_text2=0x7f06000b;
+        public static final int eggs_present_input=0x7f060050;
+        public static final int fullscreen=0x7f060003;
+        public static final int hive_image=0x7f060040;
+        public static final int hive_notes_input=0x7f06003f;
+        public static final int hives_spinner=0x7f060020;
+        public static final int hybrid=0x7f060009;
+        public static final int imageButton1=0x7f060016;
+        public static final int label_alarm=0x7f060018;
+        public static final int label_alarm_time=0x7f06001b;
+        public static final int label_link_to=0x7f06001e;
+        public static final int layout=0x7f060046;
+        public static final int left=0x7f060000;
+        public static final int list=0x7f06006e;
+        public static final int list_image=0x7f060064;
+        public static final int locate_me_button=0x7f06000d;
+        public static final int logged_in_decorator=0x7f060024;
+        public static final int main_container=0x7f060011;
+        public static final int manage_flora=0x7f06000f;
+        public static final int map_fragment=0x7f06000c;
+        public static final int margin=0x7f060002;
+        public static final int menu=0x7f06006d;
+        public static final int middle_container=0x7f060014;
+        public static final int month_input=0x7f06004a;
+        public static final int nav_drawer_main_layout=0x7f06006b;
+        public static final int none=0x7f060005;
+        public static final int normal=0x7f060006;
+        public static final int notes_edit_text=0x7f060010;
+        public static final int notes_input=0x7f060052;
+        public static final int now_button=0x7f06004c;
+        public static final int other_descr=0x7f060044;
+        public static final int other_problem=0x7f060043;
+        public static final int polen_in_input=0x7f060051;
+        public static final int progress_spin=0x7f060027;
+        public static final int publish_date=0x7f060067;
+        public static final int queen_marked_descr=0x7f06005b;
+        public static final int queen_marked_input=0x7f06005c;
+        public static final int queen_marked_label=0x7f06005a;
+        public static final int queen_marked_label_holder=0x7f060059;
+        public static final int queen_marked_row=0x7f060058;
+        public static final int queen_origin_input=0x7f06005d;
+        public static final int queen_seen_input=0x7f060057;
+        public static final int queen_seen_label_descr=0x7f060056;
+        public static final int queen_seen_label_title=0x7f060055;
+        public static final int queen_seen_row=0x7f060053;
+        public static final int queen_seen_row_label_holder=0x7f060054;
+        public static final int reminder_spinner=0x7f06001d;
+        public static final int return_button=0x7f06003c;
+        public static final int right=0x7f060001;
+        public static final int satellite=0x7f060007;
+        public static final int selected_view=0x7f060004;
+        public static final int slidingmenumain=0x7f06006f;
+        public static final int suppers_label_descr=0x7f06003a;
+        public static final int suppers_label_title=0x7f060039;
+        public static final int suppers_row=0x7f060037;
+        public static final int suppers_row_label_holder=0x7f060038;
+        public static final int suppers_value_input=0x7f06003b;
+        public static final int switch1=0x7f06001a;
+        public static final int task_date=0x7f060060;
+        public static final int task_date_label=0x7f06005f;
+        public static final int task_detail=0x7f060062;
+        public static final int task_details_label=0x7f060061;
+        public static final int task_list_1=0x7f060070;
+        public static final int task_list_2=0x7f060071;
+        public static final int task_title=0x7f06005e;
+        public static final int temper_frame=0x7f06004d;
+        public static final int temper_input=0x7f06004f;
+        public static final int terrain=0x7f060008;
+        public static final int text1=0x7f060068;
+        public static final int text2=0x7f060069;
+        public static final int textView1=0x7f060026;
+        public static final int text_view_alarm=0x7f060019;
+        public static final int text_view_alarm_time=0x7f06001c;
+        public static final int text_view_link_to=0x7f06001f;
+        public static final int text_view_select_date=0x7f060017;
+        public static final int thumbnail=0x7f060063;
+        public static final int title=0x7f060065;
+        public static final int top_container=0x7f060013;
+        public static final int txtLabel=0x7f06002c;
+        public static final int user_info_text_view=0x7f060023;
+        public static final int user_menu=0x7f06006c;
+        public static final int view_pager=0x7f060012;
+        public static final int weather_condition=0x7f060029;
+        public static final int weather_icon=0x7f06002a;
+        public static final int weather_info_container=0x7f060028;
+        public static final int weather_temperature=0x7f06002b;
+        public static final int year_input=0x7f06004b;
+    }
+    public static final class integer {
+        public static final int google_play_services_version=0x7f090000;
     }
     public static final class layout {
-        public static final int activity_main=0x7f030000;
-        public static final int disease_american=0x7f030001;
-        public static final int disease_chalkbrood=0x7f030002;
-        public static final int disease_european=0x7f030003;
-        public static final int disease_nosema=0x7f030004;
-        public static final int disease_small=0x7f030005;
-        public static final int disease_tracheal=0x7f030006;
-        public static final int disease_varroa=0x7f030007;
-        public static final int disease_viruses=0x7f030008;
-        public static final int disease_wax=0x7f030009;
-        public static final int drawer_list_item=0x7f03000a;
-        public static final int fragment_apiarie=0x7f03000b;
-        public static final int fragment_disease=0x7f03000c;
-        public static final int fragment_flora=0x7f03000d;
-        public static final int fragment_home=0x7f03000e;
-        public static final int fragment_task=0x7f03000f;
-        public static final int list_row=0x7f030010;
-        public static final int nbv_theme_tab_indicator_holo=0x7f030011;
-        public static final int rss=0x7f030012;
-        public static final int splash_screen=0x7f030013;
+        public static final int actionbar_new_item=0x7f030000;
+        public static final int actionbar_new_task=0x7f030001;
+        public static final int activity_apiary=0x7f030002;
+        public static final int activity_hive=0x7f030003;
+        public static final int activity_inspection=0x7f030004;
+        public static final int activity_main=0x7f030005;
+        public static final int activity_task=0x7f030006;
+        public static final int adapter_last_item=0x7f030007;
+        public static final int adapter_nav_drawer_user_account=0x7f030008;
+        public static final int adapter_nav_drawer_user_account_options=0x7f030009;
+        public static final int disease_american=0x7f03000a;
+        public static final int disease_chalkbrood=0x7f03000b;
+        public static final int disease_european=0x7f03000c;
+        public static final int disease_nosema=0x7f03000d;
+        public static final int disease_small=0x7f03000e;
+        public static final int disease_tracheal=0x7f03000f;
+        public static final int disease_varroa=0x7f030010;
+        public static final int disease_viruses=0x7f030011;
+        public static final int disease_wax=0x7f030012;
+        public static final int fragment_apiary_info=0x7f030013;
+        public static final int fragment_dashboard=0x7f030014;
+        public static final int fragment_disease=0x7f030015;
+        public static final int fragment_flora=0x7f030016;
+        public static final int fragment_hive_back=0x7f030017;
+        public static final int fragment_hive_front=0x7f030018;
+        public static final int fragment_hive_image=0x7f030019;
+        public static final int fragment_inspection_diseases=0x7f03001a;
+        public static final int fragment_inspection_general=0x7f03001b;
+        public static final int fragment_inspection_queen=0x7f03001c;
+        public static final int fragment_task_info=0x7f03001d;
+        public static final int list_row=0x7f03001e;
+        public static final int list_view_item=0x7f03001f;
+        public static final int navigation_drawer=0x7f030020;
+        public static final int rss=0x7f030021;
+        public static final int slidingmenumain=0x7f030022;
+        public static final int splashscreen=0x7f030023;
+        public static final int task_list_view_item=0x7f030024;
     }
     public static final class menu {
-        public static final int main=0x7f0a0000;
+        public static final int actions_basic=0x7f0d0000;
+        public static final int activity_apiary_actions=0x7f0d0001;
+        public static final int activity_hive_actions=0x7f0d0002;
+        public static final int activity_inspection_actions=0x7f0d0003;
+        public static final int activity_task_actions=0x7f0d0004;
+        public static final int actvity_main=0x7f0d0005;
+        public static final int fragment_apiary_list_action_mode=0x7f0d0006;
+        public static final int fragment_hive_list_action_mode=0x7f0d0007;
+        public static final int fragment_task_list_action_mode=0x7f0d0008;
     }
     public static final class string {
-        public static final int action_settings=0x7f070001;
-        public static final int american=0x7f070005;
-        public static final int app_name=0x7f070000;
-        public static final int chalkbrood=0x7f07000b;
-        public static final int european=0x7f070004;
-        public static final int hello_world=0x7f070002;
-        public static final int nosema=0x7f070006;
-        public static final int small=0x7f070007;
-        public static final int tracheal=0x7f070008;
-        public static final int varroa=0x7f070003;
-        public static final int viruses=0x7f070009;
-        public static final int wax=0x7f07000a;
+        public static final int action_add_new_apiary=0x7f08001f;
+        public static final int action_add_new_hive=0x7f080020;
+        public static final int action_add_new_inspection=0x7f080021;
+        public static final int action_add_new_task=0x7f080022;
+        public static final int action_delete=0x7f08001d;
+        /**  Actions 
+         */
+        public static final int action_done=0x7f08001b;
+        public static final int action_edit=0x7f08001c;
+        public static final int action_settings=0x7f08001e;
+        public static final int american=0x7f08006b;
+        /**  Application 
+         */
+        public static final int app_name=0x7f08001a;
+        /**   Title for notification shown when GooglePlayServices needs to be
+        enabled for a application to work. [CHAR LIMIT=70] 
+         */
+        public static final int auth_client_needs_enabling_title=0x7f080015;
+        /**   Title for notification shown when GooglePlayServices needs to be
+        installed for a application to work. [CHAR LIMIT=70] 
+         */
+        public static final int auth_client_needs_installation_title=0x7f080016;
+        /**   Title for notification shown when GooglePlayServices needs to be
+        udpated for a application to work. [CHAR LIMIT=70] 
+         */
+        public static final int auth_client_needs_update_title=0x7f080017;
+        /**   Title for notification shown when GooglePlayServices is unavailable [CHAR LIMIT=42] 
+         */
+        public static final int auth_client_play_services_err_notification_msg=0x7f080018;
+        /**   Requested by string saying which app requested the notification. [CHAR LIMIT=42] 
+         */
+        public static final int auth_client_requested_by_msg=0x7f080019;
+        /**   Title for notification shown when a bad version of GooglePlayServices
+        has been installed and needs correction for an application to work.
+        [CHAR LIMIT=70] 
+         */
+        public static final int auth_client_using_bad_version_title=0x7f080014;
+        /**  Buttons 
+         */
+        public static final int button_add_hives=0x7f080023;
+        public static final int button_add_inspections=0x7f080027;
+        public static final int button_edit_hive_details=0x7f080026;
+        public static final int button_inspection_date_now=0x7f080028;
+        public static final int button_manage_flora=0x7f080024;
+        public static final int chalkbrood=0x7f080071;
+        /**  Button in confirmation dialog to enable Google Play services.  Clicking it
+        will direct user to application settings of Google Play services where they
+        can enable it [CHAR LIMIT=40] 
+         */
+        public static final int common_google_play_services_enable_button=0x7f080006;
+        /**  Message in confirmation dialog informing user they need to enable
+        Google Play services in application settings [CHAR LIMIT=NONE] 
+         */
+        public static final int common_google_play_services_enable_text=0x7f080005;
+        /**  Title of confirmation dialog informing user they need to enable
+        Google Play services in application settings [CHAR LIMIT=40] 
+         */
+        public static final int common_google_play_services_enable_title=0x7f080004;
+        /**  Button in confirmation dialog for installing Google Play services [CHAR LIMIT=40] 
+         */
+        public static final int common_google_play_services_install_button=0x7f080003;
+        /**  (For phones) Message in confirmation dialog informing user that
+        they need to install Google Play services (from Play Store) [CHAR LIMIT=NONE] 
+         */
+        public static final int common_google_play_services_install_text_phone=0x7f080001;
+        /**  (For tablets) Message in confirmation dialog informing user that
+        they need to install Google Play services (from Play Store) [CHAR LIMIT=NONE] 
+         */
+        public static final int common_google_play_services_install_text_tablet=0x7f080002;
+        /**  Title of confirmation dialog informing user that they need to install
+        Google Play services (from Play Store) [CHAR LIMIT=40] 
+         */
+        public static final int common_google_play_services_install_title=0x7f080000;
+        /**  Message in confirmation dialog informing the user that they provided an invalid account. [CHAR LIMIT=NONE] 
+         */
+        public static final int common_google_play_services_invalid_account_text=0x7f08000c;
+        /**  Title of confirmation dialog informing the user that they provided an invalid account. [CHAR LIMIT=40] 
+         */
+        public static final int common_google_play_services_invalid_account_title=0x7f08000b;
+        /**  Message in confirmation dialog informing the user that a network error occurred. [CHAR LIMIT=NONE] 
+         */
+        public static final int common_google_play_services_network_error_text=0x7f08000a;
+        /**  Title of confirmation dialog informing the user that a network error occurred. [CHAR LIMIT=40] 
+         */
+        public static final int common_google_play_services_network_error_title=0x7f080009;
+        /**  Message in confirmation dialog informing user there is an unknown issue in Google Play
+        services [CHAR LIMIT=NONE] 
+         */
+        public static final int common_google_play_services_unknown_issue=0x7f08000d;
+        /**  Message in confirmation dialog informing user that date on the device is not correct,
+    causing certificate checks to fail. [CHAR LIMIT=NONE] 
+         */
+        public static final int common_google_play_services_unsupported_date_text=0x7f080010;
+        /**  Message in confirmation dialog informing user that Google Play services is not supported on their device [CHAR LIMIT=NONE] 
+         */
+        public static final int common_google_play_services_unsupported_text=0x7f08000f;
+        /**  Title of confirmation dialog informing user that Google Play services is not supported on their device [CHAR LIMIT=40] 
+         */
+        public static final int common_google_play_services_unsupported_title=0x7f08000e;
+        /**  Button in confirmation dialog for updating Google Play services [CHAR LIMIT=40] 
+         */
+        public static final int common_google_play_services_update_button=0x7f080011;
+        /**  Message in confirmation dialog informing user that they need to update
+        Google Play services (from Play Store) [CHAR LIMIT=NONE] 
+         */
+        public static final int common_google_play_services_update_text=0x7f080008;
+        /**  Title of confirmation dialog informing user that they need to update
+        Google Play services (from Play Store) [CHAR LIMIT=40] 
+         */
+        public static final int common_google_play_services_update_title=0x7f080007;
+        /**  Sign-in button text [CHAR LIMIT=15] 
+         */
+        public static final int common_signin_button_text=0x7f080012;
+        /**  Long form sign-in button text [CHAR LIMIT=30] 
+         */
+        public static final int common_signin_button_text_long=0x7f080013;
+        public static final int content_descr_hive_image=0x7f080057;
+        /**  Other 
+         */
+        public static final int content_descr_weather_condition_graphical_indicator=0x7f080056;
+        public static final int european=0x7f08006a;
+        public static final int hint_alarm=0x7f080038;
+        public static final int hint_alarm_time=0x7f080039;
+        public static final int hint_colony_source=0x7f080031;
+        public static final int hint_date_to_choose=0x7f080037;
+        public static final int hint_inspection_date_day=0x7f08002d;
+        public static final int hint_inspection_date_month=0x7f08002e;
+        public static final int hint_inspection_date_year=0x7f08002f;
+        public static final int hint_link_to=0x7f080036;
+        /**  Hints 
+         */
+        public static final int hint_new_apiary_name=0x7f080029;
+        public static final int hint_new_hive_name=0x7f08002c;
+        public static final int hint_new_task_title=0x7f08002b;
+        public static final int hint_queen_marked=0x7f080033;
+        public static final int hint_queen_seen=0x7f080032;
+        public static final int hint_schedule_task=0x7f080035;
+        public static final int hint_suppers=0x7f080030;
+        public static final int hint_type_notes=0x7f08002a;
+        public static final int hint_type_task_desc=0x7f080034;
+        public static final int hive_list_item_never_inspected=0x7f080058;
+        public static final int inspection_on=0x7f08005a;
+        public static final int label_alarm=0x7f08004e;
+        public static final int label_alarm_time=0x7f08004f;
+        /**  Labels 
+         */
+        public static final int label_apiary_activity=0x7f08003a;
+        public static final int label_bees_temper=0x7f080045;
+        public static final int label_colony_source=0x7f080041;
+        public static final int label_diseases_ispection_tab=0x7f08003f;
+        public static final int label_eggs_present=0x7f080046;
+        public static final int label_general_ispection_tab=0x7f08003d;
+        public static final int label_hive_activity=0x7f08003b;
+        public static final int label_inspection_activity=0x7f08003c;
+        public static final int label_inspection_date=0x7f080044;
+        public static final int label_link_to=0x7f08004d;
+        public static final int label_pick_time=0x7f080049;
+        public static final int label_polen_in=0x7f080047;
+        public static final int label_queen_ispection_tab=0x7f08003e;
+        public static final int label_queen_marked=0x7f080043;
+        public static final int label_queen_seen=0x7f080042;
+        public static final int label_select_date=0x7f08004a;
+        public static final int label_suppers=0x7f080040;
+        public static final int label_task_activity=0x7f080048;
+        public static final int label_task_date=0x7f08004b;
+        public static final int label_task_details=0x7f08004c;
+        public static final int last_inspected_on=0x7f080059;
+        public static final int locate_me_button=0x7f080025;
+        /**  Menu Items 
+         */
+        public static final int menu_item_apiaries=0x7f080050;
+        public static final int menu_item_desease_guide=0x7f080052;
+        public static final int menu_item_edit_account=0x7f080054;
+        public static final int menu_item_logout=0x7f080055;
+        public static final int menu_item_news_feed=0x7f080053;
+        public static final int menu_item_tasks=0x7f080051;
+        public static final int nosema=0x7f08006c;
+        public static final int placeholder_hive_picture=0x7f080064;
+        public static final int placeholder_item_description=0x7f080061;
+        /**  Placeholders 
+         */
+        public static final int placeholder_item_title=0x7f080060;
+        public static final int placeholder_weather_condition=0x7f080062;
+        public static final int placeholder_weather_degrees=0x7f080063;
+        public static final int small=0x7f08006d;
+        /**  Toasts 
+         */
+        public static final int toast_nothing_to_delete=0x7f08005b;
+        public static final int toast_prompt_apiary_location=0x7f08005d;
+        public static final int toast_prompt_apiary_name=0x7f08005c;
+        public static final int toast_prompt_hive_name=0x7f08005e;
+        public static final int toast_prompt_task_title=0x7f08005f;
+        public static final int tracheal=0x7f08006e;
+        public static final int varroa=0x7f080069;
+        public static final int viruses=0x7f08006f;
+        public static final int wax=0x7f080070;
+        /**  Weather 
+         */
+        public static final int weather_condition_clear=0x7f080065;
+        public static final int weather_condition_clouds=0x7f080066;
+        public static final int weather_condition_rain=0x7f080067;
+        public static final int weather_condition_snow=0x7f080068;
     }
     public static final class style {
         /** 
@@ -266,24 +782,545 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f090000;
+        public static final int AppBaseTheme=0x7f0c0000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f090001;
-        public static final int AutoCompleteTextViewNBV_Theme=0x7f090002;
-        public static final int ButtonNBV_Theme=0x7f090003;
-        public static final int ImageButtonNBV_Theme=0x7f090004;
-        public static final int NBV_Theme=0x7f09000e;
-        public static final int ProgressBarNBV_Theme=0x7f090008;
-        public static final int RatingBarBigNBV_Theme=0x7f09000b;
-        public static final int RatingBarNBV_Theme=0x7f09000a;
-        public static final int RatingBarSmallNBV_Theme=0x7f09000c;
-        public static final int SeekBarNBV_Theme=0x7f090009;
-        public static final int SpinnerNBV_Theme=0x7f090005;
-        public static final int TabNBV_Theme=0x7f090006;
-        public static final int TabTextNBV_Theme=0x7f090007;
-        public static final int ToggleNBV_Theme=0x7f09000d;
-        public static final int _NBV_Theme=0x7f09000f;
+        public static final int AppTheme=0x7f0c0001;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a AdsAttrs.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #AdsAttrs_adSize nl.isld.databees:adSize}</code></td><td>
+    The size of the ad.</td></tr>
+           <tr><td><code>{@link #AdsAttrs_adUnitId nl.isld.databees:adUnitId}</code></td><td> The ad unit ID.</td></tr>
+           </table>
+           @see #AdsAttrs_adSize
+           @see #AdsAttrs_adUnitId
+         */
+        public static final int[] AdsAttrs = {
+            0x7f01000e, 0x7f01000f
+        };
+        /**
+          <p>
+          @attr description
+          
+    The size of the ad. It must be one of BANNER, FULL_BANNER, LEADERBOARD,
+    MEDIUM_RECTANGLE, SMART_BANNER, WIDE_SKYSCRAPER, or
+    &lt;width&gt;x&lt;height&gt;.
+    
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name nl.isld.databees:adSize
+        */
+        public static final int AdsAttrs_adSize = 0;
+        /**
+          <p>
+          @attr description
+           The ad unit ID. 
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name nl.isld.databees:adUnitId
+        */
+        public static final int AdsAttrs_adUnitId = 1;
+        /** Attributes that can be used with a MapAttrs.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #MapAttrs_cameraBearing nl.isld.databees:cameraBearing}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_cameraTargetLat nl.isld.databees:cameraTargetLat}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_cameraTargetLng nl.isld.databees:cameraTargetLng}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_cameraTilt nl.isld.databees:cameraTilt}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_cameraZoom nl.isld.databees:cameraZoom}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_mapType nl.isld.databees:mapType}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiCompass nl.isld.databees:uiCompass}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiRotateGestures nl.isld.databees:uiRotateGestures}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiScrollGestures nl.isld.databees:uiScrollGestures}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiTiltGestures nl.isld.databees:uiTiltGestures}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiZoomControls nl.isld.databees:uiZoomControls}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiZoomGestures nl.isld.databees:uiZoomGestures}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_useViewLifecycle nl.isld.databees:useViewLifecycle}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_zOrderOnTop nl.isld.databees:zOrderOnTop}</code></td><td></td></tr>
+           </table>
+           @see #MapAttrs_cameraBearing
+           @see #MapAttrs_cameraTargetLat
+           @see #MapAttrs_cameraTargetLng
+           @see #MapAttrs_cameraTilt
+           @see #MapAttrs_cameraZoom
+           @see #MapAttrs_mapType
+           @see #MapAttrs_uiCompass
+           @see #MapAttrs_uiRotateGestures
+           @see #MapAttrs_uiScrollGestures
+           @see #MapAttrs_uiTiltGestures
+           @see #MapAttrs_uiZoomControls
+           @see #MapAttrs_uiZoomGestures
+           @see #MapAttrs_useViewLifecycle
+           @see #MapAttrs_zOrderOnTop
+         */
+        public static final int[] MapAttrs = {
+            0x7f010010, 0x7f010011, 0x7f010012, 0x7f010013,
+            0x7f010014, 0x7f010015, 0x7f010016, 0x7f010017,
+            0x7f010018, 0x7f010019, 0x7f01001a, 0x7f01001b,
+            0x7f01001c, 0x7f01001d
+        };
+        /**
+          <p>This symbol is the offset where the {@link nl.isld.databees.R.attr#cameraBearing}
+          attribute's value can be found in the {@link #MapAttrs} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name nl.isld.databees:cameraBearing
+        */
+        public static final int MapAttrs_cameraBearing = 1;
+        /**
+          <p>This symbol is the offset where the {@link nl.isld.databees.R.attr#cameraTargetLat}
+          attribute's value can be found in the {@link #MapAttrs} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name nl.isld.databees:cameraTargetLat
+        */
+        public static final int MapAttrs_cameraTargetLat = 2;
+        /**
+          <p>This symbol is the offset where the {@link nl.isld.databees.R.attr#cameraTargetLng}
+          attribute's value can be found in the {@link #MapAttrs} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name nl.isld.databees:cameraTargetLng
+        */
+        public static final int MapAttrs_cameraTargetLng = 3;
+        /**
+          <p>This symbol is the offset where the {@link nl.isld.databees.R.attr#cameraTilt}
+          attribute's value can be found in the {@link #MapAttrs} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name nl.isld.databees:cameraTilt
+        */
+        public static final int MapAttrs_cameraTilt = 4;
+        /**
+          <p>This symbol is the offset where the {@link nl.isld.databees.R.attr#cameraZoom}
+          attribute's value can be found in the {@link #MapAttrs} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name nl.isld.databees:cameraZoom
+        */
+        public static final int MapAttrs_cameraZoom = 5;
+        /**
+          <p>This symbol is the offset where the {@link nl.isld.databees.R.attr#mapType}
+          attribute's value can be found in the {@link #MapAttrs} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>none</code></td><td>0</td><td></td></tr>
+<tr><td><code>normal</code></td><td>1</td><td></td></tr>
+<tr><td><code>satellite</code></td><td>2</td><td></td></tr>
+<tr><td><code>terrain</code></td><td>3</td><td></td></tr>
+<tr><td><code>hybrid</code></td><td>4</td><td></td></tr>
+</table>
+          @attr name nl.isld.databees:mapType
+        */
+        public static final int MapAttrs_mapType = 0;
+        /**
+          <p>This symbol is the offset where the {@link nl.isld.databees.R.attr#uiCompass}
+          attribute's value can be found in the {@link #MapAttrs} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name nl.isld.databees:uiCompass
+        */
+        public static final int MapAttrs_uiCompass = 6;
+        /**
+          <p>This symbol is the offset where the {@link nl.isld.databees.R.attr#uiRotateGestures}
+          attribute's value can be found in the {@link #MapAttrs} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name nl.isld.databees:uiRotateGestures
+        */
+        public static final int MapAttrs_uiRotateGestures = 7;
+        /**
+          <p>This symbol is the offset where the {@link nl.isld.databees.R.attr#uiScrollGestures}
+          attribute's value can be found in the {@link #MapAttrs} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name nl.isld.databees:uiScrollGestures
+        */
+        public static final int MapAttrs_uiScrollGestures = 8;
+        /**
+          <p>This symbol is the offset where the {@link nl.isld.databees.R.attr#uiTiltGestures}
+          attribute's value can be found in the {@link #MapAttrs} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name nl.isld.databees:uiTiltGestures
+        */
+        public static final int MapAttrs_uiTiltGestures = 9;
+        /**
+          <p>This symbol is the offset where the {@link nl.isld.databees.R.attr#uiZoomControls}
+          attribute's value can be found in the {@link #MapAttrs} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name nl.isld.databees:uiZoomControls
+        */
+        public static final int MapAttrs_uiZoomControls = 10;
+        /**
+          <p>This symbol is the offset where the {@link nl.isld.databees.R.attr#uiZoomGestures}
+          attribute's value can be found in the {@link #MapAttrs} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name nl.isld.databees:uiZoomGestures
+        */
+        public static final int MapAttrs_uiZoomGestures = 11;
+        /**
+          <p>This symbol is the offset where the {@link nl.isld.databees.R.attr#useViewLifecycle}
+          attribute's value can be found in the {@link #MapAttrs} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name nl.isld.databees:useViewLifecycle
+        */
+        public static final int MapAttrs_useViewLifecycle = 12;
+        /**
+          <p>This symbol is the offset where the {@link nl.isld.databees.R.attr#zOrderOnTop}
+          attribute's value can be found in the {@link #MapAttrs} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name nl.isld.databees:zOrderOnTop
+        */
+        public static final int MapAttrs_zOrderOnTop = 13;
+        /** Attributes that can be used with a SlidingMenu.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #SlidingMenu_behindOffset nl.isld.databees:behindOffset}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_behindScrollScale nl.isld.databees:behindScrollScale}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_behindWidth nl.isld.databees:behindWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_fadeDegree nl.isld.databees:fadeDegree}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_fadeEnabled nl.isld.databees:fadeEnabled}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_mode nl.isld.databees:mode}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_selectorDrawable nl.isld.databees:selectorDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_selectorEnabled nl.isld.databees:selectorEnabled}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_shadowDrawable nl.isld.databees:shadowDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_shadowWidth nl.isld.databees:shadowWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_touchModeAbove nl.isld.databees:touchModeAbove}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_touchModeBehind nl.isld.databees:touchModeBehind}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_viewAbove nl.isld.databees:viewAbove}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_viewBehind nl.isld.databees:viewBehind}</code></td><td></td></tr>
+           </table>
+           @see #SlidingMenu_behindOffset
+           @see #SlidingMenu_behindScrollScale
+           @see #SlidingMenu_behindWidth
+           @see #SlidingMenu_fadeDegree
+           @see #SlidingMenu_fadeEnabled
+           @see #SlidingMenu_mode
+           @see #SlidingMenu_selectorDrawable
+           @see #SlidingMenu_selectorEnabled
+           @see #SlidingMenu_shadowDrawable
+           @see #SlidingMenu_shadowWidth
+           @see #SlidingMenu_touchModeAbove
+           @see #SlidingMenu_touchModeBehind
+           @see #SlidingMenu_viewAbove
+           @see #SlidingMenu_viewBehind
+         */
+        public static final int[] SlidingMenu = {
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003,
+            0x7f010004, 0x7f010005, 0x7f010006, 0x7f010007,
+            0x7f010008, 0x7f010009, 0x7f01000a, 0x7f01000b,
+            0x7f01000c, 0x7f01000d
+        };
+        /**
+          <p>This symbol is the offset where the {@link nl.isld.databees.R.attr#behindOffset}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name nl.isld.databees:behindOffset
+        */
+        public static final int SlidingMenu_behindOffset = 3;
+        /**
+          <p>This symbol is the offset where the {@link nl.isld.databees.R.attr#behindScrollScale}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name nl.isld.databees:behindScrollScale
+        */
+        public static final int SlidingMenu_behindScrollScale = 5;
+        /**
+          <p>This symbol is the offset where the {@link nl.isld.databees.R.attr#behindWidth}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name nl.isld.databees:behindWidth
+        */
+        public static final int SlidingMenu_behindWidth = 4;
+        /**
+          <p>This symbol is the offset where the {@link nl.isld.databees.R.attr#fadeDegree}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name nl.isld.databees:fadeDegree
+        */
+        public static final int SlidingMenu_fadeDegree = 11;
+        /**
+          <p>This symbol is the offset where the {@link nl.isld.databees.R.attr#fadeEnabled}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name nl.isld.databees:fadeEnabled
+        */
+        public static final int SlidingMenu_fadeEnabled = 10;
+        /**
+          <p>This symbol is the offset where the {@link nl.isld.databees.R.attr#mode}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>left</code></td><td>0</td><td></td></tr>
+<tr><td><code>right</code></td><td>1</td><td></td></tr>
+</table>
+          @attr name nl.isld.databees:mode
+        */
+        public static final int SlidingMenu_mode = 0;
+        /**
+          <p>This symbol is the offset where the {@link nl.isld.databees.R.attr#selectorDrawable}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name nl.isld.databees:selectorDrawable
+        */
+        public static final int SlidingMenu_selectorDrawable = 13;
+        /**
+          <p>This symbol is the offset where the {@link nl.isld.databees.R.attr#selectorEnabled}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name nl.isld.databees:selectorEnabled
+        */
+        public static final int SlidingMenu_selectorEnabled = 12;
+        /**
+          <p>This symbol is the offset where the {@link nl.isld.databees.R.attr#shadowDrawable}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name nl.isld.databees:shadowDrawable
+        */
+        public static final int SlidingMenu_shadowDrawable = 8;
+        /**
+          <p>This symbol is the offset where the {@link nl.isld.databees.R.attr#shadowWidth}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name nl.isld.databees:shadowWidth
+        */
+        public static final int SlidingMenu_shadowWidth = 9;
+        /**
+          <p>This symbol is the offset where the {@link nl.isld.databees.R.attr#touchModeAbove}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>margin</code></td><td>0</td><td></td></tr>
+<tr><td><code>fullscreen</code></td><td>1</td><td></td></tr>
+</table>
+          @attr name nl.isld.databees:touchModeAbove
+        */
+        public static final int SlidingMenu_touchModeAbove = 6;
+        /**
+          <p>This symbol is the offset where the {@link nl.isld.databees.R.attr#touchModeBehind}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>margin</code></td><td>0</td><td></td></tr>
+<tr><td><code>fullscreen</code></td><td>1</td><td></td></tr>
+</table>
+          @attr name nl.isld.databees:touchModeBehind
+        */
+        public static final int SlidingMenu_touchModeBehind = 7;
+        /**
+          <p>This symbol is the offset where the {@link nl.isld.databees.R.attr#viewAbove}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name nl.isld.databees:viewAbove
+        */
+        public static final int SlidingMenu_viewAbove = 1;
+        /**
+          <p>This symbol is the offset where the {@link nl.isld.databees.R.attr#viewBehind}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name nl.isld.databees:viewBehind
+        */
+        public static final int SlidingMenu_viewBehind = 2;
+    };
 }

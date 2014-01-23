@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/margin_common_vertical"
+    android:paddingLeft="@dimen/margin_common_horizontal"
+    android:paddingRight="@dimen/margin_common_horizontal"
+    android:paddingTop="@dimen/margin_common_vertical"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.14"
+        android:paddingBottom="@dimen/margin_common_vertical" >
+        
+     <EditText
+         android:id="@+id/edit_task_calendar"
+         android:layout_width="250dp"
+         android:layout_marginTop="5dp"
+         android:layout_marginRight="25dp"
+         android:layout_height="wrap_content"
+         android:inputType="none"
+         android:textSize="40sp"
+         android:contentDescription="@string/label_select_date"
+         android:focusable="false" >
+	</EditText>
+     
+     <ImageButton
+         android:id="@+id/imageButton1"
+         android:layout_width="wrap_content"
+   	     android:layout_height="wrap_content"
+         android:layout_alignBottom="@+id/edit_task_calendar"
+         android:layout_toRightOf="@+id/edit_task_calendar"
+         android:contentDescription="@string/label_select_date"
+         android:cropToPadding="true"
+         android:background="@null"
+         android:src="@drawable/calendar_icon" />
+
+     <TextView
+         android:id="@+id/text_view_select_date"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentLeft="true"
+         android:layout_alignRight="@+id/edit_task_calendar"
+         android:layout_below="@+id/edit_task_calendar"
+         android:text="@string/hint_schedule_task"
+         android:layout_marginTop="5dp" />
+
+</RelativeLayout>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/margin_common_vertical" >
+        
+     <TextView
+         android:id="@+id/label_alarm"
+         android:layout_width="200dp"
+         android:layout_marginTop="5dp"
+         android:layout_marginRight="5dp"
+         android:layout_height="wrap_content"
+         android:text="@string/label_alarm"
+         android:textSize="20sp"
+         android:focusable="false" >
+	 </TextView>
+     
+     <TextView
+         android:id="@+id/text_view_alarm"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentLeft="true"
+         android:layout_alignRight="@+id/label_alarm"
+         android:layout_below="@+id/label_alarm"
+         android:layout_marginRight="0dp"
+         android:text="@string/hint_alarm"
+         android:layout_marginTop="0dp" />
+      
+	
+    <Switch
+        android:id="@+id/switch1"
+         android:textSize="20sp"
+    	 android:gravity="left"  
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:layout_alignTop="@+id/label_alarm"
+         android:layout_toRightOf="@+id/label_alarm" />
+
+</RelativeLayout>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/margin_common_vertical" >
+        
+     <TextView
+         android:id="@+id/label_alarm_time"
+         android:layout_width="200dp"
+         android:layout_marginTop="5dp"
+         android:layout_marginRight="5dp"
+         android:layout_height="wrap_content"
+         android:text="@string/label_alarm_time"
+         android:textSize="20sp"
+         android:focusable="false" >
+	 </TextView>
+     
+     <TextView
+         android:id="@+id/text_view_alarm_time"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentLeft="true"
+         android:layout_alignRight="@+id/label_alarm_time"
+         android:layout_below="@+id/label_alarm_time"
+         android:layout_marginRight="0dp"
+         android:text="@string/hint_alarm_time"
+         android:layout_marginTop="0dp" />
+      
+	
+     <Spinner
+         android:id="@+id/reminder_spinner"
+         android:textSize="20sp"
+    	 android:gravity="left"  
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:layout_alignTop="@+id/label_alarm_time"
+         android:layout_toRightOf="@+id/label_alarm_time" />
+
+</RelativeLayout>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/margin_common_vertical" >
+        
+     <TextView
+         android:id="@+id/label_link_to"
+         android:layout_width="200dp"
+         android:layout_marginTop="5dp"
+         android:layout_marginRight="5dp"
+         android:layout_height="wrap_content"
+         android:text="@string/label_link_to"
+         android:textSize="20sp"
+         android:focusable="false" >
+	 </TextView>
+     
+     <TextView
+         android:id="@+id/text_view_link_to"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentLeft="true"
+         android:layout_alignRight="@+id/label_link_to"
+         android:layout_below="@+id/label_link_to"
+         android:layout_marginRight="0dp"
+         android:text="@string/hint_link_to"
+         android:layout_marginTop="0dp" />
+      
+     <Spinner
+         android:id="@+id/hives_spinner"
+         android:textSize="20sp"
+    	 android:gravity="left"  
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:layout_alignTop="@+id/label_link_to"
+         android:layout_toRightOf="@+id/label_link_to" />
+
+</RelativeLayout>
+    
+    <EditText
+        android:id="@+id/desc_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="bottom|clip_vertical"
+        android:layout_weight="0.35"
+        android:hint="@string/hint_type_task_desc"
+        android:inputType="textMultiLine" >
+
+        <requestFocus />
+    </EditText>
+
+</LinearLayout>

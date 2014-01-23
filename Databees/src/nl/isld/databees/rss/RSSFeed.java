@@ -1,24 +1,31 @@
 package nl.isld.databees.rss;
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
+
 import nl.isld.databees.MainActivity;
 import nl.isld.databees.R;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
 
-public class RSSFeed extends Activity {
+public class RSSFeed extends Activity
+	implements XMLParser.Callback {
 	// All static variables
 	static final String URL = "http://bijenhouders.nl/rss/nieuws";
 	// XML node keys
@@ -37,15 +44,48 @@ public class RSSFeed extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.rss);
+
+    	getActionBar().setDisplayShowCustomEnabled(true);
+    	getActionBar().setDisplayHomeAsUpEnabled(true);
+    	getActionBar().setHomeButtonEnabled(true);
 		
-		ActionBar actionBar = getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-
-        final ArrayList<HashMap<String, String>> myList = new ArrayList<HashMap<String, String>>();
-
-		XMLParser parser = new XMLParser();
-		String xml = parser.getXmlFromUrl(URL); // getting XML from URL
-		Document doc = parser.getDomElement(xml); // getting DOM element
+    	if (isOnline() == true) {
+    		XMLParser parser = new XMLParser(URL, this);
+    		parser.execute((Void) null);
+    	}
+    	else {
+    		Toast.makeText(getApplicationContext(), "You are not connected to the internet", Toast.LENGTH_LONG).show();
+    	Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    	}
+	}
+	
+	public boolean isOnline() {
+	    ConnectivityManager cm =
+	        (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo netInfo = cm.getActiveNetworkInfo();
+	    if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+	        return true;
+	    }
+	    return false;
+	}
+	
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	        case android.R.id.home:
+	            Intent intent = new Intent(this, MainActivity.class);
+	            startActivity(intent);
+	            return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
+	
+	@Override
+	public void onXMLParsed(String xml) {
+		Log.d("Beebug", "XML PARSED");
+		Document doc = XMLParser.getDomElement(xml);
+		final ArrayList<HashMap<String, String>> myList = new ArrayList<HashMap<String, String>>();
 		
 		final NodeList nl = doc.getElementsByTagName(Item);
 		// looping through all song nodes <song>
@@ -54,11 +94,11 @@ public class RSSFeed extends Activity {
 			HashMap<String, String> map = new HashMap<String, String>();
 			Element e = (Element) nl.item(i);
 			// adding each child node to HashMap key => value
-			map.put(Link, parser.getValue(e, Link));
-			map.put(Title, parser.getValue(e, Title));
-			map.put(Description, parser.getValue(e, Description));
-			map.put(PublishDate, parser.getValue(e, PublishDate));
-			map.put(ImageURL, parser.getValue(e, ImageURL));
+			map.put(Link, XMLParser.getValue(e, Link));
+			map.put(Title, XMLParser.getValue(e, Title));
+			map.put(Description, XMLParser.getValue(e, Description));
+			map.put(PublishDate, XMLParser.getValue(e, PublishDate));
+			map.put(ImageURL, XMLParser.getValue(e, ImageURL));
 			
 			// adding HashList to ArrayList
 			myList.add(map);
@@ -85,14 +125,10 @@ public class RSSFeed extends Activity {
 			}
 		});		
 	}
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	        case android.R.id.home:
-	            Intent intent = new Intent(this, MainActivity.class);
-	            startActivity(intent);
-	            return true;
-	        default:
-	            return super.onOptionsItemSelected(item);
-	    }
-	}
+	
+	public void onBackPressed() {
+        Intent setIntent = new Intent(this, MainActivity.class);
+        startActivity(setIntent); 
+        return;
+    }   
 }

@@ -7,12 +7,12 @@ import android.os.Handler;
 
 public class SplashScreen extends Activity {
 
-	private static final int TIME = 2 * 1000;// 4 seconds
+	private static final int TIME = 4 * 1000;// 4 seconds
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.splash_screen);
+		setContentView(R.layout.splashscreen);
 
 		new Handler().postDelayed(new Runnable() {
 

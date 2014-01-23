@@ -1,23 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Application -->
     <string name="app_name">Databees</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
     
-    <string-array name="nav_drawer_items">
-        <item >Home</item>
-        <item >Apiarie</item>
-        <item >Task</item>
-        <item >Flora</item>
-        <item >Disease</item>
-        <item >News</item>
+    <!-- Actions -->
+    <string name="action_done">Save</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_add_new_apiary">Add a new apiary</string>
+    <string name="action_add_new_hive">Add a new hive</string>
+    <string name="action_add_new_inspection">Add a new inspection</string>
+    <string name="action_add_new_task">Add a New Task</string>
+    
+    <!-- Buttons -->
+    <string name="button_add_hives">Add Hives</string>
+    <string name="button_manage_flora">Manage Flora</string>
+    <string name="locate_me_button">Locate Me</string>
+    <string name="button_edit_hive_details">Edit Hive Details</string>
+    <string name="button_add_inspections">Add Inspections</string>
+    <string name="button_inspection_date_now">Now</string>
+    
+    <!-- Hints -->
+    <string name="hint_new_apiary_name">New Apiary Name</string>
+    <string name="hint_type_notes">Add Notes Here</string>
+    <string name="hint_new_task_title">New Task Title</string><string name="hint_new_hive_name">New Hive Name</string>
+    <string name="hint_inspection_date_day">DAY</string>
+    <string name="hint_inspection_date_month">MONTH</string>
+    <string name="hint_inspection_date_year">YEAR</string>
+    <string name="hint_suppers">Specify the number of suppers the hive consists of</string>
+    <string name="hint_colony_source">Specify the colony source</string>
+    <string name="hint_queen_seen">Was he queen found in the hive?</string>
+    <string name="hint_queen_marked">Is the queen marked?</string>
+    <string name="hint_type_task_desc">Add Description Here</string>
+    <string name="hint_schedule_task">Schedule task to be done on this date</string>
+    <string name="hint_link_to">Select hive from the list to link to this task</string>
+    <string name="hint_date_to_choose">Click on calendar to pick date</string>
+    <string name="hint_alarm">Set a Reminder for this task</string>
+    <string name="hint_alarm_time">Specify when to be reminded</string>
+    
+    <!-- Labels -->
+    <string name="label_apiary_activity">Apiary</string>
+    <string name="label_hive_activity">Hive</string>
+    <string name="label_inspection_activity">Inspection</string>
+    <string name="label_general_ispection_tab">General</string>
+    <string name="label_queen_ispection_tab">Queen</string>
+    <string name="label_diseases_ispection_tab">Diseases</string>
+    <string name="label_suppers">Number Of Suppers</string>
+    <string name="label_colony_source">Colony source</string>
+    <string name="label_queen_seen">Queen seen</string>
+    <string name="label_queen_marked">Queen marked</string>
+    <string name="label_inspection_date">Inspection Date</string>
+    <string name="label_bees_temper">Bees Temper</string>
+    <string name="label_eggs_present">Eggs are present</string>
+    <string name="label_polen_in">Polen in hive</string>
+    <string name="label_task_activity">Task</string>
+    <string name="label_pick_time">Pick time</string>
+    <string name="label_select_date">Pick time</string>
+    <string name="label_task_date">Task is scheduled to be done on</string>
+	<string name="label_task_details">Details</string>
+	<string name="label_link_to">Link To</string>
+	<string name="label_alarm">Reminder</string>
+	<string name="label_alarm_time">Reminder on</string>
+    
+    <!-- Menu Items -->
+    <string name="menu_item_apiaries">Apiaries</string>
+    <string name="menu_item_tasks">Tasks</string>
+    <string name="menu_item_desease_guide">Disease Guide</string>
+    <string name="menu_item_news_feed">News Feed</string>
+    <string name="menu_item_edit_account">Edit</string>
+    <string name="menu_item_logout">Logout</string>
+    
+    <!-- Other -->
+    <string name="content_descr_weather_condition_graphical_indicator">Weather condition graphical indicator</string>
+    <string name="content_descr_hive_image">Hive image</string>
+    <string name="hive_list_item_never_inspected">This hive has never been inspected</string>
+    <string name="last_inspected_on">Last inspected on</string>
+    <string name="inspection_on">Inspection on</string>
+    
+    <!-- Toasts -->
+    <string name="toast_nothing_to_delete">Nothing to delete</string>
+    <string name="toast_prompt_apiary_name">Please enter a name for the apiary</string>
+    <string name="toast_prompt_apiary_location">Long tap on the map to select the location of the apiary</string>
+    <string name="toast_prompt_hive_name">Please enter a name for the hive</string>
+    <string name="toast_prompt_task_title">Please enter a title for the task</string>
+    
+    <!-- Placeholders -->
+    <string name="placeholder_item_title">Item Title</string>
+    <string name="placeholder_item_description">Item Description</string>
+    <string name="placeholder_weather_condition">Weather</string>
+    <string name="placeholder_weather_degrees">XX°C</string>
+    <string name="placeholder_hive_picture">Tap here to add a picture</string>
+    
+    <!-- Weather -->
+    <string name="weather_condition_clear">Clear</string>
+    <string name="weather_condition_clouds">Clouds</string>
+    <string name="weather_condition_rain">Rain</string>
+    <string name="weather_condition_snow">Snow</string>
+    
+    <!-- String Arrays -->
+    <string-array name="temper_values">
+        <item>Undefined</item>
+        <item>Mild</item>
+        <item>Angry</item>
+        <item>Tantrum</item>
     </string-array>
     
-    <array name="nav_drawer_icons">
-	</array>
+    <string-array name="hives_spinner">
+        <item>The Hive</item>
+        <item>North Hive</item>
+    </string-array>
     
-    <string name="varroa">
+     <string-array name="reminder_spinner">
+        <item>1 day</item>
+        <item>Pick a day</item>
+    </string-array>
+
+       <string name="varroa">
 		<![CDATA[
 		
 		<h2>Varroa Mite</h2>
@@ -245,4 +345,7 @@
 		]]>
 	
 	</string>
+
+    
+
 </resources>

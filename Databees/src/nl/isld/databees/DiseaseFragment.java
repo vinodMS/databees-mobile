@@ -1,8 +1,8 @@
 package nl.isld.databees;
 
-import nl.isld.databeess.disease.*;
-import android.app.Fragment;
-import android.app.FragmentManager;
+import nl.isld.databees.disease.*;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,7 +52,7 @@ public class DiseaseFragment extends Fragment implements OnClickListener{
             case R.id.btn1:
             	fragment = new Varroa();
             	fragmentManager.beginTransaction()
-    				.replace(R.id.frame_container, fragment)
+    				.replace(R.id.main_container, fragment)
     				.addToBackStack(null)
     				.commit();
     			break;
@@ -60,49 +60,65 @@ public class DiseaseFragment extends Fragment implements OnClickListener{
             	fragment = new European();
             	fragmentManager.beginTransaction()
             		.addToBackStack(null)
-    				.replace(R.id.frame_container, fragment).commit();         
+    				.replace(R.id.main_container, fragment)
+    				.addToBackStack(null)
+    				.commit();         
     			break;
             case R.id.btn3:
             	fragment = new American();
             	fragmentManager.beginTransaction()
             		.addToBackStack(null)
-    				.replace(R.id.frame_container, fragment).commit();               
+    				.replace(R.id.main_container, fragment)
+    				.addToBackStack(null)
+    				.commit();               
     			break;
             case R.id.btn4:
             	fragment = new Nosema();
             	fragmentManager.beginTransaction()
             		.addToBackStack(null)
-    				.replace(R.id.frame_container, fragment).commit();            
+    				.replace(R.id.main_container, fragment)
+    				.addToBackStack(null)
+    				.commit();            
     			break;
             case R.id.btn5:
             	fragment = new Chalkbrood();
             	fragmentManager.beginTransaction()
             		.addToBackStack(null)
-    				.replace(R.id.frame_container, fragment).commit();              
+    				.replace(R.id.main_container, fragment)
+    				.addToBackStack(null)
+    				.commit();              
     			break;
             case R.id.btn6:
             	fragment = new Wax();
             	fragmentManager.beginTransaction()
             		.addToBackStack(null)
-    				.replace(R.id.frame_container, fragment).commit();                
+    				.replace(R.id.main_container, fragment)
+    				.addToBackStack(null)
+    				.commit();                
     			break;
             case R.id.btn7:
             	fragment = new Tracheal();
             	fragmentManager.beginTransaction()
             		.addToBackStack(null)
-    				.replace(R.id.frame_container, fragment).commit();               
+    				.replace(R.id.main_container, fragment)
+    				.addToBackStack(null)
+    				.commit();               
     			break;
             case R.id.btn8:
             	fragment = new Viruses();
             	fragmentManager.beginTransaction()
             		.addToBackStack(null)
-    				.replace(R.id.frame_container, fragment).commit();                
+    				.replace(R.id.main_container, fragment)
+    				.addToBackStack(null)
+    				.commit();                
     			break;
             case R.id.btn9:
             	fragment = new Small();
             	fragmentManager.beginTransaction()
             		.addToBackStack(null)
-    				.replace(R.id.frame_container, fragment).commit();     
+    				.replace(R.id.main_container, fragment)
+    				.addToBackStack(null)
+    				.commit();     
     			break;
         }
     
