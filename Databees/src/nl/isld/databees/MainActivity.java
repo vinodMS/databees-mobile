@@ -141,24 +141,28 @@ public class MainActivity extends SlidingFragmentActivity
 		case 0:
 			getSupportFragmentManager().beginTransaction()
     		.add(R.id.main_container, new DashboardFragment())
+    		.addToBackStack(null)
     		.commit();
 			break;
 			
 		case 1:
 			getSupportFragmentManager().beginTransaction()
     		.add(R.id.main_container, new ApiaryListFragment())
+    		.addToBackStack(null)
     		.commit();
 			break;
 			
 		case 2:
 			getSupportFragmentManager().beginTransaction()
     		.add(R.id.main_container, new TaskListFragment())
+    		.addToBackStack(null)
     		.commit();
 			break;
 			
 		case 3:
 			getSupportFragmentManager().beginTransaction()
     		.add(R.id.main_container, new DiseaseFragment())
+    		.addToBackStack(null)
     		.commit();
 			break;
 		
