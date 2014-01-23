@@ -79,6 +79,16 @@ public class LocalStore {
 		}
 		return null;
 	}
+	
+	public static Task findTaskById(String id) {
+		
+		for(Task task : TASK_LIST) {
+			if(task.getId().equals(id)) {
+				return task;
+			}
+		}
+		return null;
+	}
 
 	public static Hive findHiveById(String apiaryId, String id) {
 		Apiary apiary = findApiaryById(apiaryId);
@@ -157,16 +167,6 @@ public class LocalStore {
 		for(Inspection inspection : INSPECTION_LIST) {
 			if(inspection.getId().equals(id)) {
 				return inspection;
-			}
-		}
-		return null;
-	}
-	
-	public static Task findTaskById(String id) {
-		
-		for(Task task : TASK_LIST) {
-			if(task.getId().equals(id)) {
-				return task;
 			}
 		}
 		return null;

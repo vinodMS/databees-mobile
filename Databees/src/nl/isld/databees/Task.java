@@ -1,6 +1,5 @@
 package nl.isld.databees;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Task {

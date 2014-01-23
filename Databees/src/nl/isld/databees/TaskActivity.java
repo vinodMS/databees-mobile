@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -61,15 +62,25 @@ public class TaskActivity extends FragmentActivity
 		year = cal.get(Calendar.YEAR);
 		et = (EditText) findViewById(R.id.edit_task_calendar);
 		ib.setOnClickListener(this);
+	
 		
-		Spinner spinner = (Spinner) findViewById(R.id.planets_spinner);
+		Spinner hivesSpinner = (Spinner) findViewById(R.id.hives_spinner);
 		// Create an ArrayAdapter using the string array and a default spinner layout
 		ArrayAdapter<CharSequence> adapter = HiveAdapter.createFromResource(this,
-		        R.array.planets_array, android.R.layout.simple_spinner_item);
+		        R.array.hives_spinner, android.R.layout.simple_spinner_item);
 		// Specify the layout to use when the list of choices appears
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		// Apply the adapter to the spinner
-		spinner.setAdapter(adapter);
+		hivesSpinner.setAdapter(adapter);
+		
+		Spinner reminderSpinner = (Spinner) findViewById(R.id.reminder_spinner);
+		// Create an ArrayAdapter using the string array and a default spinner layout
+		ArrayAdapter<CharSequence> adapter1 = HiveAdapter.createFromResource(this,
+		        R.array.reminder_spinner, android.R.layout.simple_spinner_item);
+		// Specify the layout to use when the list of choices appears
+		adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		// Apply the adapter to the spinner
+		reminderSpinner.setAdapter(adapter1);
 	}
 	
 	/*
@@ -193,15 +204,18 @@ public class TaskActivity extends FragmentActivity
 		taskTitle = (EditText) getActionBar().getCustomView().findViewById(R.id.edit_text2);
 		taskDesc = (EditText) findViewById(R.id.desc_edit_text);
 		taskDate = (EditText) findViewById(R.id.edit_task_calendar);
-		
+		Log.d("Beebug", "i have been caled" + (getIntent().getIntExtra("REQUEST_CODE", 0)));
 		switch(getIntent().getIntExtra("REQUEST_CODE", 0)) {
 		
 		case REQUEST_NEW_TASK:
+			Log.d("Beebug", "i'm creating a new one");
 			task = new Task();
 			break;
 			
 		case REQUEST_EDIT_TASK:
-			task = LocalStore.findTaskById(getIntent().getStringExtra(REQUEST_EXTRA_TASK_ID));
+			Log.d("Beebug", "i'm editing");
+			task = LocalStore.findTaskById(
+					getIntent().getStringExtra(REQUEST_EXTRA_TASK_ID));
 			if(task != null) {
 				taskTitle.setText(task.getTitle());
 				taskDesc.setText(task.getDesc());
@@ -232,7 +246,7 @@ public class TaskActivity extends FragmentActivity
 		
 		if(task.getTitle().equals(new String())) {
 			Toast.makeText(getApplicationContext(), 
-					getResources().getString(R.string.toast_prompt_task_name),
+					getResources().getString(R.string.toast_prompt_task_title),
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}

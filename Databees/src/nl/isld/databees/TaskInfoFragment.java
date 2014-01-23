@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -57,14 +58,14 @@ public class TaskInfoFragment extends Fragment
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		
 		switch(item.getItemId()) {
 		
 		case R.id.action_edit:
+			Log.d("Beebug", "I am supposed to edit now");
 			Intent intent = new Intent(getActivity(), TaskActivity.class);
 			intent.putExtra(TaskActivity.REQUEST_EXTRA_TASK_ID, task.getId());
+			Log.d("Beebug", "I will edit this task with id :" + task.getId());
 			startActivityForResult(intent, TaskActivity.REQUEST_EDIT_TASK);
-			
 		}
 		
 		return false;

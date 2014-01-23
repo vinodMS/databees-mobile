@@ -35,8 +35,10 @@
     <string name="hint_queen_marked">Is the queen marked?</string>
     <string name="hint_type_task_desc">Add Description Here</string>
     <string name="hint_schedule_task">Schedule task to be done on this date</string>
-    <string name="hint_link_to">You can link the specific task with the a certain hive, so that it shows up in the hive details</string>
+    <string name="hint_link_to">Select hive from the list to link to this task</string>
     <string name="hint_date_to_choose">Click on calendar to pick date</string>
+    <string name="hint_alarm">Set a Reminder for this task</string>
+    <string name="hint_alarm_time">Specify when to be reminded</string>
     
     <!-- Labels -->
     <string name="label_apiary_activity">Apiary</string>
@@ -59,6 +61,8 @@
     <string name="label_task_date">Task is scheduled to be done on</string>
 	<string name="label_task_details">Details</string>
 	<string name="label_link_to">Link To</string>
+	<string name="label_alarm">Reminder</string>
+	<string name="label_alarm_time">Reminder on</string>
     
     <!-- Menu Items -->
     <string name="menu_item_apiaries">Apiaries</string>
@@ -80,7 +84,7 @@
     <string name="toast_prompt_apiary_name">Please enter a name for the apiary</string>
     <string name="toast_prompt_apiary_location">Long tap on the map to select the location of the apiary</string>
     <string name="toast_prompt_hive_name">Please enter a name for the hive</string>
-    <string name="toast_prompt_task_name">Please enter a name for the apiary</string>
+    <string name="toast_prompt_task_title">Please enter a title for the task</string>
     
     <!-- Placeholders -->
     <string name="placeholder_item_title">Item Title</string>
@@ -103,9 +107,14 @@
         <item>Tantrum</item>
     </string-array>
     
-    <string-array name="planets_array">
+    <string-array name="hives_spinner">
         <item>The Hive</item>
         <item>North Hive</item>
+    </string-array>
+    
+     <string-array name="reminder_spinner">
+        <item>1 day</item>
+        <item>Pick a day</item>
     </string-array>
 
        <string name="varroa">

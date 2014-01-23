@@ -2,9 +2,6 @@ package nl.isld.databees;
 
 import nl.isld.databees.LocalStore;
 
-import com.google.android.gms.maps.model.LatLng;
-
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -17,7 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
@@ -189,7 +185,8 @@ public class TaskListFragment extends ListFragment
 	 * an appropriate toast message.
 	 */
 	private void performActionDelete() {
-		
+		System.out.println();
+		Log.d("Beebug", "Items in list: " + getListView().getCheckedItemCount());
 		if(getListView().getCheckedItemCount() > 0) {
 			SparseBooleanArray checkedItems = 
 				getListView().getCheckedItemPositions();
