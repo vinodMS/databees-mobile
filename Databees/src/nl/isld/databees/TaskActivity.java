@@ -295,7 +295,7 @@ public class TaskActivity extends FragmentActivity
 		}
 		else
 			if(alarm_on.isChecked()){
-				alarmManager.set( AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent );
+				alarmManager.set( AlarmManager.RTC_WAKEUP, cal.getTimeInMillis() +1000, pendingIntent );
 				Toast.makeText(getBaseContext(), "A reminder has been set", Toast.LENGTH_LONG).show();
 			}
 			
@@ -338,7 +338,7 @@ public class TaskActivity extends FragmentActivity
 		Notification mNotification = new Notification.Builder(this)
 			
 			.setContentTitle("Task Reminder!")
-			.setContentText("You have one task pending!")
+			.setContentText("You have one pending task!")
 			.setSmallIcon(R.drawable.ic_launcher)
 			.setContentIntent(pIntent)
 			.setSound(soundUri)
@@ -437,7 +437,6 @@ public class TaskActivity extends FragmentActivity
 				cal.set(Calendar.MINUTE, minute);
 				cal.set(Calendar.SECOND, 0);
 				Log.d("user","" + cal.getTimeInMillis() +1000);
-				
 				
 			}
 		};

@@ -69,11 +69,12 @@ public class TaskInfoFragment extends Fragment
 			
 		
 	}
+	/** removed due to bug in edit
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		inflater.inflate(R.menu.actions_basic, menu);
 		super.onCreateOptionsMenu(menu, inflater);
-	}
+	}*/
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
