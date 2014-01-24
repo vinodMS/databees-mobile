@@ -110,5 +110,5 @@ public class RSSFeed extends Activity
         Intent setIntent = new Intent(this, MainActivity.class);
         startActivity(setIntent); 
         return;
-    }   
+    }
 }

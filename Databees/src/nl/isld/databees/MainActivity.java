@@ -175,7 +175,12 @@ public class MainActivity extends SlidingFragmentActivity
 		
 		navDrawer.toggle();
 		
+		
 	}
 	
+	@Override
+	public void onBackPressed() {
+	    // do nothing.
+	}
 	
 }

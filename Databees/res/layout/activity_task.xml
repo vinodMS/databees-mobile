@@ -21,7 +21,7 @@
          android:layout_marginRight="25dp"
          android:layout_height="wrap_content"
          android:inputType="none"
-         android:textSize="40sp"
+         android:textSize="35sp"
          android:contentDescription="@string/label_select_date"
          android:focusable="false" >
 	</EditText>
@@ -116,14 +116,18 @@
          android:layout_marginTop="0dp" />
       
 	
-     <Spinner
+     <EditText
          android:id="@+id/reminder_spinner"
          android:textSize="20sp"
     	 android:gravity="left"  
          android:layout_width="fill_parent"
          android:layout_height="wrap_content"
+         android:enabled="false"
          android:layout_alignTop="@+id/label_alarm_time"
-         android:layout_toRightOf="@+id/label_alarm_time" />
+         android:layout_toRightOf="@+id/label_alarm_time"
+         android:hint="@string/hint_pick_time"
+         android:focusable="false" >
+     </EditText>
 
 </RelativeLayout>
 

@@ -39,6 +39,8 @@
     <string name="hint_date_to_choose">Click on calendar to pick date</string>
     <string name="hint_alarm">Set a Reminder for this task</string>
     <string name="hint_alarm_time">Specify when to be reminded</string>
+    <string name="hint_pick_time">Pick time</string>
+    
     
     <!-- Labels -->
     <string name="label_apiary_activity">Apiary</string>
@@ -63,6 +65,7 @@
 	<string name="label_link_to">Link To</string>
 	<string name="label_alarm">Reminder</string>
 	<string name="label_alarm_time">Reminder on</string>
+	<string name="label_task_alarm">Reminder on</string>
     
     <!-- Menu Items -->
     <string name="menu_item_apiaries">Apiaries</string>

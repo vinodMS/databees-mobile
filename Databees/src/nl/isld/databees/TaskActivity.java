@@ -2,7 +2,12 @@ package nl.isld.databees;
 
 import java.util.Calendar;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
@@ -11,18 +16,29 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Switch;
+import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TimePickerDialog;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.DatePicker;
 
+
 public class TaskActivity extends FragmentActivity
-	implements TextWatcher, OnClickListener {
+	implements TextWatcher, OnClickListener, OnCheckedChangeListener {
 	
 	public static final int			REQUEST_NEW_TASK		= 100;
 	public static final int			REQUEST_EDIT_TASK		= 101;
@@ -33,13 +49,31 @@ public class TaskActivity extends FragmentActivity
 	private EditText				taskTitle;
 	private EditText				taskDesc;
 	private EditText				taskDate;	
-	private ImageButton 			ib;
+	private ImageButton 			imagebutton;
 	private Calendar 				cal;
+	private int 					minute;
+	private int 					hour;
 	private int 					day;
 	private int 					month;
 	private int 					year;
-	private EditText 				et;
+	private EditText 				edit_task_calendar;
+	private Switch					alarm_on;
+	private EditText				reminderSpinner;
+	private TextView 				textViewTime;
+	private Long					getHour;
 	
+ 
+	static final int TIME_DIALOG_ID = 999;
+	static final int DATE_DIALOG_ID = 899;
+	
+	//used for register alarm manager
+    PendingIntent pendingIntent;
+    //used to store running alarmmanager instance
+    AlarmManager alarmManager;
+    //Callback function for Alarmmanager event
+    BroadcastReceiver mReceiver;
+	
+    
 	/*
 	 * Overridden method of class FragmentActivity.
 	 * Creates the NewTaskActivity activity.
@@ -55,14 +89,18 @@ public class TaskActivity extends FragmentActivity
 		initListeners();
 		
 		// mDateButton = (Button) findViewById(R.id.date_button);
-		ib = (ImageButton) findViewById(R.id.imageButton1);
+		imagebutton = (ImageButton) findViewById(R.id.imageButton1);
 		cal = Calendar.getInstance();
 		day = cal.get(Calendar.DAY_OF_MONTH);
 		month = cal.get(Calendar.MONTH);
 		year = cal.get(Calendar.YEAR);
-		et = (EditText) findViewById(R.id.edit_task_calendar);
-		ib.setOnClickListener(this);
-	
+		hour = cal.get(Calendar.HOUR_OF_DAY);
+        minute = cal.get(Calendar.MINUTE);
+        
+		edit_task_calendar = (EditText) findViewById(R.id.edit_task_calendar);
+		
+		imagebutton.setOnClickListener(this);
+	    
 		
 		Spinner hivesSpinner = (Spinner) findViewById(R.id.hives_spinner);
 		// Create an ArrayAdapter using the string array and a default spinner layout
@@ -73,14 +111,19 @@ public class TaskActivity extends FragmentActivity
 		// Apply the adapter to the spinner
 		hivesSpinner.setAdapter(adapter);
 		
-		Spinner reminderSpinner = (Spinner) findViewById(R.id.reminder_spinner);
-		// Create an ArrayAdapter using the string array and a default spinner layout
-		ArrayAdapter<CharSequence> adapter1 = HiveAdapter.createFromResource(this,
-		        R.array.reminder_spinner, android.R.layout.simple_spinner_item);
-		// Specify the layout to use when the list of choices appears
-		adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		// Apply the adapter to the spinner
-		reminderSpinner.setAdapter(adapter1);
+		reminderSpinner = (EditText) findViewById(R.id.reminder_spinner);
+		
+		alarm_on = (Switch) findViewById(R.id.switch1);
+		
+		if (alarm_on != null) {
+		    alarm_on.setOnCheckedChangeListener(this);
+		}
+		
+		//Register AlarmManager Broadcast receive.
+        RegisterAlarmBroadcast();
+        
+        
+		addButtonListener();
 	}
 	
 	/*
@@ -250,6 +293,11 @@ public class TaskActivity extends FragmentActivity
 					Toast.LENGTH_SHORT).show();
 			return false;
 		}
+		else
+			if(alarm_on.isChecked()){
+				alarmManager.set( AlarmManager.RTC_WAKEUP, cal.getTimeInMillis() + 20000, pendingIntent );
+				Toast.makeText(getBaseContext(), "A reminder has been set", Toast.LENGTH_LONG).show();
+			}
 		
 		return true;
 	}
@@ -260,16 +308,151 @@ public class TaskActivity extends FragmentActivity
 		showDialog(0);
 	}
 
+	/*
+	 * Overridden onCheckedChanged method to pass the state of the 
+	 * alarm on/off button and disable/enable the date/time picker
+	 * based on the state
+	 */
 	@Override
-	@Deprecated
-	protected Dialog onCreateDialog(int id) {
-		return new DatePickerDialog(this, datePickerListener, year, month, day);
+	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+	    if(isChecked) {
+	    	//enable date picker when Switch is ON
+	    	reminderSpinner.setEnabled(true);
+	    } else {
+	    	//disable date picker when Switch is ON
+	    	reminderSpinner.setEnabled(false);
+	    }
 	}
-	private DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
-		public void onDateSet(DatePicker view, int selectedYear,
-				int selectedMonth, int selectedDay) {
-			et.setText(selectedDay + " / " + (selectedMonth + 1) + " / "
-					+ selectedYear);
+	
+	public void showNotification(){
+
+		// define sound URI, the sound to be played when there's a notification
+		Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+		
+		// intent triggered, you can add other intent for other actions
+		Intent intent = new Intent(TaskActivity.this, TaskListFragment.class);
+		PendingIntent pIntent = PendingIntent.getActivity(TaskActivity.this, 0, intent, 0);
+		
+		// this is it, we'll build the notification!
+		// in the addAction method, if you don't want any icon, just set the first param to 0
+		Notification mNotification = new Notification.Builder(this)
+			
+			.setContentTitle("Task Reminder!")
+			.setContentText("You have one task pending!")
+			.setSmallIcon(R.drawable.ic_launcher)
+			.setContentIntent(pIntent)
+			.setSound(soundUri)
+			
+			.build();
+		
+		NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+		
+		// If you want to hide the notification after it was selected, do the code below
+		// myNotification.flags |= Notification.FLAG_AUTO_CANCEL;
+		
+		notificationManager.notify(0, mNotification);
+	}
+	
+	    private void RegisterAlarmBroadcast()
+	    {
+	          Log.i("Alarm Example:RegisterAlarmBroadcast()", "Going to register Intent.RegisterAlramBroadcast");
+	 
+	        //This is the call back function(BroadcastReceiver) which will be called when your 
+	        //alarm time will reached.
+	        mReceiver = new BroadcastReceiver()
+	        {
+	            private static final String TAG = "Alarm Example Receiver";
+	            @Override
+	            public void onReceive(Context context, Intent intent)
+	            {
+	                Log.i(TAG,"BroadcastReceiver::OnReceive() >>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+	                showNotification();
+	                
+	            }
+	        };
+	 
+	        // register the alarm broadcast here
+	        registerReceiver(mReceiver, new IntentFilter("nl.isld.databees") );
+	        pendingIntent = PendingIntent.getBroadcast( this, 0, new Intent("nl.isld.databees"),0 );
+	        alarmManager = (AlarmManager)(this.getSystemService( Context.ALARM_SERVICE ));
+	    }
+	    
+	    @Override
+	    protected void onDestroy() {
+	    	unregisterReceiver(mReceiver);
+	    	super.onDestroy();
+	    }
+		
+		public void addButtonListener() {
+	 
+			reminderSpinner.setOnClickListener(new OnClickListener() {
+	 
+				@SuppressWarnings("deprecation")
+				@Override
+				public void onClick(View v) {
+	 
+					showDialog(TIME_DIALOG_ID);
+	 
+				}
+	 
+			});
+			
+			imagebutton.setOnClickListener(new OnClickListener() {
+				
+				@SuppressWarnings("deprecation")
+				@Override
+				public void onClick(View v) {
+					
+					showDialog(DATE_DIALOG_ID);
+					
+				}
+			});
+	 
 		}
-	};
+		@Override
+		protected Dialog onCreateDialog(int id) {
+			switch (id) {
+			case TIME_DIALOG_ID:
+				// set time picker as current time
+				return new TimePickerDialog(this, timePickerListener, hour, minute,false);
+				
+			case DATE_DIALOG_ID:
+				return new DatePickerDialog(this, datePickerListener, year, month, day);
+			}
+			return null;
+
+		}
+	 
+		private TimePickerDialog.OnTimeSetListener timePickerListener =  new TimePickerDialog.OnTimeSetListener() {
+			public void onTimeSet(TimePicker view, int selectedHour, int selectedMinute) {
+				hour = selectedHour;
+				minute = selectedMinute;
+				textViewTime = (TextView) findViewById(R.id.reminder_spinner);
+				// set current time into text view
+				textViewTime.setText(new StringBuilder().append(padding_str(hour)).append(":").append(padding_str(minute)));
+				Log.d("system","" + System.currentTimeMillis() + 1000);
+			
+				cal.setTimeInMillis(System.currentTimeMillis());
+				cal.set(Calendar.HOUR_OF_DAY, hour);
+				cal.set(Calendar.MINUTE, minute);
+				cal.set(Calendar.SECOND, 0);
+				Log.d("user","" + cal.getTimeInMillis() +1000);
+				
+				
+			}
+		};
+		
+		private DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
+			public void onDateSet(DatePicker view, int selectedYear, int selectedMonth, int selectedDay) {
+				
+				edit_task_calendar.setText(selectedDay + " / " + (selectedMonth + 1) + " / " + selectedYear);
+			}
+		};
+		
+		private static String padding_str(int c) {
+			if (c >= 10)
+			   return String.valueOf(c);
+			else
+			   return "0" + String.valueOf(c);
+		}
 }
