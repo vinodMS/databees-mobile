@@ -1,3 +1,22 @@
+/*
+	Databees a beekeeping organizer app.
+    Copyright (C) 2014 NBV (Nederlandse Bijenhouders Vereniging)
+    http://www.bijenhouders.nl/
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 package nl.isld.databees.rss;
 
 import java.util.ArrayList;
@@ -10,7 +29,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +41,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class RSSFeed extends Activity
 	implements XMLParser.Callback {
@@ -45,9 +68,25 @@ public class RSSFeed extends Activity
     	getActionBar().setDisplayHomeAsUpEnabled(true);
     	getActionBar().setHomeButtonEnabled(true);
 		
-		XMLParser parser = new XMLParser(URL, this);
-		parser.execute((Void) null); // getting XML from URL
-		//Document doc = parser.getDomElement(xml); // getting DOM element				
+    	if (isOnline() == true) {
+    		XMLParser parser = new XMLParser(URL, this);
+    		parser.execute((Void) null);
+    	}
+    	else {
+    		Toast.makeText(getApplicationContext(), "You are not connected to the internet", Toast.LENGTH_LONG).show();
+    	Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    	}
+	}
+	
+	public boolean isOnline() {
+	    ConnectivityManager cm =
+	        (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo netInfo = cm.getActiveNetworkInfo();
+	    if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+	        return true;
+	    }
+	    return false;
 	}
 	
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -110,5 +149,5 @@ public class RSSFeed extends Activity
         Intent setIntent = new Intent(this, MainActivity.class);
         startActivity(setIntent); 
         return;
-    }
+    }   
 }

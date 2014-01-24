@@ -295,10 +295,10 @@ public class TaskActivity extends FragmentActivity
 		}
 		else
 			if(alarm_on.isChecked()){
-				alarmManager.set( AlarmManager.RTC_WAKEUP, cal.getTimeInMillis() + 30000, pendingIntent );
+				alarmManager.set( AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent );
 				Toast.makeText(getBaseContext(), "A reminder has been set", Toast.LENGTH_LONG).show();
 			}
-		
+			
 		return true;
 	}
 	

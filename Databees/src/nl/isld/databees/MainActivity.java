@@ -1,3 +1,22 @@
+/*
+	Databees a beekeeping organizer app.
+    Copyright (C) 2014 NBV (Nederlandse Bijenhouders Vereniging)
+    http://www.bijenhouders.nl/
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 package nl.isld.databees;
 
 import nl.isld.databees.rss.RSSFeed;
@@ -39,7 +58,6 @@ public class MainActivity extends SlidingFragmentActivity
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    
         setContentView(R.layout.activity_main);
         setBehindContentView(R.layout.navigation_drawer);
         
@@ -95,7 +113,7 @@ public class MainActivity extends SlidingFragmentActivity
     	navDrawerMenu = (ListView) navDrawer.findViewById(R.id.menu);
     	navDrawerUserMenuAdapter = new UserExpandableAdapter
     			(getApplicationContext(),
-    					"Barack Obama",
+    					"NBV",
     							AppCommon.USER_MENU_ITEMS);
     	navDrawerMenuAdapter = new ArrayAdapter<String>
     			(getApplicationContext(),
@@ -141,46 +159,40 @@ public class MainActivity extends SlidingFragmentActivity
 		case 0:
 			getSupportFragmentManager().beginTransaction()
     		.add(R.id.main_container, new DashboardFragment())
-    		.addToBackStack(null)
     		.commit();
 			break;
 			
 		case 1:
 			getSupportFragmentManager().beginTransaction()
     		.add(R.id.main_container, new ApiaryListFragment())
-    		.addToBackStack(null)
     		.commit();
 			break;
 			
 		case 2:
 			getSupportFragmentManager().beginTransaction()
     		.add(R.id.main_container, new TaskListFragment())
-    		.addToBackStack(null)
     		.commit();
 			break;
 			
 		case 3:
 			getSupportFragmentManager().beginTransaction()
     		.add(R.id.main_container, new DiseaseFragment())
-    		.addToBackStack(null)
-    		.commit();
+        		.commit();
 			break;
 		
 		case 4:
 			startActivity(new Intent(this, RSSFeed.class));
 			break;
-			
+		
+		case 5:
+			getSupportFragmentManager().beginTransaction()
+    		.add(R.id.main_container, new AboutFragment())
+        	.commit();
+			break;
 		default:break;
 		}
 		
 		navDrawer.toggle();
 		
-		
-	}
-	
-	@Override
-	public void onBackPressed() {
-	    // do nothing.
-	}
-	
+	}	
 }
