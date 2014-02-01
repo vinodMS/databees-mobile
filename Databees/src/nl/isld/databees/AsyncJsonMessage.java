@@ -1,22 +1,3 @@
-/*
-	Databees a beekeeping organizer app.
-    Copyright (C) 2014 NBV (Nederlandse Bijenhouders Vereniging)
-    http://www.bijenhouders.nl/
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
 package nl.isld.databees;
 
 import java.io.BufferedReader;
@@ -24,21 +5,33 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.util.Scanner;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.scheme.Scheme;
+import org.apache.http.conn.scheme.SchemeRegistry;
+import org.apache.http.conn.ssl.SSLSocketFactory;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.conn.SingleClientConnManager;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpParams;
 import org.json.JSONObject;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 public class AsyncJsonMessage extends AsyncTask<Void, Void, JSONObject> {
 	
 	public enum HttpMethod { GET, POST };
 	
 	protected String			url			= new String();
+	protected JSONObject		content		= new JSONObject();
 	protected JSONObject		object		= new JSONObject();
 	protected ResponseRecipient	recipient;
 	
@@ -62,6 +55,11 @@ public class AsyncJsonMessage extends AsyncTask<Void, Void, JSONObject> {
 		execute((Void) null);
 	}
 	
+	public final AsyncJsonMessage setContent(JSONObject content) {
+		this.content = content;
+		return this;
+	}
+	
 	/*
 	 * Overridden method of class AsyncTask.
 	 * It calls the private method fetchAndParse()
@@ -81,6 +79,7 @@ public class AsyncJsonMessage extends AsyncTask<Void, Void, JSONObject> {
 			
 		case GET:
 			json = executeSecureGet();
+			break;
 			
 		default:
 			json = new JSONObject();
@@ -92,6 +91,7 @@ public class AsyncJsonMessage extends AsyncTask<Void, Void, JSONObject> {
 	
 	@Override
 	protected final void onPostExecute(JSONObject json) {
+		
 		if(recipient != null) {
 			recipient.onResponseReceived(json);
 		}
@@ -110,12 +110,12 @@ public class AsyncJsonMessage extends AsyncTask<Void, Void, JSONObject> {
 			return new JSONObject();
 		}
 		
-		InputStream is;
+		DefaultHttpClient httpClient	= new DefaultHttpClient();
+        HttpPost httpPost 				= new HttpPost(url);
+        InputStream is;
 		
 		// Try to execute the HTTP request and get the response
 		try {
-            DefaultHttpClient httpClient	= new DefaultHttpClient();
-            HttpPost httpPost 				= new HttpPost(url);
             HttpResponse httpResponse		= httpClient.execute(httpPost);
             HttpEntity httpEntity			= httpResponse.getEntity();
             							 is = httpEntity.getContent();           
@@ -151,12 +151,94 @@ public class AsyncJsonMessage extends AsyncTask<Void, Void, JSONObject> {
 	}
 	
 	private JSONObject executeSecurePost() {
-		// TODO
-		return null;
-	}
+		SchemeRegistry schemeRegistry = new SchemeRegistry();
+		schemeRegistry.register(new Scheme("https", SSLSocketFactory.getSocketFactory(), 443));
+		HttpParams params = new BasicHttpParams();
+		SingleClientConnManager mgr = new SingleClientConnManager(params, schemeRegistry);
+		HttpClient client = new DefaultHttpClient(mgr, params);
+		  
+		HttpPost post = new HttpPost(url);
+		post.addHeader("content-type", "application/json");
+		post.addHeader("Authorization", BackendController.API_KEY);
+		Log.d("Beebug", "Content " + content.toString());
+		try {
+			post.setEntity(new StringEntity(content.toString()));
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		InputStream is;
+		  
+		try {
+			HttpResponse response 		= client.execute(post);
+			HttpEntity httpEntity		= response.getEntity();
+									 is = httpEntity.getContent();   
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+			return new JSONObject();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return new JSONObject();
+		}
+		
+		// Once we have a response, try to convert it to a JSON object
+        try {
+            BufferedReader reader 	= new BufferedReader(new InputStreamReader(is), 8);
+            StringBuilder sb		= new StringBuilder();
+            String line;
+            
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+            
+            is.close();
+            return new JSONObject(sb.toString());
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JSONObject();
+        }
+}
 	
 	private JSONObject executeSecureGet() {
-		// TODO
-		return null;
+		SchemeRegistry schemeRegistry = new SchemeRegistry();
+		schemeRegistry.register(new Scheme("https",SSLSocketFactory.getSocketFactory(), 443));
+		HttpParams params = new BasicHttpParams(); 
+		SingleClientConnManager mgr = new SingleClientConnManager(params, schemeRegistry);
+		HttpClient client = new DefaultHttpClient(mgr, params);
+		
+		InputStream is;
+		  
+		try {
+			HttpResponse response 		= client.execute(new HttpGet(url));
+			HttpEntity httpEntity		= response.getEntity();
+									 is = httpEntity.getContent(); 
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+			return new JSONObject();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return new JSONObject();
+		}
+		
+		
+		
+		// Once we have a response, try to convert it to a JSON object
+        try {
+            BufferedReader reader 	= new BufferedReader(new InputStreamReader(is), 8);
+            StringBuilder sb		= new StringBuilder();
+            String line;
+            
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+            
+            is.close();
+            return new JSONObject(sb.toString());
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JSONObject();
+        }
 	}
 }

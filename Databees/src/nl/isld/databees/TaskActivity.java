@@ -1,6 +1,27 @@
+/*
+	Databees a beekeeping organizer app.
+    Copyright (C) 2014 NBV (Nederlandse Bijenhouders Vereniging)
+    http://www.bijenhouders.nl/
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 package nl.isld.databees;
 
 import java.util.Calendar;
+
+import org.json.JSONException;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -60,9 +81,6 @@ public class TaskActivity extends FragmentActivity
 	private Switch					alarm_on;
 	private EditText				reminderSpinner;
 	private TextView 				textViewTime;
-	private Long					getHour;
-	
- 
 	static final int TIME_DIALOG_ID = 999;
 	static final int DATE_DIALOG_ID = 899;
 	
@@ -216,6 +234,11 @@ public class TaskActivity extends FragmentActivity
 		
 		case REQUEST_NEW_TASK:
 			LocalStore.TASK_LIST.add(task);
+			try {
+				BackendController.store("task", task.translate(), null);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
 			
 		case REQUEST_EDIT_TASK:
 			// TODO
@@ -354,20 +377,17 @@ public class TaskActivity extends FragmentActivity
 	}
 	
 	    private void RegisterAlarmBroadcast()
-	    {
-	          Log.i("Alarm Example:RegisterAlarmBroadcast()", "Going to register Intent.RegisterAlramBroadcast");
-	 
-	        //This is the call back function(BroadcastReceiver) which will be called when your 
-	        //alarm time will reached.
+	    { 
+	        /*
+	         * This is the call back function(BroadcastReceiver) which will be called when the 
+	         * alarm time will reached.
+	         */
 	        mReceiver = new BroadcastReceiver()
 	        {
-	            private static final String TAG = "Alarm Example Receiver";
 	            @Override
 	            public void onReceive(Context context, Intent intent)
 	            {
-	                Log.i(TAG,"BroadcastReceiver::OnReceive() >>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 	                showNotification();
-	                
 	            }
 	        };
 	 

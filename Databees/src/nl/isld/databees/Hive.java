@@ -1,33 +1,15 @@
-/*
-	Databees a beekeeping organizer app.
-    Copyright (C) 2014 NBV (Nederlandse Bijenhouders Vereniging)
-    http://www.bijenhouders.nl/
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
 package nl.isld.databees;
 
 import java.util.Date;
 import java.util.List;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Hive implements Parcelable {
-
-	public static final String PARCEL_KEY	=	"PARCELABLE_HIVE";
+public class Hive extends Object implements AccessProxy {
 	
 	private Apiary		apiary;
 	private String		id;
@@ -51,45 +33,6 @@ public class Hive implements Parcelable {
 		this.colony		= new Colony(this);
 		
 		this.apiary.addHive(this);
-	}
-	
-	public Hive(Parcel source) {
-		this.id			= source.readString();
-		this.name		= source.readString();
-		this.apiary		= LocalStore.findApiaryById(source.readString());
-		this.colony		= source.readParcelable(null);
-	}
-	
-	public static final Parcelable.Creator<Hive> CREATOR =
-			new Parcelable.Creator<Hive>() {
-
-				@Override
-				public Hive createFromParcel(Parcel source) {
-					return new Hive(source);
-				}
-
-				@Override
-				public Hive[] newArray(int size) {
-					return new Hive[size];
-				}
-		
-			};
-			
-	@Override
-	public int describeContents() {
-		return 0;
-	}
-
-	@Override
-	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeString(id);
-		dest.writeString(name);
-		if(apiary != null){	
-			dest.writeString(apiary.getId());
-		} else {
-			dest.writeString(new String());
-		}
-		dest.writeParcelable(colony, flags);
 	}
 	
 	public Apiary getApiary() {
@@ -167,6 +110,39 @@ public class Hive implements Parcelable {
 		this.apiary.removeHive(this);
 		apiary.addHive(this);
 		this.apiary = apiary;
+	}
+
+	@Override
+	public JSONObject translate() throws JSONException {
+		JSONObject json = new JSONObject();
+		
+		json
+			.put("id", this.id)
+			.put("apiary_id", this.apiary.getId())
+			.put("number_of_suppers", this.suppers)
+			.put("notes", this.notes);
+		
+		return json;
+	}
+
+	@Override
+	public Object translate(JSONObject json) {
+		Hive hive = new Hive();
+		
+		try {
+			// TODO Inform Petar to put a name field in the database ASAP
+			hive.id = "HID" + json.getInt("id");
+			hive.name = "Hive"; 
+			hive.notes = json.getString("notes");
+			hive.suppers = json.getInt("number_of_suppers");
+			hive.moveToApiary(
+					LocalStore.findApiaryById(
+							"AID" + json.getInt("apiary_id")));
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		
+		return hive;
 	}
 	
 }

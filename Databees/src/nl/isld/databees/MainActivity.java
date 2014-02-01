@@ -19,11 +19,13 @@
 
 package nl.isld.databees;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import nl.isld.databees.rss.RSSFeed;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,7 +40,7 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
 public class MainActivity extends SlidingFragmentActivity
-	implements OnItemClickListener {
+	implements OnItemClickListener, ResponseRecipient {
 	
 	private SlidingMenu				navDrawer;
 	private ExpandableListView		navDrawerUserMenu;
@@ -66,7 +68,8 @@ public class MainActivity extends SlidingFragmentActivity
         initDrawer();
         initFrame();
         
-        LocalStore.initOnce();
+      //LocalStore.init();
+        BackendController.login("john.bracciano@hotmail.gr", "john123", this);
     }
     
     /*
@@ -197,7 +200,18 @@ public class MainActivity extends SlidingFragmentActivity
 	}
 	
 	  @Override
-	   public void onBackPressed() {
+	   	public void onBackPressed() {
 	       // do nothing.
 	   }
+	  
+	  @Override
+	  public void onResponseReceived(JSONObject json) {
+			
+		  try {
+			  BackendController.API_KEY = 
+					  json.getString("api_key");
+		  	} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
 }

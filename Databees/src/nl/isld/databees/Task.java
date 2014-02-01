@@ -21,9 +21,12 @@ package nl.isld.databees;
 
 import java.util.Date;
 
-public class Task {
+import org.json.JSONException;
+import org.json.JSONObject;
 
-	public static final String PARCEL_KEY	=	"PARCELABLE_apiary";
+public class Task extends Object implements AccessProxy {
+
+	public static final String PARCEL_KEY	=	"PARCELABLE_task";
 	
 	private String		id;
 	private String		title;
@@ -52,7 +55,6 @@ public class Task {
 		return title;
 	}
 	
-	
 	public String getDesc() {
 		return desc;
 	}
@@ -78,4 +80,36 @@ public class Task {
 		
 	}
 	
+
+	@Override
+	public JSONObject translate() throws JSONException {
+		JSONObject json = new JSONObject();
+		
+		json
+			.put("id", this.id)
+			.put("user_id", BackendController.USER_ID)
+			.put("title", this.title)
+			.put("taskDate", this.taskDate)
+			.put("notes", this.desc);
+		
+		return json;
+	}
+
+	@Override
+	public Object translate(JSONObject json) {
+		Task task = new Task();
+		
+		try {
+			task.id = "TID" + json.getInt("id");
+			task.title = json.getString("title");
+			task.desc = json.getString("notes");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		
+		return task;
+	
+	
+	}
+
 }

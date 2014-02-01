@@ -1,32 +1,14 @@
-/*
-	Databees a beekeeping organizer app.
-    Copyright (C) 2014 NBV (Nederlandse Bijenhouders Vereniging)
-    http://www.bijenhouders.nl/
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
 package nl.isld.databees;
 
 import java.util.Date;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Inspection implements Parcelable {
-	
-	public static final String PARCEL_KEY	=	"PARCELABLE_INSPECTION";
+public class Inspection extends Object implements AccessProxy {
 	
 	private String					id;
 	private Date					date;
@@ -51,42 +33,7 @@ public class Inspection implements Parcelable {
 		
 		this.colony.addInspection(this);
 	}
-	
-	public Inspection(Parcel source) {
-		this.id			= source.readString();
-		this.date		= new Date(source.readLong());
-		this.notes		= source.readString();
-		this.parameters = source.readParcelable(null);
-		this.colony		= null;
-	}
-	
-	public static final Parcelable.Creator<Inspection> CREATOR =
-			new Parcelable.Creator<Inspection>() {
 
-				@Override
-				public Inspection createFromParcel(Parcel source) {
-					return new Inspection(source);
-				}
-
-				@Override
-				public Inspection[] newArray(int size) {
-					return new Inspection[size];
-				}
-		
-			};
-
-	@Override
-	public int describeContents() {
-		return 0;
-	}
-
-	@Override
-	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeString(id);
-		dest.writeLong(date.getTime());
-		dest.writeString(notes);
-	}
-	
 	public String getId() {
 		return id;
 	}
@@ -121,6 +68,18 @@ public class Inspection implements Parcelable {
 	
 	public void setColony(Colony colony) {
 		this.colony = colony;
+	}
+
+	@Override
+	public JSONObject translate() throws JSONException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object translate(JSONObject json) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
