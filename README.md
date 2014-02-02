@@ -13,6 +13,9 @@ Custom key store file is found here under `Databees/additional_resource/debug.ke
 Download the file to your desktop and change the path of keystore by going to 
 `ADT --> Andrioid --> Build --> Change Custom debug keystore`
 
+The remote database for the android application could be found in the root folder `databees.sql`
+Import this file through phpmyadmin to create the database.
+
 Dependencies
 ----------
 
