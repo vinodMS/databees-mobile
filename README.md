@@ -3,6 +3,11 @@ databees
 
 INHolland Mobile Development Project 2013/2014
 
+Run
+----------
+
+Use the Databees.apk to install and run the application on your mobile device.
+
 Installing
 ----------
 
